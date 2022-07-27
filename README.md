@@ -1,2 +1,0 @@
-# MrRetro.io
-my blog.
