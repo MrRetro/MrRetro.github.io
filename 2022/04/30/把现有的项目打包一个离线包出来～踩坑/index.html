@@ -6,20 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.o-wu.com">
-  <title>哦屋</title>
+  <title>把现有的项目打包一个离线包出来～踩坑 | 哦屋</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="哦屋">
-<meta property="og:url" content="http://www.o-wu.com/index.html">
+  <meta name="description" content="Ps:打包一个离线包给销售，让销售拿去推广，数据需要用我们最新的数据。 一开始接到这个需求，快速的就有了一个解决方案，可以缓存所有接口的请求数据，然后就可以了做成离线的了。 真是想法很天真，开始一路一个坑。 实施：axios请求接口在响应数据时，用一个对象把所有请求接口的用户账号和入参以及请求方法作为对象的key，响应的内容作为value，然后采集数据，当这个数据采集好后，用ctrl+m将数据保存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把现有的项目打包一个离线包出来～踩坑">
+<meta property="og:url" content="http://www.o-wu.com/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/index.html">
 <meta property="og:site_name" content="哦屋">
+<meta property="og:description" content="Ps:打包一个离线包给销售，让销售拿去推广，数据需要用我们最新的数据。 一开始接到这个需求，快速的就有了一个解决方案，可以缓存所有接口的请求数据，然后就可以了做成离线的了。 真是想法很天真，开始一路一个坑。 实施：axios请求接口在响应数据时，用一个对象把所有请求接口的用户账号和入参以及请求方法作为对象的key，响应的内容作为value，然后采集数据，当这个数据采集好后，用ctrl+m将数据保存">
 <meta property="og:locale">
+<meta property="article:published_time" content="2022-04-30T15:30:47.000Z">
+<meta property="article:modified_time" content="2022-07-28T14:50:53.565Z">
 <meta property="article:author" content="MrRetro博客">
+<meta property="article:tag" content="离线包">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="哦屋" type="application/atom+xml">
@@ -195,25 +196,25 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-把现有的项目打包一个离线包出来～踩坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-把现有的项目打包一个离线包出来～踩坑" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/" target="_blank">把现有的项目打包一个离线包出来～踩坑</a>
-  
+    <h1 class="article-title" itemprop="name">
+      把现有的项目打包一个离线包出来～踩坑
     </h1>
   
 
 
   
   
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/" class="archive-article-date">
         <time datetime="2022-04-30T15:30:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-30</time>
 </a>
@@ -221,6 +222,27 @@
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.5k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -267,7 +289,49 @@
     
 
     
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我喝咖啡<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
 
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          MrRetro博客
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://www.o-wu.com/2022/04/30/把现有的项目打包一个离线包出来～踩坑/" title="把现有的项目打包一个离线包出来～踩坑" target="_blank">http://www.o-wu.com/2022/04/30/把现有的项目打包一个离线包出来～踩坑/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -288,16 +352,76 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://www.o-wu.com/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/04/21/node%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89json%E5%B9%B6%E5%B0%86%E5%85%B6%E5%90%88%E5%B9%B6%E8%BE%93%E5%87%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">node获取文件夹下的所有json并将其合并输出</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -318,307 +442,24 @@
 
 
 
-  
-    <article id="post-node获取文件夹下的所有json并将其合并输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/04/21/node%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89json%E5%B9%B6%E5%B0%86%E5%85%B6%E5%90%88%E5%B9%B6%E8%BE%93%E5%87%BA/" target="_blank">node获取文件夹下的所有json并将其合并输出</a>
-  
-    </h1>
-  
 
-
-  
-  
-<a href="/2022/04/21/node%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89json%E5%B9%B6%E5%B0%86%E5%85%B6%E5%90%88%E5%B9%B6%E8%BE%93%E5%87%BA/" class="archive-article-date">
-        <time datetime="2022-04-21T14:40:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <pre><code class="html">const fs = require(&#39;fs&#39;)
-const path = require(&#39;path&#39;)
-
-
-// readdir promise处理
-function asyncReaddir(filePath) &#123;
-    return new Promise((resolve, reject) =&gt; &#123;
-        fs.readdir(filePath, (err, file) =&gt; &#123;
-            if (err) &#123;
-                reject(err);
-            &#125;
-            resolve(file)
-        &#125;)
-    &#125;)
-&#125;
-
-// statpromise处理
-function asyncStat(filedir) &#123;
-    return new Promise((resolve, reject) =&gt; &#123;
-        fs.stat(filedir, (err, stats) =&gt; &#123;
-            if (err) reject(err);
-            resolve(stats)
-        &#125;)
-    &#125;)
-&#125;
-
-function fileDispaly(filePath, callback) &#123;
-    // 读取filePath路径下所有文件和文件夹名称
-    return asyncReaddir(filePath).then(files =&gt; &#123;
-        let promistList = files.map((fileName) =&gt; &#123;
-            let childFilePath = path.join(filePath, fileName)   // 获得子文件的绝对路径
-
-            // map遍历会得到多个promise，映射成新的promise数组promistList， 之后用Promise.all处理多个promise
-            return asyncStat(childFilePath).then(fileInfo =&gt; &#123;    // 获取每个文件或文件夹的信息
-                if (fileInfo.isFile()) &#123;                              // 判断是否是文件
-                    callback &amp;&amp; callback(childFilePath)         // 是文件则执行回调函数，这里演示接受文件绝对路径
-                &#125;
-
-                if (fileInfo.isDirectory()) &#123;
-                    return fileDispaly(childFilePath, callback)       // 递归处理文件夹
-                &#125;
-            &#125;).catch(err =&gt; &#123;
-                console.log(err)
-            &#125;)
-        &#125;)
-
-        return Promise.all(promistList)     // 所有的promise处理完成
-    &#125;).catch((err) =&gt; &#123;
-        console.log(err)
-    &#125;)
-&#125;
-
-// 定义callback, 处理接受到每个文件
-let fileList = []
-function addFile(file) &#123;
-    if(file.indexOf(&#39;.json&#39;)===-1)return
-    fileList.push(file)
-&#125;
-
-// 用D:/test 文件夹做测试
-const filePath = path.resolve(&#39;./&#39;)  
-
-fileDispaly(filePath, addFile).then(() =&gt; &#123;
-    // 这里可以对filePath下所有文件做处理了，如计算各个文件类型的数量 或统计文件信息等等
-    // console.log(fileList)
-
-    // 将所有文件路径写入path.txt里
-    let dataStr = &#123;&#125;
-    fileList.forEach(item =&gt; &#123;
-        // 读取文件内容
-        let data = fs.readFileSync(item,&quot;utf-8&quot;)
-        console.log(data)
-        data = JSON.parse(data)
-        Object.assign(dataStr, data)
-    &#125;)
-    dataStr = JSON.stringify(dataStr)
-
-    fs.writeFile(&#39;最后生成结果.txt&#39;, dataStr, (err) =&gt; &#123;
-        if (err) &#123;
-            console.log(&quot;写入文件失败&quot;)
-        &#125; else &#123;
-            console.log(&#39;写入成功&#39;)
-        &#125;
-    &#125;)
-&#125;)
-</code></pre>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">node</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/04/21/node%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89json%E5%B9%B6%E5%B0%86%E5%85%B6%E5%90%88%E5%B9%B6%E8%BE%93%E5%87%BA/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
+<div id="SOHUCS" sid="把现有的项目打包一个离线包出来～踩坑" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
 
 
 
 
-  
-    <article id="post-git工作流整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/14/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B4%E7%90%86/" target="_blank">node获取文件夹下的所有json并将其合并输出</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/03/14/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B4%E7%90%86/" class="archive-article-date">
-        <time datetime="2022-03-14T14:30:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="git五个区域"><a href="#git五个区域" class="headerlink" title="git五个区域"></a>git五个区域</h3><ol>
-<li>工作区：也就是我们平时对文件进行的增删改，都是在工作区中。</li>
-<li>缓存区：工作区中的文件在确定准备commit时，需要通过add命令添加到缓存区，之后才能通过commit生成提交记录。</li>
-<li>贮藏区：在缓存区中的文件通过stash命令可以进入贮藏区，也可以随时提取出来。</li>
-<li>本地仓库：就是本地的git仓库了，我们在起步就成功创建了一个本地仓库。</li>
-<li>远程仓库：就是远程的git仓库了，可能是来自于github, gitee或者公司自己搭建的gitlab, gitea等等平台。</li>
-</ol>
-<h3 id="正常工作流程"><a href="#正常工作流程" class="headerlink" title="正常工作流程"></a>正常工作流程</h3><ol>
-<li>需求分析</li>
-<li>拆分需求，将需求分为多个功能，并创建多个功能分支（分支可以从稳定分支拉出）</li>
-<li>功能分支开发完合入开发分支，部署开发环境，如果没有问题即可合入测试分支并部署让测试人员提测，待提测完成后可合入vt分支并部署，待测试在vt上进行回归测试。</li>
-</ol>
-<h3 id="目前分支情况"><a href="#目前分支情况" class="headerlink" title="目前分支情况"></a>目前分支情况</h3><ol>
-<li>master 主分支</li>
-<li>dev_0131 开发分支(dev)</li>
-<li>release_0131 测试分支(sit)</li>
-<li>vt_0131 vt分支</li>
-</ol>
-<h3 id="针对基座main工程的工作流"><a href="#针对基座main工程的工作流" class="headerlink" title="针对基座main工程的工作流"></a>针对基座main工程的工作流</h3><p>假设需要在基座开发一个上传组件和一个选人组件。<br>开发步骤：  </p>
-<ol>
-<li>需求分析后：通过需求从开发分支 release_0131 (注意：这边要从最稳定的分支检出)拉出两个功能分支 feature–上传组件 和 feature–选人组件</li>
-<li>开始开发 feature–上传组件 ，开发完将 feature–上传组件 分支合入 dev_0131 分支并通过jeakins部署</li>
-<li>将 feature–上传组件 分支合入 release_0131 分支并通过jeakins部署，提测</li>
-<li>如果提测有问题回到第2步骤，如果提测没问题，将 feature–上传组件 分支合入 vt_0131 分支并通过jeakins部署提测；vt提测有问题也是要重新回到第2步骤</li>
-</ol>
-<h3 id="目前常见问题"><a href="#目前常见问题" class="headerlink" title="目前常见问题"></a>目前常见问题</h3><p>问：功能开发到一半，来了一个测试release_0131缺陷需要优先处理<br>答：<br>方法一(推荐)：将功能区代码 add 到缓存区，再将缓存区的代码 commit 到本地仓库，这个时候因为功能还没开发完成所以commit你可以自己备注：“feat:xx功能开发30%”；然后切换到测试分支，从测试分支拉一个修复分支出来修改缺陷，等缺陷修复完后合入开发分支并部署进行自测，待自测完后将修复分支合入测试分支并部署，通知测试验证下缺陷。<br>方法二：将功能区代码 add 到缓存区，再将缓存区代码 stash 到贮藏区，这个时候再切换到测试分支拉一个修复分支出来修复。<br>方法三：不管当前开发到哪里，先将工作区的区的内容提交到本地仓库，切记不要推送到远端仓库，然后直接修改缺陷，如果当前分支无法修复缺陷就切到可以修复缺陷的分支，直接修复缺陷。等修复缺陷并提交到本地仓库时，将缺陷修复的 commit 挑出来 cherry-pick 合入到开发分支部署自测，自测完后从开发分支把修复的 commit 用同样的方式 cheery-pick 到测试分支并部署。  </p>
-<h3 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h3><ol>
-<li>init 创建一个本地仓库。</li>
-<li>clone 将远程仓库拉取到本地仓库。</li>
-<li>add 将文件从工作区添加到缓存区，本文使用了git add .来进行添加，也可* 以git add xxx来指定文件名。</li>
-<li>commit 将文件从缓存区提交到本地仓库。</li>
-<li>push 将本地仓库同步到远程仓库。</li>
-<li>pull 从远程仓库同步到本地仓库。</li>
-<li>checkout 切换分支，git checkout -b xxx则可以创建并切换到xxx分*支，没有-b便是切换。</li>
-<li>merge 合并分支。</li>
-<li>status 查看当前工作区和缓存区的内容。</li>
-<li>log 查看提交记录。</li>
-<li>branch 查看和操作仓库所有分支。</li>
-<li>stash 将缓存区内容提交到贮藏区，个人不推荐使用。</li>
-<li>tag 可以在当前提交记录生成一个标签。</li>
-<li>blame 追溯一个指定文件的历史修改记录</li>
-</ol>
-<p><strong>注意：(两个一定)</strong><br>每次push代码前一定要先pull代码<br>提测自己开发的功能一定不要把别人的代码也提交上去</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/14/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B4%E7%90%86/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
 
 
 
-  
-  
 
 
           </div>
@@ -656,8 +497,8 @@ fileDispaly(filePath, addFile).then(() =&gt; &#123;
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
