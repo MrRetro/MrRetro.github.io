@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.o-wu.com">
-  <title>Tag: git | 哦屋</title>
+  <title>哦屋</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+    
+    <!-- <meta name="keywords" content="">
+    <meta name="description" content=""> -->
+  
   <meta property="og:type" content="website">
 <meta property="og:title" content="哦屋">
-<meta property="og:url" content="http://www.o-wu.com/tags/git/index.html">
+<meta property="og:url" content="http://www.o-wu.com/page/2/index.html">
 <meta property="og:site_name" content="哦屋">
 <meta property="og:locale">
 <meta property="article:author" content="MrRetro博客">
@@ -207,64 +211,543 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/14/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B4%E7%90%86/" class="archive-article-date">
-        <time datetime="2022-03-14T14:30:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
-</a>
 
-        </div>
-    	 
+  
+    <article id="post-工作中记录的点点滴滴问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
   
     <h1 itemprop="name">
 	
-	  <a class="archive-article-title" href="/2022/03/14/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B4%E7%90%86/" target="_blank">git工作流整理</a>
+	  <a class="article-title" href="/2020/01/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E8%AE%B0%E5%BD%95%E7%9A%84%E7%82%B9%E7%82%B9%E6%BB%B4%E6%BB%B4%E9%97%AE%E9%A2%98/" target="_blank">工作中记录的点点滴滴问题</a>
   
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+  
+  
+<a href="/2020/01/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E8%AE%B0%E5%BD%95%E7%9A%84%E7%82%B9%E7%82%B9%E6%BB%B4%E6%BB%B4%E9%97%AE%E9%A2%98/" class="archive-article-date">
+        <time datetime="2020-01-16T08:49:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-16</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <blockquote>
+<p>记录工作中的一些疑问，疑难杂症，简单的细节。<br>随着工作时间越来越长遇到的问题也会越来越多，踩到的坑越来越多，<br>好的习惯是将它们一一记录，以便下次快速翻查。</p>
+</blockquote>
+<h3 id="好奇疑问"><a href="#好奇疑问" class="headerlink" title="好奇疑问"></a>好奇疑问</h3><ol>
+<li>markdown如何添加锚点</li>
+</ol>
+<pre><code class="md">- [标题名](#给标题取得一个id，一般与标题同名即可)
+### &lt;a id=&quot;给标题取得一个id，一般与标题同名即可&quot;&gt;标题名&lt;/a&gt;
+</code></pre>
+<ol start="2">
+<li>数组中去除对象, 根据对象中的某个key名重复的简单方法<blockquote>
+<p>const arr &#x3D; [<br>{ name:’xiaoming’, age:11 },<br>{ name:’xiaohua’, age:18 },<br>{ name:’xiaoming’, age:10 }<br>]<br>现在需要把name重复的剔除。</p>
+</blockquote>
+</li>
+</ol>
+<pre><code class="js">function unique(&#123;arr=[],key&#125;)&#123;
+    if(!key)&#123;
+        return arr;
+    &#125;
+    let hash = &#123;&#125;; 
+    arr = arr.reduce(function(item, next) &#123; 
+        hash[next[key]] ? &#39;&#39; : hash[next[key]] = true &amp;&amp; item.push(next); 
+        return item 
+    &#125;, []) 
+    return arr;
+&#125;
+</code></pre>
+<ol start="3">
+<li>如何预览PDF文件（<strong>用单个闭合标签多个iframe会被渲染成一个iframe</strong>）</li>
+</ol>
+<pre><code class="html">&lt;iframe src=&quot;xxx.pdf&quot;&gt;&lt;/iframe&gt;
+</code></pre>
+<ol start="4">
+<li>markdown文章章节如何 <strong>展开</strong> &amp; <strong>收起</strong></li>
+</ol>
+<pre><code class="html">&lt;!--details中添加open属性可展开内容--&gt;
+&lt;details&gt;
+    &lt;summary&gt;展开查看&lt;/summary&gt;
+    &lt;pre&gt;
+        展开内容
+    &lt;/pre&gt;
+&lt;/details&gt;
+</code></pre>
+<ol start="5">
+<li><p>如何创建微信公众号并发布文章，并且可以查看历史文章</p>
+<blockquote>
+<p>先申请一个微信公众号，然后创建</p>
+</blockquote>
+</li>
+<li><p>相对地址绝对地址转换方法（也可以用 <strong>new URL</strong>）</p>
+</li>
+</ol>
+<pre><code class="js">function relative2absolute(url, base) &#123;
+    let ele = document.createElement(&#39;a&#39;);
+    ele.href = (base || &#39;&#39;) + url;
+    return eleLink.href;
+&#125;
+</code></pre>
+<ol start="7">
+<li>微信公众号VUE页面缓存</li>
+</ol>
+<pre><code class="cmd">location / &#123;
+    root /opt/static/xxxx;
+    index index.html;
+    autoindex on;
+    directio   512;
+    output_buffers 1 128k;
+    open_file_cache max=1000 inactive=30s;
+    open_file_cache_valid 30s;
+    open_file_cache_min_uses 2;
+    open_file_cache_errors on;
+    #### 清除缓存
+    add_header Last-Modified $date_gmt;
+    add_header Cache-Control &#39;no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0&#39;;
+    if_modified_since off;
+    expires off;
+    etag off;
+&#125;
+</code></pre>
+<ol start="8">
+<li>node-sass安装失败</li>
+</ol>
+<pre><code class="cmd">sudo npm install node-sass --unsafe-perm --save-dev
+</code></pre>
+<ol start="9">
+<li>mac文件只有读功能</li>
+</ol>
+<pre><code class="cmd">sudo chmod -R 777 &#39;文件路径&#39;
+</code></pre>
+<ol start="10">
+<li>如何将本地项目(远端没有)推送到远端github上面</li>
+</ol>
+<pre><code class="js">// 1.在远端仓库创建一个与本地同名的项目
+// 2.git remote add origin https://github.com/MrRetro/element-form.git
+// 3.git push -u origin master
+</code></pre>
+<ol start="11">
+<li>获取视频第一帧并展示</li>
+</ol>
+<pre><code class="js">/**
+ * 获取视频第一帧画面
+ * @param eleVideo 当前视频元素
+ * @param eleTarget 第一帧渲染到当前元素内
+ * @param imgWidth 图片渲染宽度
+ * @param imgHeight 图片渲染高度
+ * */
+export function getVideoFirstImg (&#123; eleVideo, eleTarget, imgWidth = 400, imgHeight = 300 &#125;) &#123;
+  const canvas = document.createElement(&#39;canvas&#39;)
+  const img = document.createElement(&#39;img&#39;)
+  eleVideo.setAttribute(&#39;crossOrigin&#39;, &#39;anonymous&#39;)
+  canvas.width = eleVideo.clientWidth
+  canvas.height = eleVideo.clientHeight
+  eleVideo.onloadeddata = () =&gt; &#123;
+    canvas.getContext(&#39;2d&#39;).drawImage(eleVideo, 0, 0, canvas.width, canvas.height)
+    const dataURL = canvas.toDataURL(&#39;image/png&#39;)
+    img.src = dataURL
+    img.width = imgWidth
+    img.height = imgHeight
+    eleTarget.appendChild(img)
+  &#125;
+&#125;
+</code></pre>
+<ol start="12">
+<li>服务端给到的一维数组转成树形结构</li>
+</ol>
+<pre><code class="js">// 例如:
+// [
+//   &#123;id: 1, name: &#39;2-1&#39;, pid: 2&#125;,
+//   &#123;id: 2, name: &#39;2&#39;&#125;
+// ]
+// ==&gt; [id:2, name: &#39;2&#39;, children: [&#123;id: 1, name: &#39;2-1&#39;, pid: 2&#125;]]
+function transData(arr, idStr, pidStr, chindrenStr) &#123;
+    let result = [],
+        hash = &#123;&#125;,
+        id = idStr,
+        pid = pidStr,
+        children = chindrenStr,
+        i = 0,
+        j = 0,
+        len = arr.length;
+    for (; i &lt; len; i++) &#123;
+        hash[arr[i][id]] = arr[i];
+    &#125;
+    for (; j &lt; len; j++) &#123;
+        let aVal = arr[j], hashVP = hash[aVal[pid]];
+        if (hashVP) &#123;
+            !hashVP[children] &amp;&amp; (hashVP[children] = []);
+            hashVP[children].push(aVal);
+        &#125; else &#123;
+            result.push(aVal);
+        &#125;
+    &#125;
+    return result;
+&#125;
+</code></pre>
+<ol start="13">
+<li>金额数字(带小数点)转大写中文</li>
+</ol>
+<pre><code class="js">function convertCurrency(money) &#123;
+    let cnNums = [&#39;零&#39;, &#39;壹&#39;, &#39;贰&#39;, &#39;叁&#39;, &#39;肆&#39;, &#39;伍&#39;, &#39;陆&#39;, &#39;柒&#39;, &#39;捌&#39;, &#39;玖&#39;]
+    let cnIntRadice = [&#39;&#39;, &#39;拾&#39;, &#39;佰&#39;, &#39;仟&#39;]
+    let cnIntUnits = [&#39;&#39;, &#39;万&#39;, &#39;亿&#39;, &#39;兆&#39;]
+    let cnDecUnits = [&#39;角&#39;, &#39;分&#39;, &#39;毫&#39;, &#39;厘&#39;]
+    let cnInteger = &#39;整&#39;
+    let cnIntLast = &#39;元&#39;
+    let maxNum = 999999999999999.9999
+    let integerNum
+    let decimalNum
+    let chineseStr = &#39;&#39;
+    let parts
+    if (money === &#39;&#39;) &#123;
+        return &#39;&#39;
+    &#125;
+    money = parseFloat(money)
+    if (money &gt;= maxNum) &#123;
+        return &#39;&#39;
+    &#125;
+    if (money === 0) &#123;
+        chineseStr = cnNums[0] + cnIntLast + cnInteger
+        return chineseStr
+    &#125;
+    money = money.toString()
+    if (money.indexOf(&#39;.&#39;) === -1) &#123;
+        integerNum = money
+        decimalNum = &#39;&#39;
+    &#125; else &#123;
+        parts = money.split(&#39;.&#39;)
+        integerNum = parts[0]
+        decimalNum = parts[1].substr(0, 4)
+    &#125;
+    if (parseInt(integerNum, 10) &gt; 0) &#123;
+        let zeroCount = 0
+        let IntLen = integerNum.length
+        for (let i = 0; i &lt; IntLen; i++) &#123;
+            let n = integerNum.substr(i, 1)
+            let p = IntLen - i - 1
+            let q = p / 4
+            let m = p % 4
+            if (n === &#39;0&#39;) &#123;
+                zeroCount++
+            &#125; else &#123;
+                if (zeroCount &gt; 0) &#123;
+                    chineseStr += cnNums[0]
+                &#125;
+                zeroCount = 0
+                chineseStr += cnNums[parseInt(n)] + cnIntRadice[m]
+            &#125;
+            if (m === 0 &amp;&amp; zeroCount &lt; 4) &#123;
+                chineseStr += cnIntUnits[q]
+            &#125;
+        &#125;
+        chineseStr += cnIntLast
+    &#125;
+    if (decimalNum !== &#39;&#39;) &#123;
+        let decLen = decimalNum.length
+        for (i = 0; i &lt; decLen; i++) &#123;
+            n = decimalNum.substr(i, 1)
+            if (n !== &#39;0&#39;) &#123;
+                chineseStr += cnNums[Number(n)] + cnDecUnits[i]
+            &#125;
+        &#125;
+    &#125;
+    if (chineseStr === &#39;&#39;) &#123;
+        chineseStr += cnNums[0] + cnIntLast + cnInteger
+    &#125; else if (decimalNum === &#39;&#39;) &#123;
+        chineseStr += cnInteger
+    &#125;
+    return chineseStr
+&#125;
+</code></pre>
+<ol start="14">
+<li>通过id和数组找到它的所有父级</li>
+</ol>
+<pre><code class="js">/**
+ * 获取节点的所有父级节点
+ * @param data 整个树
+ * @param nodeId 某节点的id
+ * @param idStr 自定义设置唯一标识名称
+ * @param childrenStr 自定义设置孩子节点名称
+ * */
+function getParentNode(&#123;data, nodeId, idStr = &#39;id&#39;, childrenStr = &#39;children&#39;&#125;) &#123;
+    let arrRes = [];
+    if (data.length === 0) &#123;
+      if (nodeId) &#123;
+        arrRes.unshift(data)
+      &#125;
+      return arrRes;
+    &#125;
+    let rev = (arr, nodeId, pareantId) =&gt; &#123;
+      for (let i = 0, length = arr.length; i &lt; length; i++) &#123;
+        let node = arr[i];
+        node._pareantId = pareantId
+        if (node[idStr] === nodeId) &#123;
+          arrRes.unshift(node)
+          rev(data, node._pareantId);
+          break;
+        &#125; else &#123;
+          if (node[childrenStr]) &#123;
+            rev(node[childrenStr], nodeId, node[idStr]);
+          &#125;
+        &#125;
+      &#125;
+      return arrRes;
+    &#125;;
+    arrRes = rev(data, nodeId);
+    return arrRes;
+  &#125;
+
+//   let data = [
+//     &#123;value: 1, childrens: [&#123;value: 2, childrens: [&#123;value: 3&#125;]&#125;]&#125;,
+//     &#123;value: 4, childrens: [&#123;value: 5, childrens: [&#123;value: 6&#125;]&#125;]&#125;,
+//     ]
+//   console.log(getParentNode(&#123;data, nodeId: 6, idStr: &#39;value&#39;, childrenStr:&#39;childrens&#39;&#125;))
+</code></pre>
+<ol start="15">
+<li>新建一个shell脚本文件.bat，用于执行shell命令，用来启动全端所有微项目命令</li>
+</ol>
+<pre><code class="cmd">// window
+start cmd /k &quot;cd \work\system &amp;&amp; npm run serve&quot;
+</code></pre>
+<ol start="16">
+<li>字符串对比输出相似度</li>
+</ol>
+<pre><code class="js">// s 字符串1 
+// t 字符串2 
+// f 小数位数
+function similar(s, t, f) &#123;
+    if (!s || !t) &#123;
+        return 0
+    &#125;
+    var l = s.length &gt; t.length ? s.length : t.length
+    var n = s.length
+    var m = t.length
+    var d = []
+    f = f || 3
+    var min = function(a, b, c) &#123;
+        return a &lt; b ? (a &lt; c ? a : c) : (b &lt; c ? b : c)
+    &#125;
+    var i, j, si, tj, cost
+    if (n === 0) return m
+    if (m === 0) return n
+    for (i = 0; i &lt;= n; i++) &#123;
+        d[i] = []
+        d[i][0] = i
+    &#125;
+    for (j = 0; j &lt;= m; j++) &#123;
+        d[0][j] = j
+    &#125;
+    for (i = 1; i &lt;= n; i++) &#123;
+        si = s.charAt(i - 1)
+        for (j = 1; j &lt;= m; j++) &#123;
+            tj = t.charAt(j - 1)
+            if (si === tj) &#123;
+                cost = 0
+            &#125; else &#123;
+                cost = 1
+            &#125;
+            d[i][j] = min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost)
+        &#125;
+    &#125;
+    let res = (1 - d[n][m] / l)
+    return res.toFixed(f)
+&#125;
+</code></pre>
+<h3 id="vue踩到的坑"><a href="#vue踩到的坑" class="headerlink" title="vue踩到的坑"></a>vue踩到的坑</h3><ol>
+<li>输入框只能输入数字</li>
+</ol>
+<pre><code class="html">&lt;input v-model=&quot;value&quot; @input=&quot;value=value.replace(/[^\d]/g, &#39;&#39;)&quot; /&gt;
+</code></pre>
+<ol start="2">
+<li>vue-cli3.3+打包后路径找不到(空白)<br><a target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/config/#%E5%85%A8%E5%B1%80-cli-%E9%85%8D%E7%BD%AE">重新配置vue.config.js文件</a></li>
+</ol>
+<pre><code class="js">module.exports = &#123;
+    publicPath: &#39;./&#39;,
+    outputDir: &#39;dist&#39;,
+    assetsDir: &#39;static&#39;
+&#125;
+</code></pre>
+<ol start="3">
+<li>给elementui中的dialog加上拖拽功能</li>
+</ol>
+<pre><code class="js">// v-dialogDrag: 弹窗拖拽
+import Vue from &#39;vue&#39;;
+let draging = false;
+let dragDom: HTMLElement | null;
+let dragpoint: &#123; x: number, y: number &#125;;
+Vue.directive(&#39;dialogDrag&#39;, &#123;
+    bind(el, binding, vnode, oldVnode) &#123;
+        let dialogHeaderEl = el.querySelector(&#39;.el-dialog__header&#39;) as HTMLElement;
+        dialogHeaderEl.addEventListener(&#39;mousedown&#39;, (ev: MouseEvent) =&gt; &#123;
+            let target = ev.target as HTMLElement;
+            //由于点击关闭按钮会事件冒泡，取消拖拽
+            if (target.classList.contains(&#39;el-dialog__close&#39;)) &#123;
+                return;
+            &#125;
+            draging = true;
+            dragDom = el.querySelector(&#39;.el-dialog&#39;);
+            //自定义样式，让弹窗在拖拽过程中鼠标指针变成十字移动
+            dragDom?.classList.add(&#39;draging&#39;);
+            dragpoint = &#123;
+                x: ev.clientX,
+                y: ev.clientY
+            &#125;
+        &#125;);
+    &#125;
+&#125;);
+document.addEventListener(&#39;mouseup&#39;, (ev: MouseEvent) =&gt; &#123;
+    draging = false;
+    dragDom?.classList.remove(&#39;draging&#39;);
+    dragDom = null;
+&#125;);
+document.addEventListener(&#39;mousemove&#39;, (ev: MouseEvent) =&gt; &#123;
+    if (draging) &#123;
+        let _dragdom = dragDom as HTMLElement;
+        let sty = window.getComputedStyle(_dragdom, null);
+        _dragdom.style.marginLeft = `$&#123;parseFloat(sty.marginLeft) + ev.clientX - dragpoint.x&#125;px`;
+        _dragdom.style.marginTop = `$&#123;parseFloat(sty.marginTop) + ev.clientY - dragpoint.y&#125;px`;
+        dragpoint = &#123;
+            x: ev.clientX,
+            y: ev.clientY
+        &#125;
+    &#125;
+&#125;);
+</code></pre>
+<ol start="4">
+<li>vue线上如何调试</li>
+</ol>
+<pre><code class="js">1.控制台找到app.js打包后的主文件，打包后的文件一般会加上哈希码，例如:app.6d11e565.js
+2.搜索 &quot;$mount&quot; 关键字
+3.断点到 new Vue 位置
+4.修改 new 后面的 Vue.config.devtools = true， 注意：这边的Vue以实际编译的为准 例如 new i.a(&#123;...&#125;)
+</code></pre>
+<ol start="5">
+<li>vue生产环境开启vue-tools调试</li>
+</ol>
+<pre><code class="js">(function openVueTool()&#123;
+    //在方法中执行，避免污染全局变量
+    //开启vue2 production调试的方法
+    
+    //1.找vue实例，可以说99%的应用是用的app.__vue__
+    //如果实在找不到,那么就到找到任意组件，用组件元素.__vue__.$root来获取
+    var vue = app.__vue__
+    
+    //2.vue构造函数
+    var constructor = vue.__proto__.constructor
+    
+    //3.Vue有多级，要找到最顶级的
+    var Vue = constructor;
+    while(Vue.super)&#123;
+        Vue = Vue.super
+    &#125;
+    
+    //4.找到config，并且把devtools设置成true
+    Vue.config.devtools = true;
+    
+    //5.注册到Vue DevTool上
+    var hook = window.__VUE_DEVTOOLS_GLOBAL_HOOK__
+    hook.emit(&#39;init&#39;,Vue)
+    
+    //6.如果有vuex store
+    if(vue.$store)&#123;
+        var store = vue.$store;
+        store._devtoolHook = hook;
+        hook.emit(&#39;vuex:init&#39;, store);
+        hook.on(&#39;vuex:travel-to-state&#39;,function(targetState)&#123;
+            store.replaceState(targetState);
+        &#125;);
+        store.subscribe(function(mutation, state)&#123;
+            hook.emit(&#39;vuex:mutation&#39;, mutation, state);
+        &#125;);
+    &#125;
+&#125;)()
+</code></pre>
+<h3 id="需求实现"><a href="#需求实现" class="headerlink" title="需求实现"></a>需求实现</h3><p>1.写一个白板支持撤销</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201502151385.html">http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201502151385.html</a>  </p>
+</blockquote>
+<p>2.写一个爬网页素材的爬虫</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/twodogya/article/details/80204322">https://blog.csdn.net/twodogya/article/details/80204322</a></p>
+</blockquote>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工作</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">记录</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+    
 
     
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2020/01/16/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E8%AE%B0%E5%BD%95%E7%9A%84%E7%82%B9%E7%82%B9%E6%BB%B4%E6%BB%B4%E9%97%AE%E9%A2%98/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -302,10 +785,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
