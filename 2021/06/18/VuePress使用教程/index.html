@@ -483,30 +483,31 @@
 
 
 
-
+  <div id="giteement-ctn"></div>
   
-  <div id="gitment-ctn"></div>
-  
-    <!-- 中文 -->
-    <link rel="stylesheet" href="/lib/gitment.css">
-    <script src="/lib/gitment.js"></script>
+    <link rel="stylesheet" href="/lib/default.css">
+    <script src="/lib/giteement.browser.js"></script>
   
   <script>
-    <!-- id: "VuePress使用教程" -->
-    var gitment = new Gitment({
-      id: "20210618221218",
-      owner: 'mrretro',
-      repo: 'retro',
-      oauth: {
-        client_id: '859d4df3b7578b5feb81',
-        client_secret: 'c80f22b00e3022bd5e23e6a06448ec101f0f14de',
-      },
-    })
-    gitment.render('gitment-ctn')
+  <!-- id: "VuePress使用教程" -->
+  var giteement = new Giteement({
+    id: '20210618221218',
+    owner: 'MrRetro',
+    repo: '',
+    backcall_uri: 'https://www.o-wu.com',
+    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
+    oauth: {
+      client_id: 'b0ba64400165505b51b723070559d4e513acb404c71c18cd21c788dbbf5bce3c',
+      client_secret: 'e0b5b33f0020adc7ea6c83f9ed1c7d8798f7c60962fd0f8b5f97760590da5bb5'
+    },
+  })
+  giteement.render('giteement-ctn')
   </script>
 
 
-  
+
+
+
 
 
 
@@ -655,6 +656,14 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
@@ -664,14 +673,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
