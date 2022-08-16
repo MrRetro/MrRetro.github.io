@@ -458,31 +458,30 @@
 
 
 
-  <div id="giteement-ctn"></div>
+
   
-    <link rel="stylesheet" href="/lib/default.css">
-    <script src="/lib/giteement.browser.js"></script>
+  <div id="gitment-ctn"></div>
+  
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
   
   <script>
-  <!-- id: "选择无后端的评论第三方库【valine】" -->
-  var giteement = new Giteement({
-    id: '20210711211933',
-    owner: 'MrRetro',
-    repo: '',
-    backcall_uri: 'https://www.o-wu.com',
-    oauth_uri: 'https://cors-anywhere.herokuapp.com/https://gitee.com/oauth/token',
-    oauth: {
-      client_id: 'b0ba64400165505b51b723070559d4e513acb404c71c18cd21c788dbbf5bce3c',
-      client_secret: 'e0b5b33f0020adc7ea6c83f9ed1c7d8798f7c60962fd0f8b5f97760590da5bb5'
-    },
-  })
-  giteement.render('giteement-ctn')
+    <!-- id: "选择无后端的评论第三方库【valine】" -->
+    var gitment = new Gitment({
+      id: "20210711211933",
+      owner: 'mrretro',
+      repo: 'retro',
+      oauth: {
+        client_id: 'd7322451f55156496445',
+        client_secret: '6632093b2dc931753252dbe36f9c91b1e97d855a',
+      },
+    })
+    gitment.render('gitment-ctn')
   </script>
 
 
-
-
-
+  
 
 
 
@@ -627,10 +626,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
               </li>
              
@@ -643,15 +638,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -660,6 +655,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">记录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
