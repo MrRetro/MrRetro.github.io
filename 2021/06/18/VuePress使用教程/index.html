@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="使用VuePress 安装vuepress前，请确保你的 Node.js 版本 &gt;&#x3D; 8 .参考备注:官网地址  # 将 vuepress 作为一个本地依赖安装 npm install -D vuepress  # 新建一个 docs 文件夹 mkdir docs  # 新建一个 markdown 文件 echo &#39;# Hello VuePress!&#39; &gt; d">
+  <meta name="description" content="使用VuePress 安装vuepress前，请确保你的 Node.js 版本 &gt;&#x3D; 8 .参考备注:官网地址  1234567891011# 将 vuepress 作为一个本地依赖安装npm install -D vuepress# 新建一个 docs 文件夹mkdir docs# 新建一个 markdown 文件echo &amp;#x27;# Hello VuePress!&amp;#x27">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VuePress使用教程">
 <meta property="og:url" content="http://www.o-wu.com/2021/06/18/VuePress%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="哦屋">
-<meta property="og:description" content="使用VuePress 安装vuepress前，请确保你的 Node.js 版本 &gt;&#x3D; 8 .参考备注:官网地址  # 将 vuepress 作为一个本地依赖安装 npm install -D vuepress  # 新建一个 docs 文件夹 mkdir docs  # 新建一个 markdown 文件 echo &#39;# Hello VuePress!&#39; &gt; d">
+<meta property="og:description" content="使用VuePress 安装vuepress前，请确保你的 Node.js 版本 &gt;&#x3D; 8 .参考备注:官网地址  1234567891011# 将 vuepress 作为一个本地依赖安装npm install -D vuepress# 新建一个 docs 文件夹mkdir docs# 新建一个 markdown 文件echo &amp;#x27;# Hello VuePress!&amp;#x27">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-06-18T14:12:18.000Z">
 <meta property="article:modified_time" content="2022-08-11T04:43:02.357Z">
@@ -254,7 +254,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">455字</span>
+      <span class="post-count">458字</span>
     </span>
   </span>
 
@@ -277,74 +277,20 @@
     <h4 id="使用VuePress"><a href="#使用VuePress" class="headerlink" title="使用VuePress"></a>使用VuePress</h4><blockquote>
 <p>安装vuepress前，请确保你的 Node.js 版本 &gt;&#x3D; 8 .<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017242116">参考</a><br><strong>备注:</strong><a target="_blank" rel="noopener" href="https://vuepress.vuejs.org/zh/guide/getting-started.html">官网地址</a></p>
 </blockquote>
-<pre><code class="cmd"># 将 vuepress 作为一个本地依赖安装
-npm install -D vuepress
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cmd"># 将 vuepress 作为一个本地依赖安装<br>npm install -D vuepress<br><br># 新建一个 docs 文件夹<br><span class="hljs-built_in">mkdir</span> docs<br><br># 新建一个 markdown 文件<br><span class="hljs-built_in">echo</span> &#x27;# Hello VuePress!&#x27; &gt; docs/README.<span class="hljs-built_in">md</span><br><br># 预览网站<br>npx vuepress dev docs<br></code></pre></td></tr></table></figure>
 
-# 新建一个 docs 文件夹
-mkdir docs
-
-# 新建一个 markdown 文件
-echo &#39;# Hello VuePress!&#39; &gt; docs/README.md
-
-# 预览网站
-npx vuepress dev docs
-</code></pre>
 <p>接着，在 <strong>package.json</strong> 里加一些脚本:</p>
-<pre><code class="js">&#123;
-  &quot;scripts&quot;: &#123;
-    &quot;docs:dev&quot;: &quot;vuepress dev docs&quot;,
-    &quot;docs:build&quot;: &quot;vuepress build docs&quot;
-  &#125;
-&#125;
-</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;docs:dev&quot;</span>: <span class="hljs-string">&quot;vuepress dev docs&quot;</span>,<br>    <span class="hljs-string">&quot;docs:build&quot;</span>: <span class="hljs-string">&quot;vuepress build docs&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>预览网站</p>
-<pre><code class="cmd">npm run docs:dev
-// .vuepress/config.js
-module.exports = &#123;
-    title: &#39;基础组件&#39;,
-    description: &#39;基础组件&#39;,
-    head: [ // 注入到当前页面的 HTML &lt;head&gt; 中的标签
-        [&#39;link&#39;, &#123; rel: &#39;icon&#39;, href: &#39;/logo.jpg&#39; &#125;], // 增加一个自定义的 favicon(网页标签的图标)
-    ],
-    base: &#39;/&#39;, // 这是部署到github相关的配置
-    markdown: &#123;
-        lineNumbers: false // 代码块显示行号 好像没什么效果
-    &#125;,
-    themeConfig: &#123;
-        nav:[ // 顶部导航栏配置
-            &#123;text: &#39;前端基础&#39;, link: &#39;/test/&#39; &#125;,
-            &#123;text: &#39;算法题库&#39;, link: &#39;/one/&#39;&#125;
-        ],
-        sidebar: // 左侧边栏配置
-        [
-            &#123;
-                title: &#39;业务组件&#39;,
-                collapsable: true, //是否展开
-                children: [&#123;
-                    title: &#39;demo&#39;,
-                    path: &#39;/demo/&#39;
-                &#125;,]
-            &#125;,
-            [&#39;/test/&#39;,&#39;测试&#39;],
-            [&#39;/one/&#39;,&#39;组件测试&#39;]
-        ], 
-        sidebarDepth: 2, // 侧边栏显示2级 好像没什么效果
-    &#125;
-&#125;;
-</code></pre>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs cmd">npm run docs:dev<br>// .vuepress/config.js<br>module.exports = &#123;<br><span class="hljs-function">    title: &#x27;基础组件&#x27;,</span><br><span class="hljs-function">    <span class="hljs-title">description</span>: &#x27;基础组件&#x27;,</span><br><span class="hljs-function">    <span class="hljs-title">head</span>: [ // 注入到当前页面的 <span class="hljs-title">HTML</span> &lt;<span class="hljs-title">head</span>&gt; 中的标签</span><br><span class="hljs-function">        [&#x27;<span class="hljs-title">link</span>&#x27;, &#123; <span class="hljs-title">rel</span>: &#x27;<span class="hljs-title">icon</span>&#x27;, <span class="hljs-title">href</span>: &#x27;/<span class="hljs-title">logo.jpg</span>&#x27; &#125;], // 增加一个自定义的 <span class="hljs-title">favicon</span>(网页标签的图标)</span><br><span class="hljs-function">    ],</span><br><span class="hljs-function">    <span class="hljs-title">base</span>: &#x27;/&#x27;, // 这是部署到<span class="hljs-title">github</span>相关的配置</span><br><span class="hljs-function">    <span class="hljs-title">markdown</span>: &#123;</span><br><span class="hljs-function">        <span class="hljs-title">lineNumbers</span>: <span class="hljs-title">false</span> // 代码块显示行号 好像没什么效果</span><br><span class="hljs-function">    &#125;,</span><br><span class="hljs-function">    <span class="hljs-title">themeConfig</span>: &#123;</span><br><span class="hljs-function">        <span class="hljs-title">nav</span>:[ // 顶部导航栏配置</span><br><span class="hljs-function">            &#123;<span class="hljs-title">text</span>: &#x27;前端基础&#x27;, <span class="hljs-title">link</span>: &#x27;/<span class="hljs-title">test</span>/&#x27; &#125;,</span><br><span class="hljs-function">            &#123;<span class="hljs-title">text</span>: &#x27;算法题库&#x27;, <span class="hljs-title">link</span>: &#x27;/<span class="hljs-title">one</span>/&#x27;&#125;</span><br><span class="hljs-function">        ],</span><br><span class="hljs-function">        <span class="hljs-title">sidebar</span>: // 左侧边栏配置</span><br><span class="hljs-function">        [</span><br><span class="hljs-function">            &#123;</span><br><span class="hljs-function">                <span class="hljs-title">title</span>: &#x27;业务组件&#x27;,</span><br><span class="hljs-function">                <span class="hljs-title">collapsable</span>: <span class="hljs-title">true</span>, //是否展开</span><br><span class="hljs-function">                <span class="hljs-title">children</span>: [&#123;</span><br><span class="hljs-function">                    <span class="hljs-title">title</span>: &#x27;<span class="hljs-title">demo</span>&#x27;,</span><br><span class="hljs-function">                    <span class="hljs-title">path</span>: &#x27;/<span class="hljs-title">demo</span>/&#x27;</span><br><span class="hljs-function">                &#125;,]</span><br><span class="hljs-function">            &#125;,</span><br><span class="hljs-function">            [&#x27;/<span class="hljs-title">test</span>/&#x27;,&#x27;测试&#x27;],</span><br><span class="hljs-function">            [&#x27;/<span class="hljs-title">one</span>/&#x27;,&#x27;组件测试&#x27;]</span><br><span class="hljs-function">        ], </span><br><span class="hljs-function">        <span class="hljs-title">sidebarDepth</span>: 2, // 侧边栏显示2级 好像没什么效果</span><br><span class="hljs-function">    &#125;</span><br><span class="hljs-function">&#125;;</span><br></code></pre></td></tr></table></figure>
+
 <h3 id="在markdown中使用Vue"><a href="#在markdown中使用Vue" class="headerlink" title="在markdown中使用Vue"></a>在markdown中使用Vue</h3><p>在.vuepress中创建components文件夹。 所有在 .vuepress&#x2F;components 中找到的 *.vue 文件将会自动地被注册为全局的异步组件。</p>
 <p>如果需要引入静态文件，可以在.vuepress下新建public文件夹，里面可以放静态文件。</p>
-<pre><code class="js">.
-└─ .vuepress
-   └─ components
-      ├─ demo-1.vue
-      └─ Icon
-         └─ vi-icon.vue
-</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">.<br>└─ .<span class="hljs-property">vuepress</span><br>   └─ components<br>      ├─ demo-<span class="hljs-number">1.</span>vue<br>      └─ <span class="hljs-title class_">Icon</span><br>         └─ vi-icon.<span class="hljs-property">vue</span><br></code></pre></td></tr></table></figure>
+
 <p>可以直接使用这些组件在任意的 Markdown 文件中（组件名是通过文件名取到的）</p>
-<pre><code class="js">&lt;demo-1/&gt;
-&lt;Icon-vi-icon/&gt; //文件名和组件名之间同`-`连接
-</code></pre>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;demo-<span class="hljs-number">1</span>/&gt;<br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Icon-vi-icon</span>/&gt;</span></span> <span class="hljs-comment">//文件名和组件名之间同`-`连接</span><br></code></pre></td></tr></table></figure>
 
     
 
@@ -538,6 +484,28 @@ module.exports = &#123;
 
 
 
+  
+  <div id="gitment-ctn"></div>
+  
+    <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+    <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  
+  <script>
+    <!-- id: "VuePress使用教程" -->
+    var gitment = new Gitment({
+      id: "20210618221218",
+      owner: 'mrretro',
+      repo: 'retro',
+      oauth: {
+        client_id: '859d4df3b7578b5feb81',
+        client_secret: 'b96030a7aa29fcbeef973f05dfd5e58feb36f649',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
+  
 
 
 
@@ -666,14 +634,6 @@ module.exports = &#123;
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">VuePress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">diff</a>
               </li>
              
@@ -682,7 +642,31 @@ module.exports = &#123;
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">VuePress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -691,22 +675,6 @@ module.exports = &#123;
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -790,6 +758,16 @@ module.exports = &#123;
             </li>
           
             <li class="search-li">
+              <a href="https://juejin.cn/user/2084329777544686" target="_blank" 
+                class="search-title" >
+                
+                  <i class="icon-link icon"></i>
+                
+                掘金
+              </a>
+            </li>
+          
+            <li class="search-li">
               <a href="https://gitee.com/MrRetro" target="_blank" 
                 class="search-title" >
                 
@@ -806,16 +784,6 @@ module.exports = &#123;
                   <i class="icon-link icon"></i>
                 
                 简书
-              </a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://juejin.cn/user/2084329777544686" target="_blank" 
-                class="search-title" >
-                
-                  <i class="icon-link icon"></i>
-                
-                掘金
               </a>
             </li>
           

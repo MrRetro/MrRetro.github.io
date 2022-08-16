@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1.注册 leanClound 账号创建一个开发应用获取 AppID 和 AppKey 2.安装valine包 npm i valine –save 3.创建comment.vue组件 &lt;template&gt;     &lt;div class&#x3D;&quot;vcomment&quot;&gt;         &lt;div id&#x3D;&quot;vcomments&quot;&gt;&amp;lt">
+  <meta name="description" content="1.注册 leanClound 账号创建一个开发应用获取 AppID 和 AppKey 2.安装valine包 npm i valine –save 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556573.创建comment.vue组件&amp;lt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="选择无后端的评论第三方库【valine】">
 <meta property="og:url" content="http://www.o-wu.com/2021/07/11/%E9%80%89%E6%8B%A9%E6%97%A0%E5%90%8E%E7%AB%AF%E7%9A%84%E8%AF%84%E8%AE%BA%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E3%80%90valine%E3%80%91/index.html">
 <meta property="og:site_name" content="哦屋">
-<meta property="og:description" content="1.注册 leanClound 账号创建一个开发应用获取 AppID 和 AppKey 2.安装valine包 npm i valine –save 3.创建comment.vue组件 &lt;template&gt;     &lt;div class&#x3D;&quot;vcomment&quot;&gt;         &lt;div id&#x3D;&quot;vcomments&quot;&gt;&amp;lt">
+<meta property="og:description" content="1.注册 leanClound 账号创建一个开发应用获取 AppID 和 AppKey 2.安装valine包 npm i valine –save 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556573.创建comment.vue组件&amp;lt">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-07-11T13:19:33.000Z">
 <meta property="article:modified_time" content="2022-08-01T16:20:25.835Z">
@@ -275,64 +275,8 @@
     
     <p>1.注册 <a target="_blank" rel="noopener" href="https://console-e1.leancloud.cn/apps">leanClound</a> 账号创建一个开发应用获取 AppID 和 AppKey</p>
 <p>2.安装valine包 npm i valine –save</p>
-<pre><code class="vue">3.创建comment.vue组件
-&lt;template&gt;
-    &lt;div class=&quot;vcomment&quot;&gt;
-        &lt;div id=&quot;vcomments&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/template&gt;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs vue">3.创建comment.vue组件<br>&lt;template&gt;<br>    &lt;div class=&quot;vcomment&quot;&gt;<br>        &lt;div id=&quot;vcomments&quot;&gt;&lt;/div&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br>export default &#123;<br>    mounted: function()&#123;<br>        this.createValine()<br>    &#125;,<br>    methods: &#123;<br>        createValine() &#123;<br>            import(&#x27;valine&#x27;).then(Valine=&gt;&#123;<br>                new Valine.default(&#123;<br>                    el: &#x27;#vcomments&#x27;,<br>                    appId: &#x27;&#x27;,<br>                    appKey: &#x27;&#x27;,<br>                    notify: false,<br>                    verify: false,<br>                    avatar: &#x27;monsterid&#x27;,<br>                    path: location.pathname,<br>                    placeholder: &#x27;欢迎留言与我分享您的想法...&#x27;,<br>                &#125;);<br>            &#125;)<br>        &#125;<br>    &#125;,<br>    watch: &#123;<br>        &#x27;$route&#x27; (to, from) &#123;<br>            if(to.path !==  from.path)&#123;<br>                setTimeout(() =&gt; &#123;<br>                    //重新刷新valine<br>                    this.createValine()<br>                &#125;, 300)<br>            &#125;<br><br>            /**<br>             * TODO:<br>             * 1. 使用其他方法更新评论组件 或者使用其他较为好用的评论组件<br>             * 2. 添加categories and tag<br>             * 3. 更换其他主题<br>             */<br>        &#125;<br>    &#125;<br>&#125;<br>&lt;/script&gt;<br><br>&lt;style scoped&gt;<br>#vcomments &#123;<br>    max-width:740px;<br>    padding:10px;<br>    display: block;<br>    margin-left: auto;<br>    margin-right: auto;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
 
-&lt;script&gt;
-export default &#123;
-    mounted: function()&#123;
-        this.createValine()
-    &#125;,
-    methods: &#123;
-        createValine() &#123;
-            import(&#39;valine&#39;).then(Valine=&gt;&#123;
-                new Valine.default(&#123;
-                    el: &#39;#vcomments&#39;,
-                    appId: &#39;&#39;,
-                    appKey: &#39;&#39;,
-                    notify: false,
-                    verify: false,
-                    avatar: &#39;monsterid&#39;,
-                    path: location.pathname,
-                    placeholder: &#39;欢迎留言与我分享您的想法...&#39;,
-                &#125;);
-            &#125;)
-        &#125;
-    &#125;,
-    watch: &#123;
-        &#39;$route&#39; (to, from) &#123;
-            if(to.path !==  from.path)&#123;
-                setTimeout(() =&gt; &#123;
-                    //重新刷新valine
-                    this.createValine()
-                &#125;, 300)
-            &#125;
-
-            /**
-             * TODO:
-             * 1. 使用其他方法更新评论组件 或者使用其他较为好用的评论组件
-             * 2. 添加categories and tag
-             * 3. 更换其他主题
-             */
-        &#125;
-    &#125;
-&#125;
-&lt;/script&gt;
-
-&lt;style scoped&gt;
-#vcomments &#123;
-    max-width:740px;
-    padding:10px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-&#125;
-&lt;/style&gt;
-</code></pre>
 
     
 
@@ -515,6 +459,28 @@ export default &#123;
 
 
 
+  
+  <div id="gitment-ctn"></div>
+  
+    <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+    <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  
+  <script>
+    <!-- id: "选择无后端的评论第三方库【valine】" -->
+    var gitment = new Gitment({
+      id: "20210711211933",
+      owner: 'mrretro',
+      repo: 'retro',
+      oauth: {
+        client_id: '859d4df3b7578b5feb81',
+        client_secret: 'b96030a7aa29fcbeef973f05dfd5e58feb36f649',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
+
+
+  
 
 
 
@@ -643,14 +609,6 @@ export default &#123;
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">VuePress</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">diff</a>
               </li>
              
@@ -659,7 +617,31 @@ export default &#123;
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">VuePress</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -668,22 +650,6 @@ export default &#123;
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -767,6 +733,16 @@ export default &#123;
             </li>
           
             <li class="search-li">
+              <a href="https://juejin.cn/user/2084329777544686" target="_blank" 
+                class="search-title" >
+                
+                  <i class="icon-link icon"></i>
+                
+                掘金
+              </a>
+            </li>
+          
+            <li class="search-li">
               <a href="https://gitee.com/MrRetro" target="_blank" 
                 class="search-title" >
                 
@@ -783,16 +759,6 @@ export default &#123;
                   <i class="icon-link icon"></i>
                 
                 简书
-              </a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://juejin.cn/user/2084329777544686" target="_blank" 
-                class="search-title" >
-                
-                  <i class="icon-link icon"></i>
-                
-                掘金
               </a>
             </li>
           
