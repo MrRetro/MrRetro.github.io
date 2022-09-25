@@ -18,7 +18,7 @@
 <meta property="og:description" content="PS：首先分析$message使用方法1.import {Message} from ‘element-ui’ &#x2F;&#x2F; 可以在组件中引用2.this.$message.success(‘xxx’) &#x2F;&#x2F; 可以在组件钩子中直接使用 相信第一种方法写过vue文件的应该都会写吧，我这边着重讲下第二种方法，其实第二种方法是在第一种方法中将组件的方法暴露在vue的原型上">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-01-08T16:10:47.000Z">
-<meta property="article:modified_time" content="2022-08-11T04:43:02.340Z">
+<meta property="article:modified_time" content="2022-09-25T15:02:15.207Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="elemntui">
 <meta name="twitter:card" content="summary">
@@ -254,7 +254,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">352字</span>
+      <span class="post-count">394字</span>
     </span>
   </span>
 
@@ -263,7 +263,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -276,53 +276,53 @@
     
     <p>PS：首先分析$message使用方法<br>1.import {Message} from ‘element-ui’ &#x2F;&#x2F; 可以在组件中引用<br>2.this.$message.success(‘xxx’) &#x2F;&#x2F; 可以在组件钩子中直接使用</p>
 <p>相信第一种方法写过vue文件的应该都会写吧，我这边着重讲下第二种方法，其实第二种方法是在第一种方法中将组件的方法暴露在vue的原型上。</p>
-<pre><code class="js">// src/plugin/message.vue  
+<pre class="language-vue" data-language="vue"><code class="language-vue">&#x2F;&#x2F; src&#x2F;plugin&#x2F;message.vue  
 
 &lt;template&gt;
-  &lt;div class=&quot;el-messages&quot;&gt;
-    &lt;div v-for=&quot;m in messages&quot; :key=&quot;m.id&quot;&gt;&#123;&#123;m.message&#125;&#125;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
+  &lt;div class&#x3D;&quot;el-messages&quot;&gt;
+    &lt;div v-for&#x3D;&quot;m in messages&quot; :key&#x3D;&quot;m.id&quot;&gt;&#123;&#123;m.message&#125;&#125;&lt;&#x2F;div&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
 &lt;script&gt;
 export default &#123;
   data() &#123;
     return &#123;messages: []&#125;
   &#125;,
   mounted() &#123;
-    this.id = 0; // 当前消息组件的id
+    this.id &#x3D; 0; &#x2F;&#x2F; 当前消息组件的id
   &#125;,
   methods: &#123;
     add(options) &#123;
-      const id = this.id++;
-      const layer = &#123;...options, id&#125;
+      const id &#x3D; this.id++;
+      const layer &#x3D; &#123;...options, id&#125;
 
       this.messages.push(layer)
-      setTimeout(() =&gt; &#123;
+      setTimeout(() &#x3D;&gt; &#123;
         this.remove(layer)
       &#125;, options.duration)
     &#125;,
     remove(layer) &#123;
-      this.messages = this.messages.filter(message =&gt; message.id !== layer.id)
+      this.messages &#x3D; this.messages.filter(message &#x3D;&gt; message.id !&#x3D;&#x3D; layer.id)
     &#125;
   &#125;
 &#125;
-&lt;/script&gt; 
-// src/plugin/message.js
+&lt;&#x2F;script&gt; 
+&#x2F;&#x2F; src&#x2F;plugin&#x2F;message.js
 
 import Vue from &#39;vue&#39;
-import MessageComponent from &#39;./Message.vue&#39;
-let vm = null
-const getInstance = function() &#123;
+import MessageComponent from &#39;.&#x2F;Message.vue&#39;
+let vm &#x3D; null
+const getInstance &#x3D; function() &#123;
   if(!vm) &#123;
-    // 单例模式
-    vm = new Vue(&#123;
-      render: h =&gt; h(MessageComponent)
+    &#x2F;&#x2F; 单例模式
+    vm &#x3D; new Vue(&#123;
+      render: h &#x3D;&gt; h(MessageComponent)
     &#125;).$mount()
     document.body.appendChild(vm.$el)
   &#125;
   return vm.$children[0];
 &#125;
-const Message = &#123;
+const Message &#x3D; &#123;
   info(options) &#123;
     getInstance().add(options)
   &#125;
@@ -334,23 +334,23 @@ export &#123;
 
 export default &#123;
   install(Vue) &#123;
-    Vue.prototype.$message = &#123;
+    Vue.prototype.$message &#x3D; &#123;
       info: Message.info
     &#125;
   &#125;
 &#125;
-// src/main.js
+&#x2F;&#x2F; src&#x2F;main.js
 
 import Vue from &#39;vue&#39;
-import App from &#39;./App.vue&#39;
-import Message from &#39;./plugin/message&#39;
+import App from &#39;.&#x2F;App.vue&#39;
+import Message from &#39;.&#x2F;plugin&#x2F;message&#39;
 
-Vue.config.productionTip = false
+Vue.config.productionTip &#x3D; false
 Vue.use(Message)
 new Vue(&#123;
-  render: h =&gt; h(App),
-&#125;).$mount(&#39;#app&#39;)
-</code></pre>
+  render: h &#x3D;&gt; h(App),
+&#125;).$mount(&#39;#app&#39;)</code></pre>
+
 
     
 
@@ -679,6 +679,10 @@ new Vue(&#123;
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
               </li>
              
@@ -687,15 +691,11 @@ new Vue(&#123;
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -956,6 +956,9 @@ new Vue(&#123;
 
   
   
+  <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/10.7.3/styles/github.min.css">
+  <script src="//cdn.bootcss.com/highlight.js/10.7.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>

@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="const fs &#x3D; require(&#39;fs&#39;) const path &#x3D; require(&#39;path&#39;)   &#x2F;&#x2F; readdir promise处理 function asyncReaddir(filePath) &amp;#123;     return new Promise((resolve, reject) &#x3D;&gt; &amp;#123;         fs.rea">
+  <meta name="description" content="const fs &#x3D; require(&#39;fs&#39;) const path &#x3D; require(&#39;path&#39;)   &#x2F;&#x2F; readdir promise处理 function asyncReaddir(filePath) &amp;#123;     return new Promise((resolve, reject) &#x3D;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="node获取文件夹下的所有json并将其合并输出">
 <meta property="og:url" content="http://www.o-wu.com/2022/04/21/node%E8%8E%B7%E5%8F%96%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E7%9A%84%E6%89%80%E6%9C%89json%E5%B9%B6%E5%B0%86%E5%85%B6%E5%90%88%E5%B9%B6%E8%BE%93%E5%87%BA/index.html">
 <meta property="og:site_name" content="MrRetro技术分享">
-<meta property="og:description" content="const fs &#x3D; require(&#39;fs&#39;) const path &#x3D; require(&#39;path&#39;)   &#x2F;&#x2F; readdir promise处理 function asyncReaddir(filePath) &amp;#123;     return new Promise((resolve, reject) &#x3D;&gt; &amp;#123;         fs.rea">
+<meta property="og:description" content="const fs &#x3D; require(&#39;fs&#39;) const path &#x3D; require(&#39;path&#39;)   &#x2F;&#x2F; readdir promise处理 function asyncReaddir(filePath) &amp;#123;     return new Promise((resolve, reject) &#x3D;&amp;">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-04-21T14:40:46.000Z">
-<meta property="article:modified_time" content="2022-07-28T14:49:13.529Z">
+<meta property="article:modified_time" content="2022-09-25T15:03:07.959Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="node">
 <meta name="twitter:card" content="summary">
@@ -254,7 +254,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">442字</span>
+      <span class="post-count">501字</span>
     </span>
   </span>
 
@@ -274,14 +274,14 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <pre><code class="html">const fs = require(&#39;fs&#39;)
-const path = require(&#39;path&#39;)
+    <pre class="language-node" data-language="node"><code class="language-node">const fs &#x3D; require(&#39;fs&#39;)
+const path &#x3D; require(&#39;path&#39;)
 
 
-// readdir promise处理
+&#x2F;&#x2F; readdir promise处理
 function asyncReaddir(filePath) &#123;
-    return new Promise((resolve, reject) =&gt; &#123;
-        fs.readdir(filePath, (err, file) =&gt; &#123;
+    return new Promise((resolve, reject) &#x3D;&gt; &#123;
+        fs.readdir(filePath, (err, file) &#x3D;&gt; &#123;
             if (err) &#123;
                 reject(err);
             &#125;
@@ -290,10 +290,10 @@ function asyncReaddir(filePath) &#123;
     &#125;)
 &#125;
 
-// statpromise处理
+&#x2F;&#x2F; statpromise处理
 function asyncStat(filedir) &#123;
-    return new Promise((resolve, reject) =&gt; &#123;
-        fs.stat(filedir, (err, stats) =&gt; &#123;
+    return new Promise((resolve, reject) &#x3D;&gt; &#123;
+        fs.stat(filedir, (err, stats) &#x3D;&gt; &#123;
             if (err) reject(err);
             resolve(stats)
         &#125;)
@@ -301,65 +301,64 @@ function asyncStat(filedir) &#123;
 &#125;
 
 function fileDispaly(filePath, callback) &#123;
-    // 读取filePath路径下所有文件和文件夹名称
-    return asyncReaddir(filePath).then(files =&gt; &#123;
-        let promistList = files.map((fileName) =&gt; &#123;
-            let childFilePath = path.join(filePath, fileName)   // 获得子文件的绝对路径
+    &#x2F;&#x2F; 读取filePath路径下所有文件和文件夹名称
+    return asyncReaddir(filePath).then(files &#x3D;&gt; &#123;
+        let promistList &#x3D; files.map((fileName) &#x3D;&gt; &#123;
+            let childFilePath &#x3D; path.join(filePath, fileName)   &#x2F;&#x2F; 获得子文件的绝对路径
 
-            // map遍历会得到多个promise，映射成新的promise数组promistList， 之后用Promise.all处理多个promise
-            return asyncStat(childFilePath).then(fileInfo =&gt; &#123;    // 获取每个文件或文件夹的信息
-                if (fileInfo.isFile()) &#123;                              // 判断是否是文件
-                    callback &amp;&amp; callback(childFilePath)         // 是文件则执行回调函数，这里演示接受文件绝对路径
+            &#x2F;&#x2F; map遍历会得到多个promise，映射成新的promise数组promistList， 之后用Promise.all处理多个promise
+            return asyncStat(childFilePath).then(fileInfo &#x3D;&gt; &#123;    &#x2F;&#x2F; 获取每个文件或文件夹的信息
+                if (fileInfo.isFile()) &#123;                              &#x2F;&#x2F; 判断是否是文件
+                    callback &amp;&amp; callback(childFilePath)         &#x2F;&#x2F; 是文件则执行回调函数，这里演示接受文件绝对路径
                 &#125;
 
                 if (fileInfo.isDirectory()) &#123;
-                    return fileDispaly(childFilePath, callback)       // 递归处理文件夹
+                    return fileDispaly(childFilePath, callback)       &#x2F;&#x2F; 递归处理文件夹
                 &#125;
-            &#125;).catch(err =&gt; &#123;
+            &#125;).catch(err &#x3D;&gt; &#123;
                 console.log(err)
             &#125;)
         &#125;)
 
-        return Promise.all(promistList)     // 所有的promise处理完成
-    &#125;).catch((err) =&gt; &#123;
+        return Promise.all(promistList)     &#x2F;&#x2F; 所有的promise处理完成
+    &#125;).catch((err) &#x3D;&gt; &#123;
         console.log(err)
     &#125;)
 &#125;
 
-// 定义callback, 处理接受到每个文件
-let fileList = []
+&#x2F;&#x2F; 定义callback, 处理接受到每个文件
+let fileList &#x3D; []
 function addFile(file) &#123;
-    if(file.indexOf(&#39;.json&#39;)===-1)return
+    if(file.indexOf(&#39;.json&#39;)&#x3D;&#x3D;&#x3D;-1)return
     fileList.push(file)
 &#125;
 
-// 用D:/test 文件夹做测试
-const filePath = path.resolve(&#39;./&#39;)  
+&#x2F;&#x2F; 用D:&#x2F;test 文件夹做测试
+const filePath &#x3D; path.resolve(&#39;.&#x2F;&#39;)  
 
-fileDispaly(filePath, addFile).then(() =&gt; &#123;
-    // 这里可以对filePath下所有文件做处理了，如计算各个文件类型的数量 或统计文件信息等等
-    // console.log(fileList)
+fileDispaly(filePath, addFile).then(() &#x3D;&gt; &#123;
+    &#x2F;&#x2F; 这里可以对filePath下所有文件做处理了，如计算各个文件类型的数量 或统计文件信息等等
+    &#x2F;&#x2F; console.log(fileList)
 
-    // 将所有文件路径写入path.txt里
-    let dataStr = &#123;&#125;
-    fileList.forEach(item =&gt; &#123;
-        // 读取文件内容
-        let data = fs.readFileSync(item,&quot;utf-8&quot;)
+    &#x2F;&#x2F; 将所有文件路径写入path.txt里
+    let dataStr &#x3D; &#123;&#125;
+    fileList.forEach(item &#x3D;&gt; &#123;
+        &#x2F;&#x2F; 读取文件内容
+        let data &#x3D; fs.readFileSync(item,&quot;utf-8&quot;)
         console.log(data)
-        data = JSON.parse(data)
+        data &#x3D; JSON.parse(data)
         Object.assign(dataStr, data)
     &#125;)
-    dataStr = JSON.stringify(dataStr)
+    dataStr &#x3D; JSON.stringify(dataStr)
 
-    fs.writeFile(&#39;最后生成结果.txt&#39;, dataStr, (err) =&gt; &#123;
+    fs.writeFile(&#39;最后生成结果.txt&#39;, dataStr, (err) &#x3D;&gt; &#123;
         if (err) &#123;
             console.log(&quot;写入文件失败&quot;)
         &#125; else &#123;
             console.log(&#39;写入成功&#39;)
         &#125;
     &#125;)
-&#125;)
-</code></pre>
+&#125;)</code></pre>
 
     
 
@@ -688,6 +687,10 @@ fileDispaly(filePath, addFile).then(() =&gt; &#123;
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
               </li>
              
@@ -696,15 +699,11 @@ fileDispaly(filePath, addFile).then(() =&gt; &#123;
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -965,6 +964,9 @@ fileDispaly(filePath, addFile).then(() =&gt; &#123;
 
   
   
+  <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/10.7.3/styles/github.min.css">
+  <script src="//cdn.bootcss.com/highlight.js/10.7.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>

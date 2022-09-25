@@ -18,7 +18,7 @@
 <meta property="og:description" content="使用VuePress 安装vuepress前，请确保你的 Node.js 版本 &gt;&#x3D; 8 .参考备注:官网地址  # 将 vuepress 作为一个本地依赖安装 npm install -D vuepress  # 新建一个 docs 文件夹 mkdir docs  # 新建一个 markdown 文件 echo &#39;# Hello VuePress!&#39; &gt; d">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-06-18T14:12:18.000Z">
-<meta property="article:modified_time" content="2022-08-11T04:43:02.357Z">
+<meta property="article:modified_time" content="2022-09-25T15:14:42.998Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="VuePress">
 <meta name="twitter:card" content="summary">
@@ -254,7 +254,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">455字</span>
+      <span class="post-count">476字</span>
     </span>
   </span>
 
@@ -277,74 +277,73 @@
     <h4 id="使用VuePress"><a href="#使用VuePress" class="headerlink" title="使用VuePress"></a>使用VuePress</h4><blockquote>
 <p>安装vuepress前，请确保你的 Node.js 版本 &gt;&#x3D; 8 .<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017242116">参考</a><br><strong>备注:</strong><a target="_blank" rel="noopener" href="https://vuepress.vuejs.org/zh/guide/getting-started.html">官网地址</a></p>
 </blockquote>
-<pre><code class="cmd"># 将 vuepress 作为一个本地依赖安装
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd"># 将 vuepress 作为一个本地依赖安装
 npm install -D vuepress
 
 # 新建一个 docs 文件夹
 mkdir docs
 
 # 新建一个 markdown 文件
-echo &#39;# Hello VuePress!&#39; &gt; docs/README.md
+echo &#39;# Hello VuePress!&#39; &gt; docs&#x2F;README.md
 
 # 预览网站
-npx vuepress dev docs
-</code></pre>
+npx vuepress dev docs</code></pre>
+
 <p>接着，在 <strong>package.json</strong> 里加一些脚本:</p>
-<pre><code class="js">&#123;
-  &quot;scripts&quot;: &#123;
-    &quot;docs:dev&quot;: &quot;vuepress dev docs&quot;,
-    &quot;docs:build&quot;: &quot;vuepress build docs&quot;
-  &#125;
-&#125;
-</code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">&#123;</span>
+  <span class="token string-property property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string-property property">"docs:dev"</span><span class="token operator">:</span> <span class="token string">"vuepress dev docs"</span><span class="token punctuation">,</span>
+    <span class="token string-property property">"docs:build"</span><span class="token operator">:</span> <span class="token string">"vuepress build docs"</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
 <p>预览网站</p>
-<pre><code class="cmd">npm run docs:dev
-// .vuepress/config.js
-module.exports = &#123;
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">npm run docs:dev
+&#x2F;&#x2F; .vuepress&#x2F;config.js
+module.exports &#x3D; &#123;
     title: &#39;基础组件&#39;,
     description: &#39;基础组件&#39;,
-    head: [ // 注入到当前页面的 HTML &lt;head&gt; 中的标签
-        [&#39;link&#39;, &#123; rel: &#39;icon&#39;, href: &#39;/logo.jpg&#39; &#125;], // 增加一个自定义的 favicon(网页标签的图标)
+    head: [ &#x2F;&#x2F; 注入到当前页面的 HTML &lt;head&gt; 中的标签
+        [&#39;link&#39;, &#123; rel: &#39;icon&#39;, href: &#39;&#x2F;logo.jpg&#39; &#125;], &#x2F;&#x2F; 增加一个自定义的 favicon(网页标签的图标)
     ],
-    base: &#39;/&#39;, // 这是部署到github相关的配置
+    base: &#39;&#x2F;&#39;, &#x2F;&#x2F; 这是部署到github相关的配置
     markdown: &#123;
-        lineNumbers: false // 代码块显示行号 好像没什么效果
+        lineNumbers: false &#x2F;&#x2F; 代码块显示行号 好像没什么效果
     &#125;,
     themeConfig: &#123;
-        nav:[ // 顶部导航栏配置
-            &#123;text: &#39;前端基础&#39;, link: &#39;/test/&#39; &#125;,
-            &#123;text: &#39;算法题库&#39;, link: &#39;/one/&#39;&#125;
+        nav:[ &#x2F;&#x2F; 顶部导航栏配置
+            &#123;text: &#39;前端基础&#39;, link: &#39;&#x2F;test&#x2F;&#39; &#125;,
+            &#123;text: &#39;算法题库&#39;, link: &#39;&#x2F;one&#x2F;&#39;&#125;
         ],
-        sidebar: // 左侧边栏配置
+        sidebar: &#x2F;&#x2F; 左侧边栏配置
         [
             &#123;
                 title: &#39;业务组件&#39;,
-                collapsable: true, //是否展开
+                collapsable: true, &#x2F;&#x2F;是否展开
                 children: [&#123;
                     title: &#39;demo&#39;,
-                    path: &#39;/demo/&#39;
+                    path: &#39;&#x2F;demo&#x2F;&#39;
                 &#125;,]
             &#125;,
-            [&#39;/test/&#39;,&#39;测试&#39;],
-            [&#39;/one/&#39;,&#39;组件测试&#39;]
+            [&#39;&#x2F;test&#x2F;&#39;,&#39;测试&#39;],
+            [&#39;&#x2F;one&#x2F;&#39;,&#39;组件测试&#39;]
         ], 
-        sidebarDepth: 2, // 侧边栏显示2级 好像没什么效果
+        sidebarDepth: 2, &#x2F;&#x2F; 侧边栏显示2级 好像没什么效果
     &#125;
-&#125;;
-</code></pre>
+&#125;;</code></pre>
+
 <h3 id="在markdown中使用Vue"><a href="#在markdown中使用Vue" class="headerlink" title="在markdown中使用Vue"></a>在markdown中使用Vue</h3><p>在.vuepress中创建components文件夹。 所有在 .vuepress&#x2F;components 中找到的 *.vue 文件将会自动地被注册为全局的异步组件。</p>
 <p>如果需要引入静态文件，可以在.vuepress下新建public文件夹，里面可以放静态文件。</p>
-<pre><code class="js">.
-└─ .vuepress
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">.</span>
+└─ <span class="token punctuation">.</span>vuepress
    └─ components
-      ├─ demo-1.vue
+      ├─ demo<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>vue
       └─ Icon
-         └─ vi-icon.vue
-</code></pre>
+         └─ vi<span class="token operator">-</span>icon<span class="token punctuation">.</span>vue</code></pre>
+
 <p>可以直接使用这些组件在任意的 Markdown 文件中（组件名是通过文件名取到的）</p>
-<pre><code class="js">&lt;demo-1/&gt;
-&lt;Icon-vi-icon/&gt; //文件名和组件名之间同`-`连接
-</code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>demo<span class="token operator">-</span><span class="token number">1</span><span class="token operator">/</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>Icon<span class="token operator">-</span>vi<span class="token operator">-</span>icon<span class="token operator">/</span><span class="token operator">></span> <span class="token comment">//文件名和组件名之间同`-`连接</span></code></pre>
 
     
 
@@ -673,6 +672,10 @@ module.exports = &#123;
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
               </li>
              
@@ -681,15 +684,11 @@ module.exports = &#123;
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -950,6 +949,9 @@ module.exports = &#123;
 
   
   
+  <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/10.7.3/styles/github.min.css">
+  <script src="//cdn.bootcss.com/highlight.js/10.7.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>

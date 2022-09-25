@@ -18,7 +18,7 @@
 <meta property="og:description" content="parseIntparseInt(*string*, *radix*)  解析一个字符串并返回指定基数的十进制整数， radix 是2-36之间的整数，表示被解析字符串的基数。 https:&#x2F;&#x2F;interactive-examples.mdn.mozilla.net&#x2F;pages&#x2F;js&#x2F;globalprops-parseint.html 语法parseInt(string, radix);  参数s">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-07-16T14:25:46.000Z">
-<meta property="article:modified_time" content="2022-08-11T08:41:19.793Z">
+<meta property="article:modified_time" content="2022-09-25T15:11:26.384Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="技术点">
 <meta name="twitter:card" content="summary">
@@ -254,7 +254,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.7k字</span>
+      <span class="post-count">1.6k字</span>
     </span>
   </span>
 
@@ -276,8 +276,8 @@
     
     <h1 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h1><p><strong>parseInt(*string*, *radix*)</strong>  解析一个字符串并返回指定基数的十进制整数， <code>radix</code> 是2-36之间的整数，表示被解析字符串的基数。</p>
 <p><a target="_blank" rel="noopener" href="https://interactive-examples.mdn.mozilla.net/pages/js/globalprops-parseint.html">https://interactive-examples.mdn.mozilla.net/pages/js/globalprops-parseint.html</a></p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E8%AF%AD%E6%B3%95">语法</a></h2><pre><code>parseInt(string, radix);
-</code></pre>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E8%AF%AD%E6%B3%95">语法</a></h2><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span>string<span class="token punctuation">,</span> radix<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E5%8F%82%E6%95%B0">参数</a></h3><p><code>string</code>要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用  <code>ToString </code>抽象操作)。字符串开头的空白符将会被忽略。<code>radix</code> 可选从 <code>2</code> 到 <code>36</code>，表示字符串的基数。例如指定 16 表示被解析值是十六进制数。请注意，10不是默认值！文章后面的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E6%8F%8F%E8%BF%B0">描述</a>解释了当参数 <code>radix</code> 不传时该函数的具体行为。</p>
 <h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E8%BF%94%E5%9B%9E%E5%80%BC">返回值</a></h3><p>从给定的字符串中解析出的一个整数。</p>
 <p>或者 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/NaN"><code>NaN</code></a>，当</p>
@@ -285,8 +285,8 @@
 <li><code>radix</code> 小于 <code>2</code> 或大于 <code>36</code> ，或</li>
 <li>第一个非空格字符不能转换为数字。</li>
 </ul>
-<pre><code>parseInt(&#39;123&#39;, 5) // 将&#39;123&#39;看作5进制数，返回十进制数38 =&gt; 1*5^2 + 2*5^1 + 3*5^0 = 38
-</code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment">// 将'123'看作5进制数，返回十进制数38 => 1*5^2 + 2*5^1 + 3*5^0 = 38</span></code></pre>
+
 <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p><code>parseInt</code>函数将其第一个参数转换为一个字符串，对该字符串进行解析，然后返回一个整数或 <code>NaN</code>。</p>
 <p>如果不是<code>NaN</code>，返回值将是以第一个参数作为指定基数 radix 的转换后的十进制整数。(例如，<code>radix</code>为<code>10</code>，就是可以转换十进制数，为<code>8</code>可以转换八进制数”07″，<code>16</code>可以转换十六进制数”0xff”，以此类推)。</p>
 <p>对于 <code>radix </code>为<code>10</code>以上的，英文字母表示大于<code>9</code>的数字。例如，对于十六进制数（基数<code>16</code>），则使用 <code>A</code> 到 <code>F</code> 。</p>
@@ -304,76 +304,75 @@
 <p>要将一个数字转换为特定的 <code>radix</code> 中的字符串字段，请使用 <code>thatNumber.toString(radix)</code>函数。</p>
 <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt"><code>BigInt</code></a>。警告: <code>parseInt</code>将 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt"><code>BigInt</code></a>转换为<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a>，并在这个过程中失去了精度。这是因为拖尾的非数字值，包括 “n”，会被丢弃。</p>
 <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E7%A4%BA%E4%BE%8B">示例</a></h2><h3 id="例子：使用-parseInt"><a href="#例子：使用-parseInt" class="headerlink" title="例子：使用 parseInt"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E4%BE%8B%E5%AD%90%EF%BC%9A%E4%BD%BF%E7%94%A8_parseint">例子：使用 <code>parseInt</code></a></h3><p>以下例子均返回<code>15</code>:</p>
-<pre><code>parseInt(&quot;0xF&quot;, 16);
-parseInt(&quot;F&quot;, 16);
-parseInt(&quot;17&quot;, 8);
-parseInt(021, 8);
-parseInt(&quot;015&quot;, 10);   // parseInt(015, 8); 返回 13
-parseInt(15.99, 10);
-parseInt(&quot;15,123&quot;, 10);
-parseInt(&quot;FXX123&quot;, 16);
-parseInt(&quot;1111&quot;, 2);
-parseInt(&quot;15 * 3&quot;, 10);
-parseInt(&quot;15e2&quot;, 10);
-parseInt(&quot;15px&quot;, 10);
-parseInt(&quot;12&quot;, 13);
-</code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"0xF"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"F"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"17"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">021</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"015"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// parseInt(015, 8); 返回 13</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">15.99</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"15,123"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"FXX123"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"1111"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"15 * 3"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"15e2"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"15px"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"12"</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <p>Copy to Clipboard</p>
 <p>以下例子均返回 <code>NaN</code>:</p>
-<pre><code>parseInt(&quot;Hello&quot;, 8); // 根本就不是数值
-parseInt(&quot;546&quot;, 2);   // 除了“0、1”外，其它数字都不是有效二进制数字
-</code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 根本就不是数值</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"546"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 除了“0、1”外，其它数字都不是有效二进制数字</span></code></pre>
+
 <p>Copy to Clipboard</p>
 <p>以下例子均返回 <code>-15</code>：</p>
-<pre><code>parseInt(&quot;-F&quot;, 16);
-parseInt(&quot;-0F&quot;, 16);
-parseInt(&quot;-0XF&quot;, 16);
-parseInt(-15.1, 10);
-parseInt(&quot; -17&quot;, 8);
-parseInt(&quot; -15&quot;, 10);
-parseInt(&quot;-1111&quot;, 2);
-parseInt(&quot;-15e1&quot;, 10);
-parseInt(&quot;-12&quot;, 13);
-</code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-F"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-0F"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-0XF"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">15.1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">" -17"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">" -15"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-1111"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-15e1"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-12"</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <p>Copy to Clipboard</p>
 <p>下例中全部返回 <code>4</code>:</p>
-<pre><code>parseInt(4.7, 10);
-parseInt(4.7 * 1e22, 10); // 非常大的数值变成 4
-parseInt(0.00000000000434, 10); // 非常小的数值变成 4
-</code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">4.7</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">4.7</span> <span class="token operator">*</span> <span class="token number">1e22</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 非常大的数值变成 4</span>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">0.00000000000434</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 非常小的数值变成 4</span></code></pre>
+
 <p>Copy to Clipboard</p>
 <p>下面的例子返回 <code>224</code></p>
-<pre><code>parseInt(&quot;0e0&quot;,16);
-</code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"0e0"</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <p>Copy to Clipboard</p>
 <h2 id="没有指定-radix-参数时的八进制解析"><a href="#没有指定-radix-参数时的八进制解析" class="headerlink" title="没有指定 radix 参数时的八进制解析"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A_radix_%E5%8F%82%E6%95%B0%E6%97%B6%E7%9A%84%E5%85%AB%E8%BF%9B%E5%88%B6%E8%A7%A3%E6%9E%90">没有指定 <code>radix</code> 参数时的八进制解析</a></h2><p>尽管 ECMAScript 3 已经不赞成这种做法，且 ECMAScript 5 已经禁止了这种做法，但是仍然有很多实现环境仍然把以 0 开头的数值字符串（numeric string）解释为一个八进制数。下面的例子可能返回八进制的结果，也可能返回十进制的结果。<strong>总是指定一个基数（radix）可以避免这种不可靠的行为。</strong></p>
-<pre><code>parseInt(&quot;0e0&quot;);
-// 0
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"0e0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 0</span>
 
-parseInt(&quot;08&quot;);
-// 0, &#39;8&#39; 不是八进制数字.
-</code></pre>
+<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"08"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 0, '8' 不是八进制数字.</span></code></pre>
+
 <p>Copy to Clipboard</p>
 <h3 id="ECMAScript-5-移除了八进制解析"><a href="#ECMAScript-5-移除了八进制解析" class="headerlink" title="ECMAScript 5 移除了八进制解析"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#ecmascript_5_%E7%A7%BB%E9%99%A4%E4%BA%86%E5%85%AB%E8%BF%9B%E5%88%B6%E8%A7%A3%E6%9E%90">ECMAScript 5 移除了八进制解析</a></h3><p>ECMAScript 5 规范不再允许<code>parseInt</code>函数的实现环境把以<code>0</code>字符开始的字符串作为八进制数值。ECMAScript 5 陈述如下：</p>
 <p>根据给定radix，<code>parseInt</code>函数产生一个由字符串参数内容解析过来的整数值。字符串中开头的空白会被忽略。如果radix没有指定或者为0，参数会被假定以10为基数来解析，如果数值以字符对0x或0X开头，会假定以16为基数来解析。</p>
 <p>这与ECMAScript 3有所不同，ECMAScript 3仅仅是不提倡这种做法但并没有禁止这种做法。</p>
 <p>直至2013年，很多实现环境并没有采取新的规范所规定的做法, 而且由于必须兼容旧版的浏览器，所以<strong>永远都要明确给出radix参数的值.</strong></p>
 <h2 id="一个更严格的解析函数"><a href="#一个更严格的解析函数" class="headerlink" title="一个更严格的解析函数"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E4%B8%80%E4%B8%AA%E6%9B%B4%E4%B8%A5%E6%A0%BC%E7%9A%84%E8%A7%A3%E6%9E%90%E5%87%BD%E6%95%B0">一个更严格的解析函数</a></h2><p>有时采用一个更严格的方法来解析整型值很有用。此时可以使用正则表达式：</p>
-<pre><code>filterInt = function (value) &#123;
-  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
-    return Number(value);
-  return NaN;
-&#125;
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function-variable function">filterInt</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^(\-|\+)?([0-9]+|Infinity)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token function">Number</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">NaN</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-console.log(filterInt(&#39;421&#39;));               // 421
-console.log(filterInt(&#39;-421&#39;));              // -421
-console.log(filterInt(&#39;+421&#39;));              // 421
-console.log(filterInt(&#39;Infinity&#39;));          // Infinity
-console.log(filterInt(&#39;421e+0&#39;));            // NaN
-console.log(filterInt(&#39;421hop&#39;));            // NaN
-console.log(filterInt(&#39;hop1.61803398875&#39;));  // NaN
-console.log(filterInt(&#39;1.61803398875&#39;));     // NaN
-</code></pre>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'421'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 421</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'-421'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// -421</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'+421'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 421</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'Infinity'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// Infinity</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'421e+0'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// NaN</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'421hop'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// NaN</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'hop1.61803398875'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// NaN</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'1.61803398875'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// NaN</span></code></pre>
 
     
 
@@ -702,6 +701,10 @@ console.log(filterInt(&#39;1.61803398875&#39;));     // NaN
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
               </li>
              
@@ -710,15 +713,11 @@ console.log(filterInt(&#39;1.61803398875&#39;));     // NaN
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -979,6 +978,9 @@ console.log(filterInt(&#39;1.61803398875&#39;));     // NaN
 
   
   
+  <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/10.7.3/styles/github.min.css">
+  <script src="//cdn.bootcss.com/highlight.js/10.7.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>

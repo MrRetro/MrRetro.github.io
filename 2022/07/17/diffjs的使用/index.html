@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="&#x2F;&#x2F; npm i diff const Diff &#x3D; require(&#39;diff&#39;) &#x2F;&#x2F; 注意不能用import const str &#x3D; Diff.diffChars(&#39;aa&#39;, &#39;abb&#39;) const json &#x3D; Diff.diffJson(&amp;#123;a: 1, b: 2&amp;#125;, &amp;#123;a: 1, b: 3&amp;#125;) con">
+  <meta name="description" content="&#x2F;&#x2F; npm i diff const Diff &#x3D; require(&#39;diff&#39;) &#x2F;&#x2F; 注意不能用import const str &#x3D; Diff.diffChars(&#39;aa&#39;, &#39;abb&#39;) const json &#x3D; Diff.diffJson(&amp;#123;a: 1, b: 2&amp;#125;, &amp;#123;a: 1, b: 3&amp;#125;) const arr &#x3D; Diff.diffJson([">
 <meta property="og:type" content="article">
 <meta property="og:title" content="diffjs的使用">
 <meta property="og:url" content="http://www.o-wu.com/2022/07/17/diffjs%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="MrRetro技术分享">
-<meta property="og:description" content="&#x2F;&#x2F; npm i diff const Diff &#x3D; require(&#39;diff&#39;) &#x2F;&#x2F; 注意不能用import const str &#x3D; Diff.diffChars(&#39;aa&#39;, &#39;abb&#39;) const json &#x3D; Diff.diffJson(&amp;#123;a: 1, b: 2&amp;#125;, &amp;#123;a: 1, b: 3&amp;#125;) con">
+<meta property="og:description" content="&#x2F;&#x2F; npm i diff const Diff &#x3D; require(&#39;diff&#39;) &#x2F;&#x2F; 注意不能用import const str &#x3D; Diff.diffChars(&#39;aa&#39;, &#39;abb&#39;) const json &#x3D; Diff.diffJson(&amp;#123;a: 1, b: 2&amp;#125;, &amp;#123;a: 1, b: 3&amp;#125;) const arr &#x3D; Diff.diffJson([">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-07-17T14:23:07.000Z">
-<meta property="article:modified_time" content="2022-08-11T08:21:28.852Z">
+<meta property="article:modified_time" content="2022-09-25T14:53:11.412Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="diff">
 <meta property="article:tag" content="变更">
@@ -255,7 +255,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">91字</span>
+      <span class="post-count">76字</span>
     </span>
   </span>
 
@@ -275,15 +275,15 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <pre><code class="js">// npm i diff
-const Diff = require(&#39;diff&#39;) // 注意不能用import
-const str = Diff.diffChars(&#39;aa&#39;, &#39;abb&#39;)
-const json = Diff.diffJson(&#123;a: 1, b: 2&#125;, &#123;a: 1, b: 3&#125;)
-const arr = Diff.diffJson([&#123;a: 1, b: 2&#125;], [&#123;a: 1, c: 3&#125;])
-console.log(&#39;str==&gt;&#39;, str) // 输出一个数组描述从aa到abb过程
-console.log(&#39;json==&gt;&#39;, json)
-console.log(&#39;arr==&gt;&#39;, arr)
-</code></pre>
+    <pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// npm i diff</span>
+<span class="token keyword">const</span> Diff <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'diff'</span><span class="token punctuation">)</span> <span class="token comment">// 注意不能用import</span>
+<span class="token keyword">const</span> str <span class="token operator">=</span> Diff<span class="token punctuation">.</span><span class="token function">diffChars</span><span class="token punctuation">(</span><span class="token string">'aa'</span><span class="token punctuation">,</span> <span class="token string">'abb'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> json <span class="token operator">=</span> Diff<span class="token punctuation">.</span><span class="token function">diffJson</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> arr <span class="token operator">=</span> Diff<span class="token punctuation">.</span><span class="token function">diffJson</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">c</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'str==>'</span><span class="token punctuation">,</span> str<span class="token punctuation">)</span> <span class="token comment">// 输出一个数组描述从aa到abb过程</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'json==>'</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'arr==>'</span><span class="token punctuation">,</span> arr<span class="token punctuation">)</span></code></pre>
+
 
     
 
@@ -607,6 +607,10 @@ console.log(&#39;arr==&gt;&#39;, arr)
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
               </li>
              
@@ -615,15 +619,11 @@ console.log(&#39;arr==&gt;&#39;, arr)
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -884,6 +884,9 @@ console.log(&#39;arr==&gt;&#39;, arr)
 
   
   
+  <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/10.7.3/styles/github.min.css">
+  <script src="//cdn.bootcss.com/highlight.js/10.7.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>
