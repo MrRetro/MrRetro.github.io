@@ -279,8 +279,8 @@
 <p>真是想法很天真，开始一路一个坑。</p>
 <p>实施：axios请求接口在响应数据时，用一个对象把所有请求接口的用户账号和入参以及请求方法作为对象的key，响应的内容作为value，然后采集数据，当这个数据采集好后，用ctrl+m将数据保存成json下来。<br>当数据采集下来后，拷贝到项目内作为静态数据，在演示的项目中改变请求策略，这个时候不再去请求真正的接口了，而是请求静态数据，这样就可以做到离线包演示了。</p>
 <p>坑1:前端项目想要离线运行，必须起一个静态资源服务器找了几个(https-server)就只有 <strong>startserver</strong> 可以正常跑起来   </p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">npm i -g startserver<br></code></pre></td></tr></table></figure>
-
+<pre><code class="cmd">npm i -g startserver
+</code></pre>
 <p>  当全局安装这个库后，只要在你想要起的静态资源工程下进行cmd命令 <strong>startserver</strong>  </p>
 <p>坑2:采集的数据太大了，webpack一编译，机子就宕机。  </p>
 <p>问题定位：webpack在打包的时，默认只要超过500kb就会提示有js包过大，默认内存有限，可以使用设置默认内存变大一点打包，但是当数据采集超过一定大小后，webapck直接报内存真的不够。</p>
@@ -618,10 +618,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">diff</a>
               </li>
              
@@ -630,7 +626,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,10 +647,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">技术点</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -896,7 +896,7 @@
       jsonPath: modelJsonPath
     },
     display: {
-       position: "right", 
+       position: "left", 
        width: 145, 
        height: 315, 
        hOffset: 50, 

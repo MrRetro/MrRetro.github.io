@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="12345678&#x2F;&#x2F; npm i diffconst Diff &#x3D; require(&amp;#x27;diff&amp;#x27;) &#x2F;&#x2F; 注意不能用importconst str &#x3D; Diff.diffChars(&amp;#x27;aa&amp;#x27;, &amp;#x27;abb&amp;#x27;)const json &#x3D; Diff.diffJson(&amp;#123;a: 1, b: 2&amp;#125;, &amp;#123;a: 1, b: 3">
+  <meta name="description" content="&#x2F;&#x2F; npm i diff const Diff &#x3D; require(&#39;diff&#39;) &#x2F;&#x2F; 注意不能用import const str &#x3D; Diff.diffChars(&#39;aa&#39;, &#39;abb&#39;) const json &#x3D; Diff.diffJson(&amp;#123;a: 1, b: 2&amp;#125;, &amp;#123;a: 1, b: 3&amp;#125;) con">
 <meta property="og:type" content="article">
 <meta property="og:title" content="diffjs的使用">
 <meta property="og:url" content="http://www.o-wu.com/2022/07/17/diffjs%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="MrRetro技术分享">
-<meta property="og:description" content="12345678&#x2F;&#x2F; npm i diffconst Diff &#x3D; require(&amp;#x27;diff&amp;#x27;) &#x2F;&#x2F; 注意不能用importconst str &#x3D; Diff.diffChars(&amp;#x27;aa&amp;#x27;, &amp;#x27;abb&amp;#x27;)const json &#x3D; Diff.diffJson(&amp;#123;a: 1, b: 2&amp;#125;, &amp;#123;a: 1, b: 3">
+<meta property="og:description" content="&#x2F;&#x2F; npm i diff const Diff &#x3D; require(&#39;diff&#39;) &#x2F;&#x2F; 注意不能用import const str &#x3D; Diff.diffChars(&#39;aa&#39;, &#39;abb&#39;) const json &#x3D; Diff.diffJson(&amp;#123;a: 1, b: 2&amp;#125;, &amp;#123;a: 1, b: 3&amp;#125;) con">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-07-17T14:23:07.000Z">
 <meta property="article:modified_time" content="2022-08-11T08:21:28.852Z">
@@ -255,7 +255,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">89字</span>
+      <span class="post-count">91字</span>
     </span>
   </span>
 
@@ -275,8 +275,15 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// npm i diff</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Diff</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;diff&#x27;</span>) <span class="hljs-comment">// 注意不能用import</span><br><span class="hljs-keyword">const</span> str = <span class="hljs-title class_">Diff</span>.<span class="hljs-title function_">diffChars</span>(<span class="hljs-string">&#x27;aa&#x27;</span>, <span class="hljs-string">&#x27;abb&#x27;</span>)<br><span class="hljs-keyword">const</span> json = <span class="hljs-title class_">Diff</span>.<span class="hljs-title function_">diffJson</span>(&#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>&#125;, &#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">3</span>&#125;)<br><span class="hljs-keyword">const</span> arr = <span class="hljs-title class_">Diff</span>.<span class="hljs-title function_">diffJson</span>([&#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">2</span>&#125;], [&#123;<span class="hljs-attr">a</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">c</span>: <span class="hljs-number">3</span>&#125;])<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;str==&gt;&#x27;</span>, str) <span class="hljs-comment">// 输出一个数组描述从aa到abb过程</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;json==&gt;&#x27;</span>, json)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;arr==&gt;&#x27;</span>, arr)<br></code></pre></td></tr></table></figure>
-
+    <pre><code class="js">// npm i diff
+const Diff = require(&#39;diff&#39;) // 注意不能用import
+const str = Diff.diffChars(&#39;aa&#39;, &#39;abb&#39;)
+const json = Diff.diffJson(&#123;a: 1, b: 2&#125;, &#123;a: 1, b: 3&#125;)
+const arr = Diff.diffJson([&#123;a: 1, b: 2&#125;], [&#123;a: 1, c: 3&#125;])
+console.log(&#39;str==&gt;&#39;, str) // 输出一个数组描述从aa到abb过程
+console.log(&#39;json==&gt;&#39;, json)
+console.log(&#39;arr==&gt;&#39;, arr)
+</code></pre>
 
     
 
@@ -580,10 +587,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">diff</a>
               </li>
              
@@ -592,7 +595,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,10 +616,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">技术点</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -858,7 +865,7 @@
       jsonPath: modelJsonPath
     },
     display: {
-       position: "right", 
+       position: "left", 
        width: 145, 
        height: 315, 
        hOffset: 50, 

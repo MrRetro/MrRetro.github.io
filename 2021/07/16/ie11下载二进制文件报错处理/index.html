@@ -278,8 +278,13 @@
 <p>HTML7007:通过关闭创建了 URL 的 Blob，撤销一个或多个 Blob URL。无法再释放这些 URL，因为已释放支持 URL 的数据。</p>
 <p>报错原因：在ie下没法用a标签打开一个二进制流</p>
 <p>解决方案：对ie下载二进制流进行兼容处理</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;msSaveOrOpenBlob&quot;</span> <span class="hljs-keyword">in</span> navigator) &#123;<br>    <span class="hljs-keyword">let</span> data = response.<span class="hljs-property">data</span>; <span class="hljs-comment">// 二进制文件流</span><br>    <span class="hljs-keyword">let</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([data], &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;application/vnd.ms-excel&quot;</span> &#125;);<br>    <span class="hljs-variable language_">window</span>.<span class="hljs-property">navigator</span>.<span class="hljs-title function_">msSaveOrOpenBlob</span>(blob, <span class="hljs-string">&#x27;aa.excel&#x27;</span>);<br>    <span class="hljs-keyword">return</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<pre><code class="js">if (&quot;msSaveOrOpenBlob&quot; in navigator) &#123;
+    let data = response.data; // 二进制文件流
+    let blob = new Blob([data], &#123; type: &quot;application/vnd.ms-excel&quot; &#125;);
+    window.navigator.msSaveOrOpenBlob(blob, &#39;aa.excel&#39;);
+    return;
+&#125;
+</code></pre>
 
     
 
@@ -588,10 +593,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">diff</a>
               </li>
              
@@ -600,7 +601,15 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -613,10 +622,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">技术点</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -866,7 +871,7 @@
       jsonPath: modelJsonPath
     },
     display: {
-       position: "right", 
+       position: "left", 
        width: 145, 
        height: 315, 
        hOffset: 50, 
