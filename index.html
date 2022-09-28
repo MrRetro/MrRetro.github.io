@@ -223,6 +223,157 @@
             
 
   
+    <article id="post-前端如何写一个最终版本的页面" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/09/29/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA%E6%9C%80%E7%BB%88%E7%89%88%E6%9C%AC%E7%9A%84%E9%A1%B5%E9%9D%A2/" target="_blank">把现有的项目打包一个离线包出来～踩坑</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/09/29/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA%E6%9C%80%E7%BB%88%E7%89%88%E6%9C%AC%E7%9A%84%E9%A1%B5%E9%9D%A2/" class="archive-article-date">
+        <time datetime="2022-09-28T16:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-29</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="前端页面代码怎么写才能像模像样"><a href="#前端页面代码怎么写才能像模像样" class="headerlink" title="前端页面代码怎么写才能像模像样"></a>前端页面代码怎么写才能像模像样</h1><ol>
+<li>经常我们在页面中写if…else…会这样写<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 条件成立执行</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 条件不成立执行</span>
+<span class="token punctuation">&#125;</span></code></pre></li>
+<li>然而在工作中我们经常会碰到条件语句只有一行代码时，建议这样写（代码少了一些）<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token punctuation">)</span> <span class="token comment">// 条件成立执行</span>
+<span class="token keyword">else</span> <span class="token comment">// 条件不成立执行</span></code></pre></li>
+<li>当然在工作中如果写太多的if…else…就容易写成面条代码例如这样<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 执行成立1</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 执行成立2</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 执行成立3</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>等等<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 执行成立等等</span>
+<span class="token punctuation">&#125;</span></code></pre></li>
+<li>这时候我们如果条件语句中只有一行代码，我们可以考虑用 <strong>2</strong> 方法例如<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">// 执行成立1</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">// 执行成立2</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment">// 执行成立3</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>等等<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 执行成立等等</span>
+<span class="token punctuation">&#125;</span></code></pre></li>
+<li>想想我们是否还有什么优化的地方，这样写最后还是会像面条代码，那我们可以这样写<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> 
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> 
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> 
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>等等<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span>
+<span class="token punctuation">&#125;</span></code></pre></li>
+<li>像 <strong>5</strong> 这样写虽然相对好一些，我们应该想到还有其他方法可以代替，例如switch<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">switch</span><span class="token punctuation">(</span>条件<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token keyword">case</span> <span class="token string">'条件成立1'</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'条件成立2'</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'条件成立3'</span>
+        <span class="token keyword">break</span>
+    <span class="token keyword">case</span> <span class="token string">'等等'</span>
+        <span class="token keyword">break</span>
+<span class="token punctuation">&#125;</span></code></pre></li>
+<li>以上写法感觉代码要嘛是一团，要嘛像面条，这个时候我们可以考虑用策略模式来写这些逻辑代码，例如这样<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">条件成立1方法</span><span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 条件成立1方法</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">条件成立2方法</span><span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 条件成立2方法</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">条件成立3方法</span><span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 条件成立3方法</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">等等方法</span><span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 等等方法</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string-property property">'条件成立1'</span><span class="token operator">:</span> <span class="token string">'条件成立1方法'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'条件成立2'</span><span class="token operator">:</span> <span class="token string">'条件成立2方法'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'条件成立3'</span><span class="token operator">:</span> <span class="token string">'条件成立3方法'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'等等方法'</span><span class="token operator">:</span> <span class="token string">'等等方法'</span>
+<span class="token punctuation">&#125;</span>
+config<span class="token punctuation">[</span>条件<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">[</span>条件<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></li>
+<li>注意 代码尽量越简洁越好，但是这边还有一个就是后期一眼要能直接看出代码逻辑就更完美了。想象一下最终大家都是特别牛的前端，所有语法熟记于心，那就看代码优雅程度了。越优雅的代码后期维护起来事半功倍。</li>
+</ol>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">规范</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/09/29/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA%E6%9C%80%E7%BB%88%E7%89%88%E6%9C%AC%E7%9A%84%E9%A1%B5%E9%9D%A2/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-diffjs的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1404,161 +1555,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 
   
-    <article id="post-VuePress使用教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/06/18/VuePress%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" target="_blank">VuePress使用教程</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/06/18/VuePress%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2021-06-18T14:12:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-18</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="使用VuePress"><a href="#使用VuePress" class="headerlink" title="使用VuePress"></a>使用VuePress</h4><blockquote>
-<p>安装vuepress前，请确保你的 Node.js 版本 &gt;&#x3D; 8 .<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017242116">参考</a><br><strong>备注:</strong><a target="_blank" rel="noopener" href="https://vuepress.vuejs.org/zh/guide/getting-started.html">官网地址</a></p>
-</blockquote>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"># 将 vuepress 作为一个本地依赖安装
-npm install <span class="token operator">-</span><span class="token constant">D</span> vuepress
-
-# 新建一个 docs 文件夹
-mkdir docs
-
-# 新建一个 markdown 文件
-echo <span class="token string">'# Hello VuePress!'</span> <span class="token operator">></span> docs<span class="token operator">/</span><span class="token constant">README</span><span class="token punctuation">.</span>md
-
-# 预览网站
-npx vuepress dev docs</code></pre>
-
-<p>接着，在 <strong>package.json</strong> 里加一些脚本:</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">&#123;</span>
-  <span class="token string-property property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token string-property property">"docs:dev"</span><span class="token operator">:</span> <span class="token string">"vuepress dev docs"</span><span class="token punctuation">,</span>
-    <span class="token string-property property">"docs:build"</span><span class="token operator">:</span> <span class="token string">"vuepress build docs"</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>预览网站</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript">npm run docs<span class="token operator">:</span>dev
-<span class="token comment">// .vuepress/config.js</span>
-module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'基础组件'</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">description</span><span class="token operator">:</span> <span class="token string">'基础组件'</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">head</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token comment">// 注入到当前页面的 HTML &lt;head> 中的标签</span>
-        <span class="token punctuation">[</span><span class="token string">'link'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">rel</span><span class="token operator">:</span> <span class="token string">'icon'</span><span class="token punctuation">,</span> <span class="token literal-property property">href</span><span class="token operator">:</span> <span class="token string">'/logo.jpg'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 增加一个自定义的 favicon(网页标签的图标)</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">base</span><span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token comment">// 这是部署到github相关的配置</span>
-    <span class="token literal-property property">markdown</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">lineNumbers</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token comment">// 代码块显示行号 好像没什么效果</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">themeConfig</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">nav</span><span class="token operator">:</span><span class="token punctuation">[</span> <span class="token comment">// 顶部导航栏配置</span>
-            <span class="token punctuation">&#123;</span><span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'前端基础'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'/test/'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            <span class="token punctuation">&#123;</span><span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'算法题库'</span><span class="token punctuation">,</span> <span class="token literal-property property">link</span><span class="token operator">:</span> <span class="token string">'/one/'</span><span class="token punctuation">&#125;</span>
-        <span class="token punctuation">]</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">sidebar</span><span class="token operator">:</span> <span class="token comment">// 左侧边栏配置</span>
-        <span class="token punctuation">[</span>
-            <span class="token punctuation">&#123;</span>
-                <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'业务组件'</span><span class="token punctuation">,</span>
-                <span class="token literal-property property">collapsable</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">//是否展开</span>
-                <span class="token literal-property property">children</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span>
-                    <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'demo'</span><span class="token punctuation">,</span>
-                    <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/demo/'</span>
-                <span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token punctuation">]</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-            <span class="token punctuation">[</span><span class="token string">'/test/'</span><span class="token punctuation">,</span><span class="token string">'测试'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-            <span class="token punctuation">[</span><span class="token string">'/one/'</span><span class="token punctuation">,</span><span class="token string">'组件测试'</span><span class="token punctuation">]</span>
-        <span class="token punctuation">]</span><span class="token punctuation">,</span> 
-        <span class="token literal-property property">sidebarDepth</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token comment">// 侧边栏显示2级 好像没什么效果</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
-
-<h3 id="在markdown中使用Vue"><a href="#在markdown中使用Vue" class="headerlink" title="在markdown中使用Vue"></a>在markdown中使用Vue</h3><p>在.vuepress中创建components文件夹。 所有在 .vuepress&#x2F;components 中找到的 *.vue 文件将会自动地被注册为全局的异步组件。</p>
-<p>如果需要引入静态文件，可以在.vuepress下新建public文件夹，里面可以放静态文件。</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">.</span>
-└─ <span class="token punctuation">.</span>vuepress
-   └─ components
-      ├─ demo<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">.</span>vue
-      └─ Icon
-         └─ vi<span class="token operator">-</span>icon<span class="token punctuation">.</span>vue</code></pre>
-
-<p>可以直接使用这些组件在任意的 Markdown 文件中（组件名是通过文件名取到的）</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>demo<span class="token operator">-</span><span class="token number">1</span><span class="token operator">/</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>Icon<span class="token operator">-</span>vi<span class="token operator">-</span>icon<span class="token operator">/</span><span class="token operator">></span> <span class="token comment">//文件名和组件名之间同`-`连接</span></code></pre>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">VuePress</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/06/18/VuePress%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
@@ -1687,10 +1683,6 @@ module<span class="token punctuation">.</span>exports <span class="token operato
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
@@ -1703,7 +1695,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1711,7 +1703,11 @@ module<span class="token punctuation">.</span>exports <span class="token operato
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">规范</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1719,7 +1715,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">离线包</a>
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1728,6 +1724,10 @@ module<span class="token punctuation">.</span>exports <span class="token operato
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">记录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">离线包</a>
               </li>
             
             <div class="clearfix"></div>
