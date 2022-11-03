@@ -223,6 +223,140 @@
             
 
   
+    <article id="post-选择无后端的评论第三方库【valine】" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/07/11/%E9%80%89%E6%8B%A9%E6%97%A0%E5%90%8E%E7%AB%AF%E7%9A%84%E8%AF%84%E8%AE%BA%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E3%80%90valine%E3%80%91/" target="_blank">选择无后端的评论第三方库【valine】</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/07/11/%E9%80%89%E6%8B%A9%E6%97%A0%E5%90%8E%E7%AB%AF%E7%9A%84%E8%AF%84%E8%AE%BA%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E3%80%90valine%E3%80%91/" class="archive-article-date">
+        <time datetime="2021-07-11T13:19:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>1.注册 <a target="_blank" rel="noopener" href="https://console-e1.leancloud.cn/apps">leanClound</a> 账号创建一个开发应用获取 AppID 和 AppKey</p>
+<p>2.安装valine包 npm i valine –save  </p>
+<p>3.创建comment.vue组件  </p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+    <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"vcomment"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"vcomments"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
+    <span class="token function-variable function">mounted</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createValine</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">createValine</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'valine'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">Valine</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
+                <span class="token keyword">new</span> <span class="token class-name">Valine<span class="token punctuation">.</span>default</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+                    <span class="token literal-property property">el</span><span class="token operator">:</span> <span class="token string">'#vcomments'</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">appId</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">appKey</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">notify</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">verify</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">avatar</span><span class="token operator">:</span> <span class="token string">'monsterid'</span><span class="token punctuation">,</span>
+                    <span class="token literal-property property">path</span><span class="token operator">:</span> location<span class="token punctuation">.</span>pathname<span class="token punctuation">,</span>
+                    <span class="token literal-property property">placeholder</span><span class="token operator">:</span> <span class="token string">'欢迎留言与我分享您的想法...'</span><span class="token punctuation">,</span>
+                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">watch</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">'$route'</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> from<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span>path <span class="token operator">!==</span>  from<span class="token punctuation">.</span>path<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+                <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+                    <span class="token comment">//重新刷新valine</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createValine</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span>
+
+            <span class="token comment">/**
+             * TODO:
+             * 1. 使用其他方法更新评论组件 或者使用其他较为好用的评论组件
+             * 2. 添加categories and tag
+             * 3. 更换其他主题
+             */</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+
+<span class="token operator">&lt;</span>style scoped<span class="token operator">></span>
+#vcomments <span class="token punctuation">&#123;</span>
+    max<span class="token operator">-</span>width<span class="token operator">:</span>740px<span class="token punctuation">;</span>
+    <span class="token literal-property property">padding</span><span class="token operator">:</span>10px<span class="token punctuation">;</span>
+    <span class="token literal-property property">display</span><span class="token operator">:</span> block<span class="token punctuation">;</span>
+    margin<span class="token operator">-</span>left<span class="token operator">:</span> auto<span class="token punctuation">;</span>
+    margin<span class="token operator">-</span>right<span class="token operator">:</span> auto<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">></span></code></pre>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/07/11/%E9%80%89%E6%8B%A9%E6%97%A0%E5%90%8E%E7%AB%AF%E7%9A%84%E8%AF%84%E8%AE%BA%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E3%80%90valine%E3%80%91/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-VuePress使用教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -902,7 +1036,7 @@ document<span class="token punctuation">.</span><span class="token function">add
 <li>JQ库版本 v1.0.0</li>
 <li>个人网站  <a href="http://www.o-wu.com/">http://www.o-wu.com/</a></li>
 <li>作者 : Mr.Retro </li>
-<li>邮箱: <a href="mailto:&#x63;&#x61;&#x69;&#x6a;&#105;&#x61;&#x6a;&#105;&#97;&#x31;&#64;&#49;&#50;&#54;&#x2e;&#x63;&#111;&#109;">&#x63;&#x61;&#x69;&#x6a;&#105;&#x61;&#x6a;&#105;&#97;&#x31;&#64;&#49;&#50;&#54;&#x2e;&#x63;&#111;&#109;</a></li>
+<li>邮箱: <a href="mailto:&#x63;&#97;&#105;&#106;&#105;&#97;&#106;&#x69;&#x61;&#x31;&#64;&#x31;&#x32;&#54;&#46;&#x63;&#x6f;&#x6d;">&#x63;&#97;&#105;&#106;&#105;&#97;&#106;&#x69;&#x61;&#x31;&#64;&#x31;&#x32;&#54;&#46;&#x63;&#x6f;&#x6d;</a></li>
 <li>QQ号: 395336343</li>
 <li>交流群: 584861789</li>
 <li>Date: 2018&#x2F;02&#x2F;10<br> *&#x2F;</li>
@@ -2915,19 +3049,11 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2939,7 +3065,19 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2952,10 +3090,6 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">记录</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
