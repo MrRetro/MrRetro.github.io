@@ -127,7 +127,7 @@
 			
 			
 			<div>
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="86" src="//music.163.com/outchain/player?type=2&id=1964443044&auto=1&height=66"></iframe>
+				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="86" src="//music.163.com/outchain/player?type=2&id=1907077156&auto=1&height=66"></iframe>
 			</div>
 			
 				
@@ -221,6 +221,102 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-ie11下载二进制文件报错处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/07/16/ie11%E4%B8%8B%E8%BD%BD%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/" target="_blank">ie11下载二进制文件报错处理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/07/16/ie11%E4%B8%8B%E8%BD%BD%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/" class="archive-article-date">
+        <time datetime="2021-07-16T14:20:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong>错误信息</strong><br>description: “拒绝访问。”<br>message: “拒接访问。”<br>name: “Error”<br>number: -2147024891<br>stack: “Error:拒绝访问。”</p>
+<p>HTML7007:通过关闭创建了 URL 的 Blob，撤销一个或多个 Blob URL。无法再释放这些 URL，因为已释放支持 URL 的数据。</p>
+<p>报错原因：在ie下没法用a标签打开一个二进制流</p>
+<p>解决方案：对ie下载二进制流进行兼容处理</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"msSaveOrOpenBlob"</span> <span class="token keyword">in</span> navigator<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">let</span> data <span class="token operator">=</span> response<span class="token punctuation">.</span>data<span class="token punctuation">;</span> <span class="token comment">// 二进制文件流</span>
+    <span class="token keyword">let</span> blob <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Blob</span><span class="token punctuation">(</span><span class="token punctuation">[</span>data<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"application/vnd.ms-excel"</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span><span class="token function">msSaveOrOpenBlob</span><span class="token punctuation">(</span>blob<span class="token punctuation">,</span> <span class="token string">'aa.excel'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ie11</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/07/16/ie11%E4%B8%8B%E8%BD%BD%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
 
   
     <article id="post-选择无后端的评论第三方库【valine】" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -1036,7 +1132,7 @@ document<span class="token punctuation">.</span><span class="token function">add
 <li>JQ库版本 v1.0.0</li>
 <li>个人网站  <a href="http://www.o-wu.com/">http://www.o-wu.com/</a></li>
 <li>作者 : Mr.Retro </li>
-<li>邮箱: <a href="mailto:&#x63;&#97;&#105;&#106;&#105;&#97;&#106;&#x69;&#x61;&#x31;&#64;&#x31;&#x32;&#54;&#46;&#x63;&#x6f;&#x6d;">&#x63;&#97;&#105;&#106;&#105;&#97;&#106;&#x69;&#x61;&#x31;&#64;&#x31;&#x32;&#54;&#46;&#x63;&#x6f;&#x6d;</a></li>
+<li>邮箱: <a href="mailto:&#x63;&#97;&#x69;&#106;&#x69;&#x61;&#x6a;&#105;&#97;&#49;&#64;&#x31;&#x32;&#54;&#x2e;&#99;&#x6f;&#x6d;">&#x63;&#97;&#x69;&#106;&#x69;&#x61;&#x6a;&#105;&#97;&#49;&#64;&#x31;&#x32;&#54;&#x2e;&#99;&#x6f;&#x6d;</a></li>
 <li>QQ号: 395336343</li>
 <li>交流群: 584861789</li>
 <li>Date: 2018&#x2F;02&#x2F;10<br> *&#x2F;</li>
@@ -3049,19 +3145,11 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3073,11 +3161,19 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3094,6 +3190,10 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">离线包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
@@ -3308,7 +3408,7 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
   }
 
   
-    var modelName = "shizuku";
+    var modelName = "hibiki";
   
 
   var modelJsonPath = "";
@@ -3325,8 +3425,8 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
     display: {
        position: "left", 
        width: 145, 
-       height: 315, 
-       hOffset: 50, 
+       height: 360, 
+       hOffset: 280, 
       
     },
     mobile: {
