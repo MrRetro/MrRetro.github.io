@@ -223,6 +223,343 @@
             
 
   
+    <article id="title-如何创建一个通过配置就可以渲染任意组件的载体？" class="article article-type-title  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/12/26/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%B8%B2%E6%9F%93%E4%BB%BB%E6%84%8F%E7%BB%84%E4%BB%B6%E7%9A%84%E8%BD%BD%E4%BD%93%EF%BC%9F/" target="_blank">如何创建一个通过配置就可以渲染任意组件的载体？</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/12/26/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%B8%B2%E6%9F%93%E4%BB%BB%E6%84%8F%E7%BB%84%E4%BB%B6%E7%9A%84%E8%BD%BD%E4%BD%93%EF%BC%9F/" class="archive-article-date">
+        <time datetime="2022-12-26T14:19:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <blockquote>
+<p>目标：通过配置一段DSL来渲染任意组件<br>例如：画一个按钮和一个输入框<br>[{title: ‘我是按钮’, value: ‘开始’, type: ‘Button’}，<br>{title: ‘我是输入框’, value: ‘’, placeholder: ‘请输入’, type: ‘Input’}]</p>
+</blockquote>
+<p>效果图：<br><img src="/../imgs/carrier.jpg" alt="图片"></p>
+<p>首先我们先来到 <a target="_blank" rel="noopener" href="https://ant.design/docs/react/introduce-cn">antd官网</a>，找到 <strong>在typescript中使用</strong><br>按流程先初始化一个 carrier 项目</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">yarn create create<span class="token operator">-</span>app carrier <span class="token operator">--</span>tempalte typescript  </code></pre>
+<p>引入 <strong>antd</strong> 库</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">yarn add antd</code></pre>
+<details>
+    <summary>【点击文字】⛳️查看目录生成姿势⛳️</summary>
+    <pre>// 地址：https://github.com/yangshun/tree-node-cli
+全局安装 tree-node-cli
+yarn global add tree-node-cli
+
+<p>生成目录命令为：<br>tree -L 2 -I “node_modules”</pre></p>
+</details>
+目录为：
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">carrier
+├── <span class="token constant">README</span><span class="token punctuation">.</span>md
+├── <span class="token keyword">package</span><span class="token punctuation">.</span>json
+├── <span class="token keyword">public</span>
+│   ├── favicon<span class="token punctuation">.</span>ico
+│   ├── index<span class="token punctuation">.</span>html
+│   ├── logo192<span class="token punctuation">.</span>png
+│   ├── logo512<span class="token punctuation">.</span>png
+│   ├── manifest<span class="token punctuation">.</span>json
+│   └── robots<span class="token punctuation">.</span>txt
+├── src
+│   ├── App<span class="token punctuation">.</span>css
+│   ├── App<span class="token punctuation">.</span>tsx
+│   ├── index<span class="token punctuation">.</span>css
+│   ├── index<span class="token punctuation">.</span>tsx
+│   ├── logo<span class="token punctuation">.</span>svg
+│   ├── react<span class="token operator">-</span>app<span class="token operator">-</span>env<span class="token punctuation">.</span>d<span class="token punctuation">.</span>ts
+│   ├── reportWebVitals<span class="token punctuation">.</span>ts
+│   ├── setupTests<span class="token punctuation">.</span>ts
+├── tsconfig<span class="token punctuation">.</span>json
+└── yarn<span class="token punctuation">.</span>lock</code></pre>
+
+<p>我们的目标是创建一个传入配置就可以生成对应的组件载体<br>在根目录创建 <strong>components</strong> 将 <strong>antd</strong> 的所有通用组件再一次<br>封装，以 <strong>C</strong> 打头开始写组件，在 <strong>components&#x2F;CButton</strong> 文件夹中创建<br>按钮组件 <strong>index.tsx</strong>  </p>
+<p>components&#x2F;CButton&#x2F;index.tsx</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span>Button<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'antd'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> CBox <span class="token keyword">from</span> <span class="token string">'../_CBox'</span><span class="token punctuation">;</span>
+type ButtonType <span class="token operator">=</span> <span class="token string">'primary'</span> <span class="token operator">|</span> <span class="token string">'ghost'</span> <span class="token operator">|</span> <span class="token string">'dashed'</span> <span class="token operator">|</span> <span class="token string">'link'</span> <span class="token operator">|</span> <span class="token string">'text'</span> <span class="token operator">|</span> <span class="token string">'default'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">&#123;</span>
+  title <span class="token operator">?</span><span class="token operator">:</span> string
+  value <span class="token operator">?</span><span class="token operator">:</span> string
+  type <span class="token operator">?</span><span class="token operator">:</span> ButtonType
+  props <span class="token operator">?</span><span class="token operator">:</span> any
+  onAttr <span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">CButton</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>Props<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+
+  <span class="token keyword">static</span> defaultProps <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">'default'</span>
+  <span class="token punctuation">&#125;</span>
+ 
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>title<span class="token punctuation">,</span> type<span class="token punctuation">,</span> value<span class="token punctuation">,</span> onAttr<span class="token punctuation">,</span> props<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+    <span class="token keyword">return</span> <span class="token operator">&lt;</span>CBox 
+      title<span class="token operator">=</span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span>
+      component<span class="token operator">=</span><span class="token punctuation">&#123;</span>
+        <span class="token operator">&lt;</span>Button 
+          type<span class="token operator">=</span><span class="token punctuation">&#123;</span>type<span class="token punctuation">&#125;</span>
+          <span class="token punctuation">&#123;</span><span class="token operator">...</span>props<span class="token punctuation">&#125;</span>
+          onClick<span class="token operator">=</span><span class="token punctuation">&#123;</span>onAttr<span class="token punctuation">&#125;</span><span class="token operator">></span>
+          <span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>Button<span class="token operator">></span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">&#125;</span>
+  
+<span class="token punctuation">&#125;</span></code></pre>
+
+<blockquote>
+<p>PS: 考虑到后期会给每一个通用组件做统一布局，或样式统一处理，把公共<br>部分抽离出来，用一个组件 <strong>CBox</strong> 将通用组件包起来</p>
+</blockquote>
+<p>components&#x2F;_CBox&#x2F;index.tsx</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token string">'../common.css'</span>
+<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">&#123;</span>
+    title <span class="token operator">?</span><span class="token operator">:</span> string
+    component<span class="token operator">?</span><span class="token operator">:</span> any
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">_CBox</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>Props<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>title<span class="token punctuation">,</span> component<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+      <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">'row'</span><span class="token operator">></span>
+        <span class="token punctuation">&#123;</span>title <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">'title-box'</span><span class="token operator">></span><span class="token operator">&lt;</span>span className<span class="token operator">=</span><span class="token string">'title'</span><span class="token operator">></span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span> <span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">&#125;</span>
+        <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"component"</span><span class="token operator">></span><span class="token punctuation">&#123;</span>component<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">&#125;</span>
+    
+  <span class="token punctuation">&#125;</span></code></pre>
+
+<blockquote>
+<p>PS: 出现一个ts的警告，需要把 <strong>.css</strong> 放到文件的头部来引入；<br>直接引入样式文件会报模块找不到，需要在 <strong>common.d.tsx</strong> 中声明<br><strong>declare module ‘*.css’;</strong></p>
+</blockquote>
+<p>在 <strong>components&#x2F;CInput</strong> 文件夹中创建<br>输入框组件 <strong>index.tsx</strong>  </p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span>Input<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'antd'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> CBox <span class="token keyword">from</span> <span class="token string">'../_CBox'</span><span class="token punctuation">;</span>
+
+type ButtonType <span class="token operator">=</span> <span class="token string">'primary'</span> <span class="token operator">|</span> <span class="token string">'ghost'</span> <span class="token operator">|</span> <span class="token string">'dashed'</span> <span class="token operator">|</span> <span class="token string">'link'</span> <span class="token operator">|</span> <span class="token string">'text'</span> <span class="token operator">|</span> <span class="token string">'default'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">&#123;</span>
+  title <span class="token operator">?</span><span class="token operator">:</span> string
+  value <span class="token operator">?</span><span class="token operator">:</span> string
+  type<span class="token operator">?</span><span class="token operator">:</span> ButtonType
+  props<span class="token operator">?</span><span class="token operator">:</span> any
+  onAttr<span class="token operator">?</span><span class="token operator">:</span> any
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">CInput</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>Props<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+
+  <span class="token keyword">static</span> defaultProps <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">'default'</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>title<span class="token punctuation">,</span> type<span class="token punctuation">,</span> value<span class="token punctuation">,</span> onAttr<span class="token punctuation">,</span> props<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+    <span class="token keyword">return</span> <span class="token operator">&lt;</span>CBox 
+      title<span class="token operator">=</span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span>
+      component<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token operator">&lt;</span>Input 
+        type<span class="token operator">=</span><span class="token punctuation">&#123;</span>type<span class="token punctuation">&#125;</span>
+        value<span class="token operator">=</span><span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#123;</span><span class="token operator">...</span>props<span class="token punctuation">&#125;</span>
+        onChange<span class="token operator">=</span><span class="token punctuation">&#123;</span>onAttr<span class="token punctuation">&#125;</span><span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>Input<span class="token operator">></span><span class="token punctuation">&#125;</span>
+    <span class="token operator">/</span><span class="token operator">></span>
+    
+  <span class="token punctuation">&#125;</span>
+  
+<span class="token punctuation">&#125;</span></code></pre>
+
+<p>等等…(✈️所有组件全部都需封装✈️)</p>
+<p>创建一个载体组件来将装载这个通用组件<br>commons&#x2F;carrier&#x2F;index.tsx</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> CButton <span class="token keyword">from</span> <span class="token string">'../components/CButton'</span>
+<span class="token keyword">import</span> CInput <span class="token keyword">from</span> <span class="token string">'../components/CInput'</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">conf</span> <span class="token punctuation">&#123;</span>
+    title <span class="token operator">?</span><span class="token operator">:</span> string <span class="token operator">|</span> <span class="token keyword">undefined</span>
+    value <span class="token operator">?</span><span class="token operator">:</span> any
+    type <span class="token operator">?</span><span class="token operator">:</span> any
+    propsType <span class="token operator">?</span><span class="token operator">:</span> any
+    onAttr<span class="token operator">?</span><span class="token operator">:</span> any
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">&#123;</span>
+    pageData <span class="token operator">?</span><span class="token operator">:</span> Array<span class="token operator">&lt;</span>conf<span class="token operator">></span>
+    onAttr<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Carrier</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>Props<span class="token operator">></span> <span class="token punctuation">&#123;</span>
+    state <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">pageData</span> <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>pageData
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>pageData<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state
+      <span class="token keyword">const</span> <span class="token function-variable function">onAttrParent</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">target</span><span class="token operator">:</span>any<span class="token punctuation">,</span> <span class="token literal-property property">e</span><span class="token operator">:</span>any<span class="token punctuation">,</span> <span class="token literal-property property">i</span><span class="token operator">:</span>number<span class="token punctuation">,</span> <span class="token literal-property property">onAttr</span><span class="token operator">:</span> any</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span> <span class="token operator">=</span> e<span class="token punctuation">.</span>target
+        target<span class="token punctuation">.</span>state<span class="token punctuation">.</span>pageData<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+            pageData
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+        onAttr <span class="token operator">&amp;&amp;</span> <span class="token function">onAttr</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+      <span class="token punctuation">&#125;</span>
+      <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">'components'</span><span class="token operator">></span>
+        <span class="token punctuation">&#123;</span>
+            pageData <span class="token operator">&amp;&amp;</span> pageData<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">v<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>title<span class="token punctuation">,</span> value<span class="token punctuation">,</span> type<span class="token punctuation">,</span> propsType<span class="token punctuation">,</span> onAttr<span class="token punctuation">,</span> <span class="token operator">...</span>props<span class="token punctuation">&#125;</span> <span class="token operator">=</span> v
+                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Button'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">&lt;</span>CButton title<span class="token operator">=</span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span> value<span class="token operator">=</span><span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span> type<span class="token operator">=</span><span class="token punctuation">&#123;</span>propsType<span class="token punctuation">&#125;</span> onAttr<span class="token operator">=</span><span class="token punctuation">&#123;</span>onAttr<span class="token punctuation">&#125;</span> props<span class="token operator">=</span><span class="token punctuation">&#123;</span>props<span class="token punctuation">&#125;</span> <span class="token operator">/</span><span class="token operator">></span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Input'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">&lt;</span>CInput title<span class="token operator">=</span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span> value<span class="token operator">=</span><span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span> type<span class="token operator">=</span><span class="token punctuation">&#123;</span>propsType<span class="token punctuation">&#125;</span> onAttr<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">e</span><span class="token operator">:</span>any</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token function">onAttrParent</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> e<span class="token punctuation">,</span> i<span class="token punctuation">,</span> onAttr<span class="token punctuation">)</span><span class="token punctuation">&#125;</span> props<span class="token operator">=</span><span class="token punctuation">&#123;</span>props<span class="token punctuation">&#125;</span> <span class="token operator">/</span><span class="token operator">></span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">&#125;</span>
+    
+  <span class="token punctuation">&#125;</span></code></pre>
+<blockquote>
+<p>PS: 输入框内容改变时，对应的数据需实时更新，声明 <strong>onAttrParent</strong> 方法来统一处理组件数据的统一动作，<br>组件的默认行为为 <strong>onAttr</strong> 来统一处理，只要组件的数据有变更即触发此方法通知 <strong>carrier</strong> 载体数据有变动</p>
+</blockquote>
+<p>载体组件封装完，我们来写一个使用方法的demo<br>例如：<br>demo.tsx</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Carrier <span class="token keyword">from</span> <span class="token string">'./ commons/carrier'</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">&#123;</span>
+    state <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">pageData</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span><span class="token literal-property property">attr</span><span class="token operator">:</span> <span class="token string">'btn'</span><span class="token punctuation">,</span> <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'我是按钮'</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">'开始'</span><span class="token punctuation">,</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'Button'</span><span class="token punctuation">,</span> <span class="token literal-property property">propsType</span><span class="token operator">:</span> <span class="token string">'primary'</span><span class="token punctuation">,</span> <span class="token literal-property property">size</span><span class="token operator">:</span> <span class="token string">'default'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span><span class="token literal-property property">attr</span><span class="token operator">:</span> <span class="token string">'ipt'</span><span class="token punctuation">,</span> <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'我是输入框'</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'Input'</span><span class="token punctuation">,</span> <span class="token literal-property property">placeholder</span><span class="token operator">:</span> <span class="token string">'请输入'</span><span class="token punctuation">,</span> <span class="token literal-property property">size</span><span class="token operator">:</span> <span class="token string">'default'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>pageData<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state
+      <span class="token keyword">return</span> <span class="token operator">&lt;</span>Carrier 
+        pageData<span class="token operator">=</span><span class="token punctuation">&#123;</span>pageData<span class="token punctuation">&#125;</span>
+      <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token punctuation">&#125;</span>
+    
+  <span class="token punctuation">&#125;</span></code></pre>
+<blockquote>
+<p>考虑到配置会实时变更，我们将配置放到 state 中的 pageData 中，这样即可实时来检测数据，后期只要专注写<br>业务逻辑即可，真正做到了数据驱动视图 🎉</p>
+</blockquote>
+<p>雏形的目录结构为：</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">carrier
+├── <span class="token constant">README</span><span class="token punctuation">.</span>md
+├── <span class="token keyword">package</span><span class="token punctuation">.</span>json
+├── <span class="token keyword">public</span>
+│   ├── favicon<span class="token punctuation">.</span>ico
+│   ├── index<span class="token punctuation">.</span>html
+│   ├── logo192<span class="token punctuation">.</span>png
+│   ├── logo512<span class="token punctuation">.</span>png
+│   ├── manifest<span class="token punctuation">.</span>json
+│   └── robots<span class="token punctuation">.</span>txt
+├── src
+│   ├──  commons
+│   │   └── carrier<span class="token punctuation">.</span>tsx
+│   ├── App<span class="token punctuation">.</span>css
+│   ├── App<span class="token punctuation">.</span>test<span class="token punctuation">.</span>tsx
+│   ├── App<span class="token punctuation">.</span>tsx
+│   ├── components
+│   │   ├── CButton
+│   │   │   └── index<span class="token punctuation">.</span>tsx
+│   │   ├── CInput
+│   │   │   └── index<span class="token punctuation">.</span>tsx
+│   │   ├── _CBox
+│   │   │   └── index<span class="token punctuation">.</span>tsx
+│   │   ├── common<span class="token punctuation">.</span>css
+│   │   └── common<span class="token punctuation">.</span>d<span class="token punctuation">.</span>tsx
+│   ├── demo<span class="token punctuation">.</span>tsx
+│   ├── index<span class="token punctuation">.</span>css
+│   ├── index<span class="token punctuation">.</span>tsx
+│   ├── logo<span class="token punctuation">.</span>svg
+│   ├── react<span class="token operator">-</span>app<span class="token operator">-</span>env<span class="token punctuation">.</span>d<span class="token punctuation">.</span>ts
+│   ├── reportWebVitals<span class="token punctuation">.</span>ts
+│   └── setupTests<span class="token punctuation">.</span>ts
+├── tsconfig<span class="token punctuation">.</span>json
+└── yarn<span class="token punctuation">.</span>lock</code></pre>
+
+<p>未完待续…</p>
+<p>组件间联动？？？<br>载体如何统一校验？？？<br>如何描绘一个表格？？？<br>表单内嵌在表格单元内？？？<br>等等问题！！！  </p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">typescript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">antd</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/12/26/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%B8%B2%E6%9F%93%E4%BB%BB%E6%84%8F%E7%BB%84%E4%BB%B6%E7%9A%84%E8%BD%BD%E4%BD%93%EF%BC%9F/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-tags/hexo命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1413,190 +1750,6 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 
 
   
-    <article id="post-parseInt字符串转整数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/16/parseInt%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B4%E6%95%B0/" target="_blank">parseInt字符串转整数</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/16/parseInt%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B4%E6%95%B0/" class="archive-article-date">
-        <time datetime="2021-07-16T14:25:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h1><p><strong>parseInt(*string*, *radix*)</strong>  解析一个字符串并返回指定基数的十进制整数， <code>radix</code> 是2-36之间的整数，表示被解析字符串的基数。</p>
-<p><a target="_blank" rel="noopener" href="https://interactive-examples.mdn.mozilla.net/pages/js/globalprops-parseint.html">https://interactive-examples.mdn.mozilla.net/pages/js/globalprops-parseint.html</a></p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E8%AF%AD%E6%B3%95">语法</a></h2><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span>string<span class="token punctuation">,</span> radix<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E5%8F%82%E6%95%B0">参数</a></h3><p><code>string</code>要被解析的值。如果参数不是一个字符串，则将其转换为字符串(使用  <code>ToString </code>抽象操作)。字符串开头的空白符将会被忽略。<code>radix</code> 可选从 <code>2</code> 到 <code>36</code>，表示字符串的基数。例如指定 16 表示被解析值是十六进制数。请注意，10不是默认值！文章后面的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E6%8F%8F%E8%BF%B0">描述</a>解释了当参数 <code>radix</code> 不传时该函数的具体行为。</p>
-<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E8%BF%94%E5%9B%9E%E5%80%BC">返回值</a></h3><p>从给定的字符串中解析出的一个整数。</p>
-<p>或者 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/NaN"><code>NaN</code></a>，当</p>
-<ul>
-<li><code>radix</code> 小于 <code>2</code> 或大于 <code>36</code> ，或</li>
-<li>第一个非空格字符不能转换为数字。</li>
-</ul>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment">// 将'123'看作5进制数，返回十进制数38 => 1*5^2 + 2*5^1 + 3*5^0 = 38</span></code></pre>
-
-<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p><code>parseInt</code>函数将其第一个参数转换为一个字符串，对该字符串进行解析，然后返回一个整数或 <code>NaN</code>。</p>
-<p>如果不是<code>NaN</code>，返回值将是以第一个参数作为指定基数 radix 的转换后的十进制整数。(例如，<code>radix</code>为<code>10</code>，就是可以转换十进制数，为<code>8</code>可以转换八进制数”07″，<code>16</code>可以转换十六进制数”0xff”，以此类推)。</p>
-<p>对于 <code>radix </code>为<code>10</code>以上的，英文字母表示大于<code>9</code>的数字。例如，对于十六进制数（基数<code>16</code>），则使用 <code>A</code> 到 <code>F</code> 。</p>
-<p>如果 <code>parseInt </code>遇到的字符不是指定 <code>radix </code>参数中的数字，它将忽略该字符以及所有后续字符，并返回到该点为止已解析的整数值。 <code>parseInt</code> 将数字截断为整数值。 允许前导和尾随空格。</p>
-<p>由于某些数字在其字符串表示形式中使用e字符（例如 <code>6.022×23</code> 表示<code> 6.022e23</code> ），因此当对非常大或非常小的数字使用数字时，使用 <code>parseInt</code> 截断数字将产生意外结果。 <code>parseInt</code>不应替代<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/floor"><code>Math.floor()</code></a>。</p>
-<p><code>parseInt</code> 可以理解两个符号。<code>+</code> 表示正数，<code>-</code> 表示负数（从ECMAScript 1开始）。它是在去掉空格后作为解析的初始步骤进行的。如果没有找到符号，算法将进入下一步；否则，它将删除符号，并对字符串的其余部分进行数字解析。</p>
-<p>如果 <code>radix</code> 是 <code>undefined</code>、<code>0</code>或未指定的，JavaScript会假定以下情况：</p>
-<ol>
-<li>如果输入的 <code>string</code>以 “<code>0x</code>“或 “<code>0x</code>“（一个0，后面是小写或大写的X）开头，那么radix被假定为16，字符串的其余部分被当做十六进制数去解析。</li>
-<li>如果输入的 <code>string</code>以 “<code>0</code>“（0）开头， <code>radix</code>被假定为<code>8</code>（八进制）或<code>10</code>（十进制）。具体选择哪一个radix取决于实现。ECMAScript 5 澄清了应该使用 10 (十进制)，但不是所有的浏览器都支持。<strong>因此，在使用 <code>parseInt</code> 时，一定要指定一个 radix</strong>。</li>
-<li>如果输入的 <code>string</code> 以任何其他值开头， <code>radix</code> 是 <code>10</code> (十进制)。</li>
-</ol>
-<p>如果第一个字符不能转换为数字，<code>parseInt</code>会返回 <code>NaN</code>。</p>
-<p>为了算术的目的，<code>NaN</code> 值不能作为任何 <code>radix</code> 的数字。你可以调用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/isNaN"><code>isNaN</code></a>函数来确定<code>parseInt</code>的结果是否为 <code>NaN</code>。如果将NaN传递给算术运算，则运算结果也将是 <code>NaN</code>。</p>
-<p>要将一个数字转换为特定的 <code>radix</code> 中的字符串字段，请使用 <code>thatNumber.toString(radix)</code>函数。</p>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt"><code>BigInt</code></a>。警告: <code>parseInt</code>将 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt"><code>BigInt</code></a>转换为<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a>，并在这个过程中失去了精度。这是因为拖尾的非数字值，包括 “n”，会被丢弃。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E7%A4%BA%E4%BE%8B">示例</a></h2><h3 id="例子：使用-parseInt"><a href="#例子：使用-parseInt" class="headerlink" title="例子：使用 parseInt"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E4%BE%8B%E5%AD%90%EF%BC%9A%E4%BD%BF%E7%94%A8_parseint">例子：使用 <code>parseInt</code></a></h3><p>以下例子均返回<code>15</code>:</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"0xF"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"F"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"17"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">021</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"015"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// parseInt(015, 8); 返回 13</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">15.99</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"15,123"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"FXX123"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"1111"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"15 * 3"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"15e2"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"15px"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"12"</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-
-<p>Copy to Clipboard</p>
-<p>以下例子均返回 <code>NaN</code>:</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 根本就不是数值</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"546"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 除了“0、1”外，其它数字都不是有效二进制数字</span></code></pre>
-
-<p>Copy to Clipboard</p>
-<p>以下例子均返回 <code>-15</code>：</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-F"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-0F"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-0XF"</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">15.1</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">" -17"</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">" -15"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-1111"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-15e1"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"-12"</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-
-<p>Copy to Clipboard</p>
-<p>下例中全部返回 <code>4</code>:</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">4.7</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">4.7</span> <span class="token operator">*</span> <span class="token number">1e22</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 非常大的数值变成 4</span>
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token number">0.00000000000434</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 非常小的数值变成 4</span></code></pre>
-
-<p>Copy to Clipboard</p>
-<p>下面的例子返回 <code>224</code></p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"0e0"</span><span class="token punctuation">,</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-
-<p>Copy to Clipboard</p>
-<h2 id="没有指定-radix-参数时的八进制解析"><a href="#没有指定-radix-参数时的八进制解析" class="headerlink" title="没有指定 radix 参数时的八进制解析"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E6%B2%A1%E6%9C%89%E6%8C%87%E5%AE%9A_radix_%E5%8F%82%E6%95%B0%E6%97%B6%E7%9A%84%E5%85%AB%E8%BF%9B%E5%88%B6%E8%A7%A3%E6%9E%90">没有指定 <code>radix</code> 参数时的八进制解析</a></h2><p>尽管 ECMAScript 3 已经不赞成这种做法，且 ECMAScript 5 已经禁止了这种做法，但是仍然有很多实现环境仍然把以 0 开头的数值字符串（numeric string）解释为一个八进制数。下面的例子可能返回八进制的结果，也可能返回十进制的结果。<strong>总是指定一个基数（radix）可以避免这种不可靠的行为。</strong></p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"0e0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// 0</span>
-
-<span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token string">"08"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// 0, '8' 不是八进制数字.</span></code></pre>
-
-<p>Copy to Clipboard</p>
-<h3 id="ECMAScript-5-移除了八进制解析"><a href="#ECMAScript-5-移除了八进制解析" class="headerlink" title="ECMAScript 5 移除了八进制解析"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#ecmascript_5_%E7%A7%BB%E9%99%A4%E4%BA%86%E5%85%AB%E8%BF%9B%E5%88%B6%E8%A7%A3%E6%9E%90">ECMAScript 5 移除了八进制解析</a></h3><p>ECMAScript 5 规范不再允许<code>parseInt</code>函数的实现环境把以<code>0</code>字符开始的字符串作为八进制数值。ECMAScript 5 陈述如下：</p>
-<p>根据给定radix，<code>parseInt</code>函数产生一个由字符串参数内容解析过来的整数值。字符串中开头的空白会被忽略。如果radix没有指定或者为0，参数会被假定以10为基数来解析，如果数值以字符对0x或0X开头，会假定以16为基数来解析。</p>
-<p>这与ECMAScript 3有所不同，ECMAScript 3仅仅是不提倡这种做法但并没有禁止这种做法。</p>
-<p>直至2013年，很多实现环境并没有采取新的规范所规定的做法, 而且由于必须兼容旧版的浏览器，所以<strong>永远都要明确给出radix参数的值.</strong></p>
-<h2 id="一个更严格的解析函数"><a href="#一个更严格的解析函数" class="headerlink" title="一个更严格的解析函数"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%E4%B8%80%E4%B8%AA%E6%9B%B4%E4%B8%A5%E6%A0%BC%E7%9A%84%E8%A7%A3%E6%9E%90%E5%87%BD%E6%95%B0">一个更严格的解析函数</a></h2><p>有时采用一个更严格的方法来解析整型值很有用。此时可以使用正则表达式：</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function-variable function">filterInt</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^(\-|\+)?([0-9]+|Infinity)$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token function">Number</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token number">NaN</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'421'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// 421</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'-421'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// -421</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'+421'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// 421</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'Infinity'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// Infinity</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'421e+0'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// NaN</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'421hop'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// NaN</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'hop1.61803398875'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// NaN</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterInt</span><span class="token punctuation">(</span><span class="token string">'1.61803398875'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// NaN</span></code></pre>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">技术点</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/16/parseInt%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B4%E6%95%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
@@ -1725,11 +1878,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1745,7 +1898,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1753,11 +1906,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
+                <a href="javascript:void(0)" class="js-tag color1">typescript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">antd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1769,7 +1926,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">离线包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
