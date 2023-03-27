@@ -5,7 +5,7 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://www.o-wu.com">
+  <link rel="dns-prefetch" href="http://mrretro.github.io">
   <title>把现有的项目打包一个离线包出来～踩坑 | MrRetro技术分享</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -13,12 +13,12 @@
   <meta name="description" content="Ps:打包一个离线包给销售，让销售拿去推广，数据需要用我们最新的数据。 一开始接到这个需求，快速的就有了一个解决方案，可以缓存所有接口的请求数据，然后就可以了做成离线的了。 真是想法很天真，开始一路一个坑。 实施：axios请求接口在响应数据时，用一个对象把所有请求接口的用户账号和入参以及请求方法作为对象的key，响应的内容作为value，然后采集数据，当这个数据采集好后，用ctrl+m将数据保存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="把现有的项目打包一个离线包出来～踩坑">
-<meta property="og:url" content="http://www.o-wu.com/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/index.html">
+<meta property="og:url" content="http://mrretro.github.io/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/index.html">
 <meta property="og:site_name" content="MrRetro技术分享">
 <meta property="og:description" content="Ps:打包一个离线包给销售，让销售拿去推广，数据需要用我们最新的数据。 一开始接到这个需求，快速的就有了一个解决方案，可以缓存所有接口的请求数据，然后就可以了做成离线的了。 真是想法很天真，开始一路一个坑。 实施：axios请求接口在响应数据时，用一个对象把所有请求接口的用户账号和入参以及请求方法作为对象的key，响应的内容作为value，然后采集数据，当这个数据采集好后，用ctrl+m将数据保存">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-04-30T15:30:47.000Z">
-<meta property="article:modified_time" content="2022-07-28T14:50:53.565Z">
+<meta property="article:modified_time" content="2023-03-27T15:31:06.057Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="离线包">
 <meta name="twitter:card" content="summary">
@@ -284,7 +284,7 @@
 <p>  当全局安装这个库后，只要在你想要起的静态资源工程下进行cmd命令 <strong>startserver</strong>  </p>
 <p>坑2:采集的数据太大了，webpack一编译，机子就宕机。  </p>
 <p>问题定位：webpack在打包的时，默认只要超过500kb就会提示有js包过大，默认内存有限，可以使用设置默认内存变大一点打包，但是当数据采集超过一定大小后，webapck直接报内存真的不够。</p>
-<p>解决方案：不再使用webpack打包数据，而是在打包好的工程下写一个cashed.js将采集的所有采集来的数据放到这个文件中，因为可以采集无数个json数据我用node写了一个一键合并json数据的工具，详细代码请见-&gt;<a href="http://www.o-wu.com/?p=455">地址</a>，然后在index.html中直接引用cashed.js,并在这里面声明一个全局的变量来存贮采集来的数据。</p>
+<p>解决方案：不再使用webpack打包数据，而是在打包好的工程下写一个cashed.js将采集的所有采集来的数据放到这个文件中，因为可以采集无数个json数据我用node写了一个一键合并json数据的工具，详细代码请见-&gt;<a href="http://mrretro.github.io/?p=455">地址</a>，然后在index.html中直接引用cashed.js,并在这里面声明一个全局的变量来存贮采集来的数据。</p>
 <p>坑3:JSON.stringify转成字符串时在startserver下key的顺序是不固定的  </p>
 <p>问题定位：测试了一下在本地和nginx打包后的工程下，axios请求入参时将入参转成字符串时是这样的{a:1,b:2}，</p>
 <p>而在startserver工程下axios请求的入参有些接口变成了{b:2,a:1},这是一个巨坑啊～</p>
@@ -356,7 +356,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://www.o-wu.com/2022/04/30/把现有的项目打包一个离线包出来～踩坑/" title="把现有的项目打包一个离线包出来～踩坑" target="_blank">http://www.o-wu.com/2022/04/30/把现有的项目打包一个离线包出来～踩坑/</a>
+          <a href="http://mrretro.github.io/2022/04/30/把现有的项目打包一个离线包出来～踩坑/" title="把现有的项目打包一个离线包出来～踩坑" target="_blank">http://mrretro.github.io/2022/04/30/把现有的项目打包一个离线包出来～踩坑/</a>
         </li>
         
         <li>
@@ -434,7 +434,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://www.o-wu.com/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://mrretro.github.io/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -513,7 +513,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016-2023 <a href="http://www.o-wu.com/" target="_blank">MrRetro博客</a>
+    		&copy; 2016-2023 <a href="http://mrretro.github.io/" target="_blank">MrRetro博客</a>
     	</div>
       	<div class="footer-right">
           <a href="https://beian.miit.gov.cn/#/Integrated/recordQuery" target="_blank">闽ICP备18019448号-1</a>
@@ -626,6 +626,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
@@ -634,15 +638,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">技术点</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,6 +659,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
               </li>
              
               <li class="article-tag-list-item">
