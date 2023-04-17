@@ -223,7 +223,7 @@
             
 
   
-    <article id="post-tags/git如何使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-gits/git不要慌，别人会的咱们也得会" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -231,7 +231,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2023/03/27/tags/git%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/" target="_blank">git如何使用</a>
+	  <a class="article-title" href="/2023/04/17/gits/git%E4%B8%8D%E8%A6%81%E6%85%8C%EF%BC%8C%E5%88%AB%E4%BA%BA%E4%BC%9A%E7%9A%84%E5%92%B1%E4%BB%AC%E4%B9%9F%E5%BE%97%E4%BC%9A/" target="_blank">git不要慌，别人会的咱们也得会~~</a>
   
     </h1>
   
@@ -239,8 +239,8 @@
 
   
   
-<a href="/2023/03/27/tags/git%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2023-03-27T15:37:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-27</time>
+<a href="/2023/04/17/gits/git%E4%B8%8D%E8%A6%81%E6%85%8C%EF%BC%8C%E5%88%AB%E4%BA%BA%E4%BC%9A%E7%9A%84%E5%92%B1%E4%BB%AC%E4%B9%9F%E5%BE%97%E4%BC%9A/" class="archive-article-date">
+        <time datetime="2023-04-17T13:18:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-04-17</time>
 </a>
 
   
@@ -252,7 +252,109 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>一图即解：<br><img src="/../../imgs/git.jpeg" alt="图片"></p>
+    <p>说一千，道一万，不如来一图。😊<br><img src="/../../imgs/gits/git1.jpeg" alt="sourcetree">  </p>
+<p>说再多，不如再来一图。🎉<br><img src="/../../imgs/gits/git2.jpeg" alt="sourcetree_attribute"></p>
+<blockquote>
+<p>PS: 当别人问你，你会 git 吗？你内心回答 “会”，<br>别人再一次问你你真的会 git 吗？你可能会愣了一下，算 “会” 吧？<br>自信心一下就没有了😂，你是否有跟我一样的经历呢？🤔️<br>如果你是 git 大佬，咱们在这就可以打住了。如果你有像笔者的经历<br>那咱们接着往下看。</p>
+</blockquote>
+<p>首先 git 的伟大是她把我们的代码分为以下几个区：  </p>
+<ul>
+<li>工作区</li>
+<li>未暂存区</li>
+<li>贮藏区</li>
+<li>暂存区</li>
+</ul>
+<p><strong>工作区</strong>：就是你电脑的具体位置<br><strong>未暂存区</strong>：你只要文件一修改，这个文件就会马上跑到未暂存区<br><strong>贮藏区</strong>：在未暂存区或暂存区通过 git stash 命令将正在修改的文件放在”隐蔽”处<br><strong>暂存区</strong>：从未暂存取通过 git add 命令让文件到达暂存区</p>
+<p>讲那么多，还是有点抽象，咱们结合上面第一张 sourcetree 图，再来一张关系图，请看👇<br><img src="/../../imgs/gits/git_relation.png" alt="git_relation"> </p>
+<blockquote>
+<p>PS:上面关系图出现了，本地仓库和远端仓库，是什么玩意儿？🤔  </p>
+</blockquote>
+<p>如果你有一点点的 git 基础的话，她就是一个 git 分支，通俗的理解就是一个文件夹。<br>本地仓库和远端仓库本质没区别，只是位置放的地方不同而已，一个是放本地一个是放在远端服务器上。  </p>
+<p><strong>以上都是一些概念性的东西，如果你还觉得有些抽象，接下来咱们用真实的场景来一一举例。</strong></p>
+<h3 id="正向流程"><a href="#正向流程" class="headerlink" title="正向流程"></a>正向流程</h3><ol>
+<li>工作区—&gt;未暂存区（<strong>任意修改文件内容</strong>）</li>
+</ol>
+<p><img src="/../../imgs/gits/git_unsave.png" alt="git_unsave"></p>
+<ol start="2">
+<li>工作区—&gt;贮藏区</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git stash</code></pre>
+<p><img src="/../../imgs/gits/git_stash.png" alt="git_stash"></p>
+<p>或保存贮藏区时,名称可以自定义</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git stash save &lt;name&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_stash_name.png" alt="git_stash_name"></p>
+<ol start="3">
+<li>贮藏区—&gt;未暂存区</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git stash pop</code></pre>
+
+<p><img src="/../../imgs/gits/git_stash_pop.png" alt="git_stash_pop"></p>
+<p>或指定贮藏区内容</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git stash pop stash@&#123;&lt;index&gt;&#125;</code></pre>
+
+<p><img src="/../../imgs/gits/git_stash_pop_index.png" alt="git_stash_pop_index"></p>
+<ol start="4">
+<li>未暂存区—&gt;暂存区</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git add .</code></pre>
+<p><img src="/../../imgs/gits/git_add.png" alt="git_add"></p>
+<p>或指定文件路径</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git add index.html</code></pre>
+
+<p><img src="/../../imgs/gits/git_add_xxx.png" alt="git_add_xxx"></p>
+<ol start="5">
+<li>暂群存—&gt;本地仓库</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git commit -m &#39;fix:xxx&#39;</code></pre>
+
+<p><img src="/../../imgs/gits/git_commit_xxx.png" alt="git_commit_xxx"></p>
+<h3 id="逆向流程-顺序"><a href="#逆向流程-顺序" class="headerlink" title="逆向流程(顺序)"></a>逆向流程(顺序)</h3><ol start="6">
+<li>本地仓库—&gt;暂存区</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset --soft HEAD^</code></pre>
+
+<p><img src="/../../imgs/gits/git_reset_soft.png" alt="git_reset_soft"></p>
+<p>或者另一种写法</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset --soft HEAD~1</code></pre>
+
+<p><img src="/../../imgs/gits/git_reset_soft_index.png" alt="git_reset_soft_index"></p>
+<ol start="7">
+<li>暂存区—&gt;未暂存区</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset HEAD</code></pre>
+
+<p><img src="/../../imgs/gits/git_reset_head.png" alt="git_reset_head"></p>
+<p>或指定文件路径</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset HEAD &lt;fileUrl&gt; </code></pre>
+
+<p><img src="/../../imgs/gits/git_reset_head_url.png" alt="git_reset_head_url"></p>
+<ol start="8">
+<li>未暂存区—&gt;工作区</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git checkout .</code></pre>
+
+<p><img src="/../../imgs/gits/git_checkout_all.png" alt="git_checkout_all"></p>
+<p>或者指定路径</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git chckout -- &lt;fileUrl&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_checkout_url.png" alt="git_checkout_url"></p>
+<h3 id="逆向流程-跳序"><a href="#逆向流程-跳序" class="headerlink" title="逆向流程(跳序)"></a>逆向流程(跳序)</h3><ol start="9">
+<li>本地仓库—&gt;未暂存区</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset --mixed HEAD^</code></pre>
+
+<p><img src="/../../imgs/gits/git_reset_mixed.png" alt="git_reset_mixed"></p>
+<p>或者另一种写法</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset --mixed HEAD～1</code></pre>
+
+<p><img src="/../../imgs/gits/git_reset_mixed_index.png" alt="git_reset_mixed_index"></p>
+<ol start="10">
+<li>本地仓库—&gt;指定commit</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset --hard &lt;sha&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_reset_hard_sha.png" alt="git_reset_hard_sha"></p>
 
     
 
@@ -279,7 +381,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2023/03/27/tags/git%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+      <a class="article-more-a" href="/2023/04/17/gits/git%E4%B8%8D%E8%A6%81%E6%85%8C%EF%BC%8C%E5%88%AB%E4%BA%BA%E4%BC%9A%E7%9A%84%E5%92%B1%E4%BB%AC%E4%B9%9F%E5%BE%97%E4%BC%9A/">展开全文 >></a>
     </p>
     
 
@@ -1994,10 +2096,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">diff</a>
               </li>
              
@@ -2006,15 +2104,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2023,6 +2113,10 @@ console<span class="token punctuation">.</span><span class="token function">log<
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2039,6 +2133,14 @@ console<span class="token punctuation">.</span><span class="token function">log<
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">antd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
