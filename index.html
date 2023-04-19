@@ -127,7 +127,7 @@
 			
 			
 			<div>
-				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="86" src="//music.163.com/outchain/player?type=2&id=1907077156&auto=1&height=66"></iframe>
+				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="86" src="//music.163.com/outchain/player?type=2&id=1896749532&auto=1&height=66"></iframe>
 			</div>
 			
 				
@@ -304,7 +304,7 @@
 
 <p><img src="/../../imgs/gits/git_add_xxx.png" alt="git_add_xxx"></p>
 <ol start="5">
-<li>暂群存—&gt;本地仓库</li>
+<li>暂存区—&gt;本地仓库</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git commit -m &#39;fix:xxx&#39;</code></pre>
 
@@ -355,6 +355,117 @@
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset --hard &lt;sha&gt;</code></pre>
 
 <p><img src="/../../imgs/gits/git_reset_hard_sha.png" alt="git_reset_hard_sha"></p>
+<h3 id="除了以上一些正向-x2F-逆向流程，还有一些常规命令"><a href="#除了以上一些正向-x2F-逆向流程，还有一些常规命令" class="headerlink" title="除了以上一些正向&#x2F;逆向流程，还有一些常规命令"></a>除了以上一些正向&#x2F;逆向流程，还有一些常规命令</h3><ol start="11">
+<li>拉取数据(将远端代码同分支步到本地代码分支)</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git pull</code></pre>
+
+<p><img src="/../../imgs/gits/git_pull.png" alt="git_pull"></p>
+<ol start="12">
+<li>推送数据(将本地代码分支推送到远端代码分支)</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git push</code></pre>
+
+<p><img src="/../../imgs/gits/git_push.png" alt="git_push"></p>
+<ol start="13">
+<li>获取远端分支(将远端分支代码同步到本地)</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git fetch</code></pre>
+
+<p><img src="/../../imgs/gits/git_fetch.png" alt="git_fetch"></p>
+<ol start="14">
+<li>拷贝一份指定分支的副本</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git checkout -b &lt;name&gt; &lt;orgin_name&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_checkout_copy.png" alt="git_checkout_copy"></p>
+<p>如果不指定拷贝谁，默认就是拷贝当前分支</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git checkout -b &lt;copy_name&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_checkout_copy_default.png" alt="git_checkout_copy_default"></p>
+<ol start="15">
+<li>合并分支(将某个分支合并到当前分支)</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git merge &lt;source_branch&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_merge.png" alt="git_merge"></p>
+<p>另外，git merge命令还支持一些选项，用于控制合并的行为。其中一些常用的选项包括：</p>
+<ul>
+<li>–no-ff：禁用 fast-forward 合并策略，强制 git 创建一个新的合并提交。</li>
+<li>–squash：将合并结果压缩为一个提交，并且不会保留源分支的提交历史。</li>
+<li>-m <message>：指定新的合并提交的提交信息。</li>
+</ul>
+<p>例如，如果你想要禁用 fast-forward 合并策略并创建一个新的合并提交，可以执行以下命令：</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git merge --no-ff &lt;source_branch&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_merge_noff_2.png" alt="git_merge_noff_2">  </p>
+<p><img src="/../../imgs/gits/git_merge_noff_1.png" alt="git_merge_noff_1"></p>
+<p>如果你想要将合并结果压缩为一个提交，并指定合并提交的提交信息，可以执行以下命令：</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git merge --squash &lt;source_branch&gt;
+git commit -m &quot;Merge:xxx&quot;</code></pre>
+
+<p><img src="/../../imgs/gits/git_merge_squash.png" alt="git_merge_squash"></p>
+<p>注意，当你使用 –squash 选项时，需要使用 git commit 命令手动提交合并结果。因为该选项会禁止 git 自动创建合并提交。</p>
+<ol start="16">
+<li>变基分支</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git rebase -i &lt;sha&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_rebase_i.png" alt="git_rebase_i"></p>
+<p><img src="/../../imgs/gits/git_rebase_e.png" alt="git_rebase_e"></p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">缩写</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">pick</td>
+<td align="center">p</td>
+<td align="left">保留该commit</td>
+</tr>
+<tr>
+<td align="center">reword</td>
+<td align="center">r</td>
+<td align="left">保留该commit，但需要修改该commit的注释</td>
+</tr>
+<tr>
+<td align="center">edit</td>
+<td align="center">e</td>
+<td align="left">保留该commit, 但我要停下来修改该提交(不仅仅修改注释)</td>
+</tr>
+<tr>
+<td align="center">squash</td>
+<td align="center">s</td>
+<td align="left">将该commit合并到前一个commit</td>
+</tr>
+<tr>
+<td align="center">fixup</td>
+<td align="center">f</td>
+<td align="left">将该commit合并到前一个commit，但不要保留该提交的注释信息</td>
+</tr>
+<tr>
+<td align="center">exec</td>
+<td align="center">x</td>
+<td align="left">执行shell命令</td>
+</tr>
+<tr>
+<td align="center">drop</td>
+<td align="center">d</td>
+<td align="left">丢弃该commit</td>
+</tr>
+</tbody></table>
+<p><img src="/../../imgs/gits/git_rebase_ee.png" alt="git_rebase_ee"></p>
+<p><img src="/../../imgs/gits/git_rebase_n.png" alt="git_rebase_n"></p>
+<ol start="17">
+<li>删除分支</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git branch --delete &lt;source_branch&gt;</code></pre>
+
+<p>如果正常删除不了，我们可以强制删除对应的分支 <strong>git branch -D <source_branch></strong><br><strong>备注</strong>：git branch -D 是 git branch –delete –force 的简写。</p>
+<p><img src="/../../imgs/gits/git_branch_delete.png" alt="git_branch_delete"></p>
 
     
 
@@ -2104,11 +2215,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2116,7 +2231,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2136,19 +2255,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
