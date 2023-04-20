@@ -51,8 +51,20 @@
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_rebase_ee.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_rebase_n.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_branch_delete.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_tag.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_tag_list.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_tag_l.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_tag_delete.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_tag_a.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_tag_show.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_cherry_pick.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_blame.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_commit_amend.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_clean.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_clean_f.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_clean_fd.png">
 <meta property="article:published_time" content="2023-04-17T13:18:25.000Z">
-<meta property="article:modified_time" content="2023-04-19T16:08:54.956Z">
+<meta property="article:modified_time" content="2023-04-20T17:00:09.050Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
@@ -289,7 +301,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.2k字</span>
+      <span class="post-count">1.7k字</span>
     </span>
   </span>
 
@@ -298,7 +310,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">4分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -328,7 +340,7 @@
 </blockquote>
 <p>如果你有一点点的 git 基础的话，她就是一个 git 分支，通俗的理解就是一个文件夹。<br>本地仓库和远端仓库本质没区别，只是位置放的地方不同而已，一个是放本地一个是放在远端服务器上。  </p>
 <p><strong>以上都是一些概念性的东西，如果你还觉得有些抽象，接下来咱们用真实的场景来一一举例。</strong></p>
-<h3 id="正向流程"><a href="#正向流程" class="headerlink" title="正向流程"></a>正向流程</h3><ol>
+<h3 id="正向流程-👉"><a href="#正向流程-👉" class="headerlink" title="正向流程 👉"></a>正向流程 👉</h3><ol>
 <li>工作区—&gt;未暂存区（<strong>任意修改文件内容</strong>）</li>
 </ol>
 <p><img src="/../../imgs/gits/git_unsave.png" alt="git_unsave"></p>
@@ -366,7 +378,7 @@
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git commit -m &#39;fix:xxx&#39;</code></pre>
 
 <p><img src="/../../imgs/gits/git_commit_xxx.png" alt="git_commit_xxx"></p>
-<h3 id="逆向流程-顺序"><a href="#逆向流程-顺序" class="headerlink" title="逆向流程(顺序)"></a>逆向流程(顺序)</h3><ol start="6">
+<h3 id="逆向流程-顺序-👈"><a href="#逆向流程-顺序-👈" class="headerlink" title="逆向流程(顺序) 👈"></a>逆向流程(顺序) 👈</h3><ol start="6">
 <li>本地仓库—&gt;暂存区</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset --soft HEAD^</code></pre>
@@ -396,7 +408,7 @@
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git chckout -- &lt;fileUrl&gt;</code></pre>
 
 <p><img src="/../../imgs/gits/git_checkout_url.png" alt="git_checkout_url"></p>
-<h3 id="逆向流程-跳序"><a href="#逆向流程-跳序" class="headerlink" title="逆向流程(跳序)"></a>逆向流程(跳序)</h3><ol start="9">
+<h3 id="逆向流程-跳序-🤣"><a href="#逆向流程-跳序-🤣" class="headerlink" title="逆向流程(跳序) 🤣"></a>逆向流程(跳序) 🤣</h3><ol start="9">
 <li>本地仓库—&gt;未暂存区</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset --mixed HEAD^</code></pre>
@@ -523,6 +535,87 @@ git commit -m &quot;Merge:xxx&quot;</code></pre>
 
 <p>如果正常删除不了，我们可以强制删除对应的分支 <strong>git branch -D <source_branch></strong><br><strong>备注</strong>：git branch -D 是 git branch –delete –force 的简写。</p>
 <p><img src="/../../imgs/gits/git_branch_delete.png" alt="git_branch_delete"></p>
+<ol start="18">
+<li>给分支 commit 打标签</li>
+</ol>
+<blockquote>
+<p>PS:有两种类型的标签: 轻量标签（lightweight）、附注标签(annotated)<br>【轻量标签】：只是某个 commit 的引用，可以理解为是一个 commit 的别名<br>【附注标签】：是存储在git仓库中的一个完整对象，包含打标签者的名字、电子邮件地址、日期时间以及其他的标签信息。<br>           它是可以被校验的，可以使用 GNU Privacy Guard (GPG) 签名并验证。</p>
+</blockquote>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git tag &lt;tag_name&gt; &lt;sha&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_tag.png" alt="git_tag"></p>
+<p>查看提交日志 <strong>git log –oneline</strong><br><img src="/../../imgs/gits/git_tag_list.png" alt="git_tag_list"></p>
+<p>查看 tag 列表 <strong>git tag</strong> 或 <strong>git tag -l</strong> 或 <strong>git tag –list</strong></p>
+<p><img src="/../../imgs/gits/git_tag_l.png" alt="git_tag_l"></p>
+<p>删除 tag</p>
+<pre class="language-none"><code class="language-none">git tag -d &lt;tag_name&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_tag_delete.png" alt="git_tag_delete"></p>
+<p>创建一个 <strong>附注标签</strong></p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git tag -a &lt;tag_name&gt; &lt;sha&gt; -m &lt;remark_info&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_tag_a.png" alt="git_tag_a"></p>
+<blockquote>
+<p>说明：<br>  -a : 理解为 annotated 的首字符，表示 附注标签<br>  -m : 指定附注信息<br>  git tag -a 标签名称 -m 附注信息 ：直接给当前的提交版本创建一个 【附注标签】<br>  git tag -a 标签名称 提交版本号 -m 附注信息 ：给指定的提交版本创建一个【附注标签】  </p>
+</blockquote>
+<p>显示 tag 信息</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git show &lt;tag_name&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_tag_show.png" alt="git_tag_show"></p>
+<h3 id="git-进阶-✨"><a href="#git-进阶-✨" class="headerlink" title="git 进阶 ✨"></a>git 进阶 ✨</h3><ol start="19">
+<li>将指定的 commit 合进当前分支</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git cherry-pick &lt;sha&gt; &lt;sha&gt; &lt;sha&gt;...</code></pre>
+
+<p><img src="/../../imgs/gits/git_cherry_pick.png" alt="git_cherry_pick"></p>
+<ol start="20">
+<li>查看文件的具体位置最后是被谁修改过(查到写 bug 的人😆)</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git blame -L &lt;row&gt;,&lt;column&gt; &lt;fileUrl&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_blame.png" alt="git_blame"></p>
+<ol start="21">
+<li>修改 git 名称和邮箱</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd"># 查看邮箱和用户名
+git config --list
+# 修改邮箱
+git config --global --replace-all user.email “你的邮箱”
+# 修改用户名
+git config --global --replace-all user.name “你的用户名”</code></pre>
+
+<ol start="22">
+<li>修改上一次提交的 commit 备注信息</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git commit --amend</code></pre>
+
+<p><img src="/../../imgs/gits/git_commit_amend.png" alt="git_commit_amend"></p>
+<h3 id="遇到的坑-🕳️"><a href="#遇到的坑-🕳️" class="headerlink" title="遇到的坑 🕳️"></a>遇到的坑 🕳️</h3><ol start="23">
+<li>新建一个文件，命令删除不了可以试试以下命令👇</li>
+</ol>
+<p><img src="/../../imgs/gits/git_clean.png" alt="git_clean"></p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git clean -f</code></pre>
+
+<p><img src="/../../imgs/gits/git_clean_f.png" alt="git_clean_f"></p>
+<p>或 新建一个目录带文件</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git clean -fd</code></pre>
+
+<p><img src="/../../imgs/gits/git_clean_fd.png" alt="git_clean_fd"></p>
+<h3 id="git-提交规范-🚩"><a href="#git-提交规范-🚩" class="headerlink" title="git 提交规范 🚩"></a>git 提交规范 🚩</h3><p>每当我们在提交 commit 的时候，有些人会不知道写什么备注就乱写，其实是有规范的,<br>例如以下写法 👀</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git commit -m &#39;feat:xxx&#39;</code></pre>
+
+<ul>
+<li>feat: 添加功能</li>
+<li>fix: 修复问题</li>
+<li>style: 修改样式</li>
+<li>perf: 性能优化</li>
+<li>refactor: 代码优化，重构</li>
+<li>chore: 改变构建流程，依赖</li>
+<li>docs: 写文档</li>
+<li>merge: 合并</li>
+<li>test: 测试</li>
+</ul>
+<p><strong>谢谢您观看到这 🚌，如果有错误请帮忙指出，十分感谢 🌹</strong></p>
 
     
 
@@ -830,11 +923,11 @@ git commit -m &quot;Merge:xxx&quot;</code></pre>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -858,6 +951,10 @@ git commit -m &quot;Merge:xxx&quot;</code></pre>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
@@ -870,19 +967,15 @@ git commit -m &quot;Merge:xxx&quot;</code></pre>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工作</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">记录</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
