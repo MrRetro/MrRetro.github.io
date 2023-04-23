@@ -460,6 +460,50 @@ git commit -m &quot;Merge:xxx&quot;</code></pre>
 <p><img src="/../../imgs/gits/git_rebase_ee.png" alt="git_rebase_ee"></p>
 <p><img src="/../../imgs/gits/git_rebase_n.png" alt="git_rebase_n"></p>
 <ol start="17">
+<li>用一个新的 commit 来撤销之前提的 commit</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git revert -n &lt;sha&gt;</code></pre>
+
+<p><img src="/../../imgs/gits/git_revert_1.png" alt="git_revert_1"></p>
+<p>返做 <strong>fix:2</strong></p>
+<p><img src="/../../imgs/gits/git_revert_2.png" alt="git_revert_2"></p>
+<p>接着我们看到以下内容</p>
+<p><img src="/../../imgs/gits/git_revert_3.png" alt="git_revert_3"></p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">缩写</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">–edit</td>
+<td align="center">-e</td>
+<td align="left">提交前编辑提交信息(默认)</td>
+</tr>
+<tr>
+<td align="center">–no-commit</td>
+<td align="center">-n</td>
+<td align="left">不创建提交，返做的内容回到暂存区</td>
+</tr>
+<tr>
+<td align="center">–continue</td>
+<td align="center">–continue</td>
+<td align="left">继续还原</td>
+</tr>
+<tr>
+<td align="center">–skip</td>
+<td align="center">–skip</td>
+<td align="left">跳过冲突提交</td>
+</tr>
+<tr>
+<td align="center">–abort</td>
+<td align="center">–abort</td>
+<td align="left">取消还原</td>
+</tr>
+</tbody></table>
+<ol start="17">
 <li>删除分支</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git branch --delete &lt;source_branch&gt;</code></pre>
@@ -528,7 +572,7 @@ git config --global --replace-all user.name “你的用户名”</code></pre>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git clean -f</code></pre>
 
 <p><img src="/../../imgs/gits/git_clean_f.png" alt="git_clean_f"></p>
-<p>或 新建一个目录带文件</p>
+<p>或 新建一个目录带文件删除不了，可以这样删除👇</p>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git clean -fd</code></pre>
 
 <p><img src="/../../imgs/gits/git_clean_fd.png" alt="git_clean_fd"></p>
@@ -2288,10 +2332,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">diff</a>
               </li>
              
@@ -2304,11 +2344,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">node</a>
+                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2320,7 +2356,19 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2333,10 +2381,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">antd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
