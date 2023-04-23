@@ -32,8 +32,10 @@
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_reset_soft_index.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_reset_head.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_reset_head_url.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_restore_staged.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_checkout_all.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_checkout_url.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_restore.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_reset_mixed.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_reset_mixed_index.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_reset_hard_sha.png">
@@ -63,11 +65,16 @@
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_cherry_pick.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_blame.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_commit_amend.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_diff_1.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_diff_2.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_diff_cached_1.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_diff_cached_2.png">
+<meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_status.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_clean.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_clean_f.png">
 <meta property="og:image" content="http://mrretro.github.io/imgs/gits/git_clean_fd.png">
 <meta property="article:published_time" content="2023-04-17T13:18:25.000Z">
-<meta property="article:modified_time" content="2023-04-23T14:44:45.887Z">
+<meta property="article:modified_time" content="2023-04-23T16:01:51.645Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
@@ -401,6 +408,8 @@
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset HEAD &lt;fileUrl&gt; </code></pre>
 
 <p><img src="/../../imgs/gits/git_reset_head_url.png" alt="git_reset_head_url"></p>
+<p>或使用 <strong>git restore –staged <fileUrl></strong></p>
+<p><img src="/../../imgs/gits/git_restore_staged.png" alt="git_restore_staged"></p>
 <ol start="8">
 <li>未暂存区—&gt;工作区</li>
 </ol>
@@ -411,6 +420,8 @@
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git chckout -- &lt;fileUrl&gt;</code></pre>
 
 <p><img src="/../../imgs/gits/git_checkout_url.png" alt="git_checkout_url"></p>
+<p>或者使用 <strong>git restore <fileUrl></strong></p>
+<p><img src="/../../imgs/gits/git_restore.png" alt="git_restore"></p>
 <h3 id="逆向流程-跳序-🤣"><a href="#逆向流程-跳序-🤣" class="headerlink" title="逆向流程(跳序) 🤣"></a>逆向流程(跳序) 🤣</h3><ol start="9">
 <li>本地仓库—&gt;未暂存区</li>
 </ol>
@@ -575,14 +586,14 @@ git commit -m &quot;Merge:xxx&quot;</code></pre>
 <td align="left">取消还原</td>
 </tr>
 </tbody></table>
-<ol start="17">
+<ol start="18">
 <li>删除分支</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git branch --delete &lt;source_branch&gt;</code></pre>
 
 <p>如果正常删除不了，我们可以强制删除对应的分支 <strong>git branch -D <source_branch></strong><br><strong>备注</strong>：git branch -D 是 git branch –delete –force 的简写。</p>
 <p><img src="/../../imgs/gits/git_branch_delete.png" alt="git_branch_delete"></p>
-<ol start="18">
+<ol start="19">
 <li>给分支 commit 打标签</li>
 </ol>
 <blockquote>
@@ -609,19 +620,19 @@ git commit -m &quot;Merge:xxx&quot;</code></pre>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git show &lt;tag_name&gt;</code></pre>
 
 <p><img src="/../../imgs/gits/git_tag_show.png" alt="git_tag_show"></p>
-<h3 id="git-进阶-✨"><a href="#git-进阶-✨" class="headerlink" title="git 进阶 ✨"></a>git 进阶 ✨</h3><ol start="19">
+<h3 id="git-进阶-✨"><a href="#git-进阶-✨" class="headerlink" title="git 进阶 ✨"></a>git 进阶 ✨</h3><ol start="20">
 <li>将指定的 commit 合进当前分支</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git cherry-pick &lt;sha&gt; &lt;sha&gt; &lt;sha&gt;...</code></pre>
 
 <p><img src="/../../imgs/gits/git_cherry_pick.png" alt="git_cherry_pick"></p>
-<ol start="20">
+<ol start="21">
 <li>查看文件的具体位置最后是被谁修改过(查到写 bug 的人😆)</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git blame -L &lt;row&gt;,&lt;column&gt; &lt;fileUrl&gt;</code></pre>
 
 <p><img src="/../../imgs/gits/git_blame.png" alt="git_blame"></p>
-<ol start="21">
+<ol start="22">
 <li>修改 git 名称和邮箱</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># 查看邮箱和用户名
@@ -631,13 +642,27 @@ git config --global --replace-all user.email “你的邮箱”
 # 修改用户名
 git config --global --replace-all user.name “你的用户名”</code></pre>
 
-<ol start="22">
+<ol start="23">
 <li>修改上一次提交的 commit 备注信息</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git commit --amend</code></pre>
 
 <p><img src="/../../imgs/gits/git_commit_amend.png" alt="git_commit_amend"></p>
-<h3 id="遇到的坑-🕳️"><a href="#遇到的坑-🕳️" class="headerlink" title="遇到的坑 🕳️"></a>遇到的坑 🕳️</h3><ol start="23">
+<ol start="24">
+<li>查看当前的差异</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git diff</code></pre>
+
+<p><img src="/../../imgs/gits/git_diff_1.png" alt="git_diff_1"><br><img src="/../../imgs/gits/git_diff_2.png" alt="git_diff_2">  </p>
+<p><strong>git diff</strong> 主要是查看 <strong>未暂存区</strong> 的差异<br>还有 <strong>git diff –cached</strong> 用于查看 <strong>暂存区</strong> 的差异</p>
+<p><img src="/../../imgs/gits/git_diff_cached_1.png" alt="git_diff_cached_1"><br><img src="/../../imgs/gits/git_diff_cached_2.png" alt="git_diff_cached_2"></p>
+<ol start="25">
+<li>查看 <strong>git</strong> 下一个动作可以做什么 🚶</li>
+</ol>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">git status</code></pre>
+
+<p><img src="/../../imgs/gits/git_status.png" alt="git_status"></p>
+<h3 id="遇到的坑-🕳️"><a href="#遇到的坑-🕳️" class="headerlink" title="遇到的坑 🕳️"></a>遇到的坑 🕳️</h3><ol start="26">
 <li>新建一个文件，命令删除不了可以试试以下命令👇</li>
 </ol>
 <p><img src="/../../imgs/gits/git_clean.png" alt="git_clean"></p>
@@ -998,10 +1023,6 @@ git config --global --replace-all user.name “你的用户名”</code></pre>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
@@ -1014,7 +1035,7 @@ git config --global --replace-all user.name “你的用户名”</code></pre>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1026,7 +1047,15 @@ git config --global --replace-all user.name “你的用户名”</code></pre>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">离线包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1035,10 +1064,6 @@ git config --global --replace-all user.name “你的用户名”</code></pre>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">map</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
