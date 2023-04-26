@@ -260,11 +260,11 @@
 <p>首先 git 的伟大是她把我们的代码分为以下几个区：  </p>
 <ul>
 <li>工作区</li>
-<li>未暂存</li>
+<li>未暂存‘区’</li>
 <li>贮藏区</li>
 <li>暂存区</li>
 </ul>
-<p><strong>工作区</strong>：就是你电脑的具体位置<br><strong>未暂存</strong>：你只要文件一修改，这个文件就会马上跑到未暂存<br><strong>贮藏区</strong>：在未暂存或暂存区通过 git stash 命令将正在修改的文件放在”隐蔽”处<br><strong>暂存区</strong>：从未暂存通过 git add 命令让文件到达暂存区</p>
+<p><strong>工作区</strong>：就是你电脑的具体位置<br><strong>未暂存‘区’</strong>：你只要文件一修改，这个文件就会马上跑到未暂存‘区’<br><strong>贮藏区</strong>：在未暂存‘区’或暂存区通过 git stash 命令将正在修改的文件放在”隐蔽”处<br><strong>暂存区</strong>：从未暂存‘区’通过 git add 命令让文件到达暂存区</p>
 <p>讲那么多，还是有点抽象，咱们结合上面第一张 sourcetree 图，再来一张关系图，请看👇<br><img src="/../../imgs/gits/git_relation.png" alt="git_relation"> </p>
 <blockquote>
 <p>PS:上面关系图出现了，本地仓库和远端仓库，是什么玩意儿？🤔  </p>
@@ -272,11 +272,11 @@
 <p>如果你有一点点的 git 基础的话，她就是一个 git 分支，通俗的理解就是一个文件夹。<br>本地仓库和远端仓库本质没区别，只是位置放的地方不同而已，一个是放本地一个是放在远端服务器上。  </p>
 <p><strong>以上都是一些概念性的东西，如果你还觉得有些抽象，接下来咱们用真实的场景来一一举例。</strong></p>
 <h3 id="正向流程-👉"><a href="#正向流程-👉" class="headerlink" title="正向流程 👉"></a>正向流程 👉</h3><ol>
-<li>工作区—&gt;未暂存（<strong>任意修改文件内容</strong>）</li>
+<li>工作区—&gt;未暂存‘区’（<strong>任意修改文件内容</strong>）</li>
 </ol>
 <p><img src="/../../imgs/gits/git_unsave.png" alt="git_unsave"></p>
 <ol start="2">
-<li>未暂存&#x2F;暂存区—&gt;贮藏区</li>
+<li>未暂存‘区’&#x2F;暂存区—&gt;贮藏区</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git stash</code></pre>
 <p><img src="/../../imgs/gits/git_stash.png" alt="git_stash"></p>
@@ -285,7 +285,7 @@
 
 <p><img src="/../../imgs/gits/git_stash_name.png" alt="git_stash_name"></p>
 <ol start="3">
-<li>贮藏区—&gt;未暂存</li>
+<li>贮藏区—&gt;未暂存‘区’</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git stash pop</code></pre>
 
@@ -295,7 +295,7 @@
 
 <p><img src="/../../imgs/gits/git_stash_pop_index.png" alt="git_stash_pop_index"></p>
 <ol start="4">
-<li>未暂存—&gt;暂存区</li>
+<li>未暂存‘区’—&gt;暂存区</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git add .</code></pre>
 <p><img src="/../../imgs/gits/git_add.png" alt="git_add"></p>
@@ -320,7 +320,7 @@
 
 <p><img src="/../../imgs/gits/git_reset_soft_index.png" alt="git_reset_soft_index"></p>
 <ol start="7">
-<li>暂存区—&gt;未暂存</li>
+<li>暂存区—&gt;未暂存‘区’</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset HEAD</code></pre>
 
@@ -332,7 +332,7 @@
 <p>或使用 <strong>git restore –staged <fileUrl></strong></p>
 <p><img src="/../../imgs/gits/git_restore_staged.png" alt="git_restore_staged"></p>
 <ol start="8">
-<li>未暂存—&gt;工作区</li>
+<li>未暂存‘区’—&gt;工作区</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git checkout .</code></pre>
 
@@ -344,7 +344,7 @@
 <p>或者使用 <strong>git restore <fileUrl></strong></p>
 <p><img src="/../../imgs/gits/git_restore.png" alt="git_restore"></p>
 <h3 id="逆向流程-跳序-🤣"><a href="#逆向流程-跳序-🤣" class="headerlink" title="逆向流程(跳序) 🤣"></a>逆向流程(跳序) 🤣</h3><ol start="9">
-<li>本地仓库—&gt;未暂存</li>
+<li>本地仓库—&gt;未暂存‘区’</li>
 </ol>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git reset --mixed HEAD^</code></pre>
 
@@ -598,7 +598,7 @@ git config --global --replace-all user.name “你的用户名”</code></pre>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">git diff</code></pre>
 
 <p><img src="/../../imgs/gits/git_diff_1.png" alt="git_diff_1"><br><img src="/../../imgs/gits/git_diff_2.png" alt="git_diff_2">  </p>
-<p><strong>git diff</strong> 主要是查看 <strong>未暂存</strong> 的差异<br>还有 <strong>git diff –cached</strong> 用于查看 <strong>暂存区</strong> 的差异</p>
+<p><strong>git diff</strong> 主要是查看 <strong>未暂存‘区’</strong> 的差异<br>还有 <strong>git diff –cached</strong> 用于查看 <strong>暂存区</strong> 的差异</p>
 <p><img src="/../../imgs/gits/git_diff_cached_1.png" alt="git_diff_cached_1"><br><img src="/../../imgs/gits/git_diff_cached_2.png" alt="git_diff_cached_2"></p>
 <ol start="25">
 <li>查看 <strong>git</strong> 下一个动作可以做什么 🚶</li>
@@ -2413,19 +2413,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2441,7 +2437,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2450,6 +2446,10 @@ console<span class="token punctuation">.</span><span class="token function">log<
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
