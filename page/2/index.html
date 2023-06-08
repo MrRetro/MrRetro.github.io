@@ -223,6 +223,134 @@
             
 
   
+    <article id="post-git工作流整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/03/14/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B4%E7%90%86/" target="_blank">git工作流整理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/03/14/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B4%E7%90%86/" class="archive-article-date">
+        <time datetime="2022-03-14T14:30:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-14</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="git五个区域"><a href="#git五个区域" class="headerlink" title="git五个区域"></a>git五个区域</h3><ol>
+<li>工作区：也就是我们平时对文件进行的增删改，都是在工作区中。</li>
+<li>缓存区：工作区中的文件在确定准备commit时，需要通过add命令添加到缓存区，之后才能通过commit生成提交记录。</li>
+<li>贮藏区：在缓存区中的文件通过stash命令可以进入贮藏区，也可以随时提取出来。</li>
+<li>本地仓库：就是本地的git仓库了，我们在起步就成功创建了一个本地仓库。</li>
+<li>远程仓库：就是远程的git仓库了，可能是来自于github, gitee或者公司自己搭建的gitlab, gitea等等平台。</li>
+</ol>
+<h3 id="正常工作流程"><a href="#正常工作流程" class="headerlink" title="正常工作流程"></a>正常工作流程</h3><ol>
+<li>需求分析</li>
+<li>拆分需求，将需求分为多个功能，并创建多个功能分支（分支可以从稳定分支拉出）</li>
+<li>功能分支开发完合入开发分支，部署开发环境，如果没有问题即可合入测试分支并部署让测试人员提测，待提测完成后可合入vt分支并部署，待测试在vt上进行回归测试。</li>
+</ol>
+<h3 id="目前分支情况"><a href="#目前分支情况" class="headerlink" title="目前分支情况"></a>目前分支情况</h3><ol>
+<li>master 主分支</li>
+<li>dev_0131 开发分支(dev)</li>
+<li>release_0131 测试分支(sit)</li>
+<li>vt_0131 vt分支</li>
+</ol>
+<h3 id="针对基座main工程的工作流"><a href="#针对基座main工程的工作流" class="headerlink" title="针对基座main工程的工作流"></a>针对基座main工程的工作流</h3><p>假设需要在基座开发一个上传组件和一个选人组件。<br>开发步骤：  </p>
+<ol>
+<li>需求分析后：通过需求从开发分支 release_0131 (注意：这边要从最稳定的分支检出)拉出两个功能分支 feature–上传组件 和 feature–选人组件</li>
+<li>开始开发 feature–上传组件 ，开发完将 feature–上传组件 分支合入 dev_0131 分支并通过jeakins部署</li>
+<li>将 feature–上传组件 分支合入 release_0131 分支并通过jeakins部署，提测</li>
+<li>如果提测有问题回到第2步骤，如果提测没问题，将 feature–上传组件 分支合入 vt_0131 分支并通过jeakins部署提测；vt提测有问题也是要重新回到第2步骤</li>
+</ol>
+<h3 id="目前常见问题"><a href="#目前常见问题" class="headerlink" title="目前常见问题"></a>目前常见问题</h3><p>问：功能开发到一半，来了一个测试release_0131缺陷需要优先处理<br>答：<br>方法一(推荐)：将功能区代码 add 到缓存区，再将缓存区的代码 commit 到本地仓库，这个时候因为功能还没开发完成所以commit你可以自己备注：“feat:xx功能开发30%”；然后切换到测试分支，从测试分支拉一个修复分支出来修改缺陷，等缺陷修复完后合入开发分支并部署进行自测，待自测完后将修复分支合入测试分支并部署，通知测试验证下缺陷。<br>方法二：将功能区代码 add 到缓存区，再将缓存区代码 stash 到贮藏区，这个时候再切换到测试分支拉一个修复分支出来修复。<br>方法三：不管当前开发到哪里，先将工作区的区的内容提交到本地仓库，切记不要推送到远端仓库，然后直接修改缺陷，如果当前分支无法修复缺陷就切到可以修复缺陷的分支，直接修复缺陷。等修复缺陷并提交到本地仓库时，将缺陷修复的 commit 挑出来 cherry-pick 合入到开发分支部署自测，自测完后从开发分支把修复的 commit 用同样的方式 cheery-pick 到测试分支并部署。  </p>
+<h3 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h3><ol>
+<li>init 创建一个本地仓库。</li>
+<li>clone 将远程仓库拉取到本地仓库。</li>
+<li>add 将文件从工作区添加到缓存区，本文使用了git add .来进行添加，也可* 以git add xxx来指定文件名。</li>
+<li>commit 将文件从缓存区提交到本地仓库。</li>
+<li>push 将本地仓库同步到远程仓库。</li>
+<li>pull 从远程仓库同步到本地仓库。</li>
+<li>checkout 切换分支，git checkout -b xxx则可以创建并切换到xxx分*支，没有-b便是切换。</li>
+<li>merge 合并分支。</li>
+<li>status 查看当前工作区和缓存区的内容。</li>
+<li>log 查看提交记录。</li>
+<li>branch 查看和操作仓库所有分支。</li>
+<li>stash 将缓存区内容提交到贮藏区，个人不推荐使用。</li>
+<li>tag 可以在当前提交记录生成一个标签。</li>
+<li>blame 追溯一个指定文件的历史修改记录</li>
+</ol>
+<p><strong>注意：(两个一定)</strong><br>每次push代码前一定要先pull代码<br>提测自己开发的功能一定不要把别人的代码也提交上去</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/03/14/git%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%B4%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-如何实现一个element-ui中的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1566,7 +1694,7 @@ document<span class="token punctuation">.</span><span class="token function">add
 <li>JQ库版本 v1.0.0</li>
 <li>个人网站  <a href="http://mrretro.github.io/">http://MrRetro.github.io/</a></li>
 <li>作者 : Mr.Retro </li>
-<li>邮箱: <a href="mailto:&#x63;&#97;&#x69;&#x6a;&#x69;&#x61;&#106;&#105;&#x61;&#49;&#x40;&#49;&#50;&#54;&#x2e;&#x63;&#x6f;&#109;">&#x63;&#97;&#x69;&#x6a;&#x69;&#x61;&#106;&#105;&#x61;&#49;&#x40;&#49;&#50;&#54;&#x2e;&#x63;&#x6f;&#109;</a></li>
+<li>邮箱: <a href="mailto:&#x63;&#x61;&#x69;&#x6a;&#x69;&#x61;&#x6a;&#105;&#97;&#x31;&#64;&#49;&#50;&#x36;&#x2e;&#x63;&#111;&#x6d;">&#x63;&#x61;&#x69;&#x6a;&#x69;&#x61;&#x6a;&#105;&#97;&#x31;&#64;&#49;&#50;&#x36;&#x2e;&#x63;&#111;&#x6d;</a></li>
 <li>QQ号: 395336343</li>
 <li>交流群: 584861789</li>
 <li>Date: 2018&#x2F;02&#x2F;10<br> *&#x2F;</li>
@@ -3591,11 +3719,19 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">技术点</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
+                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3611,15 +3747,11 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3635,7 +3767,15 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">DSL</a>
+                <a href="javascript:void(0)" class="js-tag color5">base</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3644,10 +3784,6 @@ w<span class="token punctuation">.</span>jQuery <span class="token operator">=</
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">map</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
