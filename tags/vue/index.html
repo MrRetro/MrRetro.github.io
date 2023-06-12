@@ -6,26 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://mrretro.github.io">
-  <title>如何创建一个通过配置就可以渲染任意组件的载体？ | MrRetro技术分享</title>
+  <title>Tag: vue | MrRetro技术分享</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="目标：通过配置一段DSL来渲染任意组件例如：画一个按钮和一个输入框[{title: ‘我是按钮’, value: ‘开始’, type: ‘Button’}，{title: ‘我是输入框’, value: ‘’, placeholder: ‘请输入’, type: ‘Input’}]  效果图： 首先我们先来到 antd官网，找到 在typescript中使用按流程先初始化一个 carrier">
-<meta property="og:type" content="article">
-<meta property="og:title" content="如何创建一个通过配置就可以渲染任意组件的载体？">
-<meta property="og:url" content="http://mrretro.github.io/2022/12/26/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%B8%B2%E6%9F%93%E4%BB%BB%E6%84%8F%E7%BB%84%E4%BB%B6%E7%9A%84%E8%BD%BD%E4%BD%93%EF%BC%9F/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="MrRetro技术分享">
+<meta property="og:url" content="http://mrretro.github.io/tags/vue/index.html">
 <meta property="og:site_name" content="MrRetro技术分享">
-<meta property="og:description" content="目标：通过配置一段DSL来渲染任意组件例如：画一个按钮和一个输入框[{title: ‘我是按钮’, value: ‘开始’, type: ‘Button’}，{title: ‘我是输入框’, value: ‘’, placeholder: ‘请输入’, type: ‘Input’}]  效果图： 首先我们先来到 antd官网，找到 在typescript中使用按流程先初始化一个 carrier">
 <meta property="og:locale">
-<meta property="og:image" content="http://mrretro.github.io/imgs/carrier.jpg">
-<meta property="article:published_time" content="2022-12-26T14:19:12.000Z">
-<meta property="article:modified_time" content="2022-12-30T14:05:00.582Z">
 <meta property="article:author" content="MrRetro博客">
-<meta property="article:tag" content="react">
-<meta property="article:tag" content="typescript">
-<meta property="article:tag" content="antd">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://mrretro.github.io/imgs/carrier.jpg">
   
     <link rel="alternative" href="/atom.xml" title="MrRetro技术分享" type="application/atom+xml">
   
@@ -225,504 +216,73 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="title-如何创建一个通过配置就可以渲染任意组件的载体？" class="article article-type-title " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2023" class="archive-year">2023</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2023/06/12/%E9%9D%A2%E7%BB%8F%EF%BD%9E/" class="archive-article-date">
+        <time datetime="2023-06-12T14:18:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-12</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2023/06/12/%E9%9D%A2%E7%BB%8F%EF%BD%9E/" target="_blank">面经～</a>
   
-    <h1 class="article-title" itemprop="name">
-      如何创建一个通过配置就可以渲染任意组件的载体？
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2022/12/26/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%B8%B2%E6%9F%93%E4%BB%BB%E6%84%8F%E7%BB%84%E4%BB%B6%E7%9A%84%E8%BD%BD%E4%BD%93%EF%BC%9F/" class="archive-article-date">
-        <time datetime="2022-12-26T14:19:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-26</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.2k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">6分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <blockquote>
-<p>目标：通过配置一段DSL来渲染任意组件<br>例如：画一个按钮和一个输入框<br>[{title: ‘我是按钮’, value: ‘开始’, type: ‘Button’}，<br>{title: ‘我是输入框’, value: ‘’, placeholder: ‘请输入’, type: ‘Input’}]</p>
-</blockquote>
-<p>效果图：<br><img src="/../imgs/carrier.jpg" alt="图片"></p>
-<p>首先我们先来到 <a target="_blank" rel="noopener" href="https://ant.design/docs/react/introduce-cn">antd官网</a>，找到 <strong>在typescript中使用</strong><br>按流程先初始化一个 carrier 项目</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript">yarn create create<span class="token operator">-</span>app carrier <span class="token operator">--</span>tempalte typescript  </code></pre>
-<p>引入 <strong>antd</strong> 库</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript">yarn add antd</code></pre>
-<details>
-    <summary>【点击文字】⛳️查看目录生成姿势⛳️</summary>
-    <pre>// 地址：https://github.com/yangshun/tree-node-cli
-全局安装 tree-node-cli
-yarn global add tree-node-cli
-
-<p>生成目录命令为：<br>tree -L 2 -I “node_modules”</pre></p>
-</details>
-目录为：
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript">carrier
-├── <span class="token constant">README</span><span class="token punctuation">.</span>md
-├── <span class="token keyword">package</span><span class="token punctuation">.</span>json
-├── <span class="token keyword">public</span>
-│   ├── favicon<span class="token punctuation">.</span>ico
-│   ├── index<span class="token punctuation">.</span>html
-│   ├── logo192<span class="token punctuation">.</span>png
-│   ├── logo512<span class="token punctuation">.</span>png
-│   ├── manifest<span class="token punctuation">.</span>json
-│   └── robots<span class="token punctuation">.</span>txt
-├── src
-│   ├── App<span class="token punctuation">.</span>css
-│   ├── App<span class="token punctuation">.</span>tsx
-│   ├── index<span class="token punctuation">.</span>css
-│   ├── index<span class="token punctuation">.</span>tsx
-│   ├── logo<span class="token punctuation">.</span>svg
-│   ├── react<span class="token operator">-</span>app<span class="token operator">-</span>env<span class="token punctuation">.</span>d<span class="token punctuation">.</span>ts
-│   ├── reportWebVitals<span class="token punctuation">.</span>ts
-│   ├── setupTests<span class="token punctuation">.</span>ts
-├── tsconfig<span class="token punctuation">.</span>json
-└── yarn<span class="token punctuation">.</span>lock</code></pre>
-
-<p>我们的目标是创建一个传入配置就可以生成对应的组件载体<br>在根目录创建 <strong>components</strong> 将 <strong>antd</strong> 的所有通用组件再一次<br>封装，以 <strong>C</strong> 打头开始写组件，在 <strong>components&#x2F;CButton</strong> 文件夹中创建<br>按钮组件 <strong>index.tsx</strong>  </p>
-<p>components&#x2F;CButton&#x2F;index.tsx</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">&#123;</span>Button<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'antd'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> CBox <span class="token keyword">from</span> <span class="token string">'../_CBox'</span><span class="token punctuation">;</span>
-type ButtonType <span class="token operator">=</span> <span class="token string">'primary'</span> <span class="token operator">|</span> <span class="token string">'ghost'</span> <span class="token operator">|</span> <span class="token string">'dashed'</span> <span class="token operator">|</span> <span class="token string">'link'</span> <span class="token operator">|</span> <span class="token string">'text'</span> <span class="token operator">|</span> <span class="token string">'default'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">&#123;</span>
-  title <span class="token operator">?</span><span class="token operator">:</span> string
-  value <span class="token operator">?</span><span class="token operator">:</span> string
-  type <span class="token operator">?</span><span class="token operator">:</span> ButtonType
-  props <span class="token operator">?</span><span class="token operator">:</span> any
-  onAttr <span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">CButton</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>Props<span class="token operator">></span> <span class="token punctuation">&#123;</span>
-
-  <span class="token keyword">static</span> defaultProps <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">'default'</span>
-  <span class="token punctuation">&#125;</span>
- 
-  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>title<span class="token punctuation">,</span> type<span class="token punctuation">,</span> value<span class="token punctuation">,</span> onAttr<span class="token punctuation">,</span> props<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
-    <span class="token keyword">return</span> <span class="token operator">&lt;</span>CBox 
-      title<span class="token operator">=</span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span>
-      component<span class="token operator">=</span><span class="token punctuation">&#123;</span>
-        <span class="token operator">&lt;</span>Button 
-          type<span class="token operator">=</span><span class="token punctuation">&#123;</span>type<span class="token punctuation">&#125;</span>
-          <span class="token punctuation">&#123;</span><span class="token operator">...</span>props<span class="token punctuation">&#125;</span>
-          onClick<span class="token operator">=</span><span class="token punctuation">&#123;</span>onAttr<span class="token punctuation">&#125;</span><span class="token operator">></span>
-          <span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>Button<span class="token operator">></span>
-      <span class="token punctuation">&#125;</span>
-    <span class="token operator">/</span><span class="token operator">></span>
-  <span class="token punctuation">&#125;</span>
-  
-<span class="token punctuation">&#125;</span></code></pre>
-
-<blockquote>
-<p>PS: 考虑到后期会给每一个通用组件做统一布局，或样式统一处理，把公共<br>部分抽离出来，用一个组件 <strong>CBox</strong> 将通用组件包起来</p>
-</blockquote>
-<p>components&#x2F;_CBox&#x2F;index.tsx</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token string">'../common.css'</span>
-<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
-<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">&#123;</span>
-    title <span class="token operator">?</span><span class="token operator">:</span> string
-    component<span class="token operator">?</span><span class="token operator">:</span> any
-  <span class="token punctuation">&#125;</span>
-  
-  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">_CBox</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>Props<span class="token operator">></span> <span class="token punctuation">&#123;</span>
-    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-      <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>title<span class="token punctuation">,</span> component<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
-      <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">'row'</span><span class="token operator">></span>
-        <span class="token punctuation">&#123;</span>title <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">?</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">'title-box'</span><span class="token operator">></span><span class="token operator">&lt;</span>span className<span class="token operator">=</span><span class="token string">'title'</span><span class="token operator">></span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span> <span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">&#125;</span>
-        <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"component"</span><span class="token operator">></span><span class="token punctuation">&#123;</span>component<span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-    <span class="token punctuation">&#125;</span>
-    
-  <span class="token punctuation">&#125;</span></code></pre>
-
-<blockquote>
-<p>PS: 出现一个ts的警告，需要把 <strong>.css</strong> 放到文件的头部来引入；<br>直接引入样式文件会报模块找不到，需要在 <strong>common.d.tsx</strong> 中声明<br><strong>declare module ‘*.css’;</strong></p>
-</blockquote>
-<p>在 <strong>components&#x2F;CInput</strong> 文件夹中创建<br>输入框组件 <strong>index.tsx</strong>  </p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">&#123;</span>Input<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'antd'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> CBox <span class="token keyword">from</span> <span class="token string">'../_CBox'</span><span class="token punctuation">;</span>
-
-type ButtonType <span class="token operator">=</span> <span class="token string">'primary'</span> <span class="token operator">|</span> <span class="token string">'ghost'</span> <span class="token operator">|</span> <span class="token string">'dashed'</span> <span class="token operator">|</span> <span class="token string">'link'</span> <span class="token operator">|</span> <span class="token string">'text'</span> <span class="token operator">|</span> <span class="token string">'default'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">&#123;</span>
-  title <span class="token operator">?</span><span class="token operator">:</span> string
-  value <span class="token operator">?</span><span class="token operator">:</span> string
-  type<span class="token operator">?</span><span class="token operator">:</span> ButtonType
-  props<span class="token operator">?</span><span class="token operator">:</span> any
-  onAttr<span class="token operator">?</span><span class="token operator">:</span> any
-<span class="token punctuation">&#125;</span>
-
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">CInput</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>Props<span class="token operator">></span> <span class="token punctuation">&#123;</span>
-
-  <span class="token keyword">static</span> defaultProps <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">type</span><span class="token operator">:</span><span class="token string">'default'</span>
-  <span class="token punctuation">&#125;</span>
-
-  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>title<span class="token punctuation">,</span> type<span class="token punctuation">,</span> value<span class="token punctuation">,</span> onAttr<span class="token punctuation">,</span> props<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
-    <span class="token keyword">return</span> <span class="token operator">&lt;</span>CBox 
-      title<span class="token operator">=</span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span>
-      component<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token operator">&lt;</span>Input 
-        type<span class="token operator">=</span><span class="token punctuation">&#123;</span>type<span class="token punctuation">&#125;</span>
-        value<span class="token operator">=</span><span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#123;</span><span class="token operator">...</span>props<span class="token punctuation">&#125;</span>
-        onChange<span class="token operator">=</span><span class="token punctuation">&#123;</span>onAttr<span class="token punctuation">&#125;</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>Input<span class="token operator">></span><span class="token punctuation">&#125;</span>
-    <span class="token operator">/</span><span class="token operator">></span>
-    
-  <span class="token punctuation">&#125;</span>
-  
-<span class="token punctuation">&#125;</span></code></pre>
-
-<p>等等…(✈️所有组件全部都需封装✈️)</p>
-<p>创建一个载体组件来将装载这个通用组件<br>commons&#x2F;carrier&#x2F;index.tsx</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> CButton <span class="token keyword">from</span> <span class="token string">'../components/CButton'</span>
-<span class="token keyword">import</span> CInput <span class="token keyword">from</span> <span class="token string">'../components/CInput'</span>
-
-<span class="token keyword">interface</span> <span class="token class-name">conf</span> <span class="token punctuation">&#123;</span>
-    title <span class="token operator">?</span><span class="token operator">:</span> string <span class="token operator">|</span> <span class="token keyword">undefined</span>
-    value <span class="token operator">?</span><span class="token operator">:</span> any
-    type <span class="token operator">?</span><span class="token operator">:</span> any
-    propsType <span class="token operator">?</span><span class="token operator">:</span> any
-    onAttr<span class="token operator">?</span><span class="token operator">:</span> any
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">&#123;</span>
-    pageData <span class="token operator">?</span><span class="token operator">:</span> Array<span class="token operator">&lt;</span>conf<span class="token operator">></span>
-    onAttr<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Carrier</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token operator">&lt;</span>Props<span class="token operator">></span> <span class="token punctuation">&#123;</span>
-    state <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">pageData</span> <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>pageData
-    <span class="token punctuation">&#125;</span>
-    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-      <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>pageData<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state
-      <span class="token keyword">const</span> <span class="token function-variable function">onAttrParent</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">target</span><span class="token operator">:</span>any<span class="token punctuation">,</span> <span class="token literal-property property">e</span><span class="token operator">:</span>any<span class="token punctuation">,</span> <span class="token literal-property property">i</span><span class="token operator">:</span>number<span class="token punctuation">,</span> <span class="token literal-property property">onAttr</span><span class="token operator">:</span> any</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
-        <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span> <span class="token operator">=</span> e<span class="token punctuation">.</span>target
-        target<span class="token punctuation">.</span>state<span class="token punctuation">.</span>pageData<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-            pageData
-        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-        onAttr <span class="token operator">&amp;&amp;</span> <span class="token function">onAttr</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
-      <span class="token punctuation">&#125;</span>
-      <span class="token keyword">return</span> <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">'components'</span><span class="token operator">></span>
-        <span class="token punctuation">&#123;</span>
-            pageData <span class="token operator">&amp;&amp;</span> pageData<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">v<span class="token punctuation">,</span> i</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-                <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>title<span class="token punctuation">,</span> value<span class="token punctuation">,</span> type<span class="token punctuation">,</span> propsType<span class="token punctuation">,</span> onAttr<span class="token punctuation">,</span> <span class="token operator">...</span>props<span class="token punctuation">&#125;</span> <span class="token operator">=</span> v
-                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Button'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">&lt;</span>CButton title<span class="token operator">=</span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span> value<span class="token operator">=</span><span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span> type<span class="token operator">=</span><span class="token punctuation">&#123;</span>propsType<span class="token punctuation">&#125;</span> onAttr<span class="token operator">=</span><span class="token punctuation">&#123;</span>onAttr<span class="token punctuation">&#125;</span> props<span class="token operator">=</span><span class="token punctuation">&#123;</span>props<span class="token punctuation">&#125;</span> <span class="token operator">/</span><span class="token operator">></span>
-                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'Input'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">&lt;</span>CInput title<span class="token operator">=</span><span class="token punctuation">&#123;</span>title<span class="token punctuation">&#125;</span> value<span class="token operator">=</span><span class="token punctuation">&#123;</span>value<span class="token punctuation">&#125;</span> type<span class="token operator">=</span><span class="token punctuation">&#123;</span>propsType<span class="token punctuation">&#125;</span> onAttr<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">e</span><span class="token operator">:</span>any</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token function">onAttrParent</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> e<span class="token punctuation">,</span> i<span class="token punctuation">,</span> onAttr<span class="token punctuation">)</span><span class="token punctuation">&#125;</span> props<span class="token operator">=</span><span class="token punctuation">&#123;</span>props<span class="token punctuation">&#125;</span> <span class="token operator">/</span><span class="token operator">></span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-        <span class="token punctuation">&#125;</span>
-      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-    <span class="token punctuation">&#125;</span>
-    
-  <span class="token punctuation">&#125;</span></code></pre>
-<blockquote>
-<p>PS: 输入框内容改变时，对应的数据需实时更新，声明 <strong>onAttrParent</strong> 方法来统一处理组件数据的统一动作，<br>组件的默认行为为 <strong>onAttr</strong> 来统一处理，只要组件的数据有变更即触发此方法通知 <strong>carrier</strong> 载体数据有变动</p>
-</blockquote>
-<p>载体组件封装完，我们来写一个使用方法的demo<br>例如：<br>demo.tsx</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> Carrier <span class="token keyword">from</span> <span class="token string">'./ commons/carrier'</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">&#123;</span>
-    state <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-      <span class="token literal-property property">pageData</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token punctuation">&#123;</span><span class="token literal-property property">attr</span><span class="token operator">:</span> <span class="token string">'btn'</span><span class="token punctuation">,</span> <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'我是按钮'</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">'开始'</span><span class="token punctuation">,</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'Button'</span><span class="token punctuation">,</span> <span class="token literal-property property">propsType</span><span class="token operator">:</span> <span class="token string">'primary'</span><span class="token punctuation">,</span> <span class="token literal-property property">size</span><span class="token operator">:</span> <span class="token string">'default'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        <span class="token punctuation">&#123;</span><span class="token literal-property property">attr</span><span class="token operator">:</span> <span class="token string">'ipt'</span><span class="token punctuation">,</span> <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'我是输入框'</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'Input'</span><span class="token punctuation">,</span> <span class="token literal-property property">placeholder</span><span class="token operator">:</span> <span class="token string">'请输入'</span><span class="token punctuation">,</span> <span class="token literal-property property">size</span><span class="token operator">:</span> <span class="token string">'default'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token punctuation">]</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-      <span class="token keyword">const</span> <span class="token punctuation">&#123;</span>pageData<span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state
-      <span class="token keyword">return</span> <span class="token operator">&lt;</span>Carrier 
-        pageData<span class="token operator">=</span><span class="token punctuation">&#123;</span>pageData<span class="token punctuation">&#125;</span>
-      <span class="token operator">/</span><span class="token operator">></span>
-    <span class="token punctuation">&#125;</span>
-    
-  <span class="token punctuation">&#125;</span></code></pre>
-<blockquote>
-<p>考虑到配置会实时变更，我们将配置放到 state 中的 pageData 中，这样即可实时来检测数据，后期只要专注写<br>业务逻辑即可，真正做到了数据驱动视图 🎉</p>
-</blockquote>
-<p>雏形的目录结构为：</p>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript">carrier
-├── <span class="token constant">README</span><span class="token punctuation">.</span>md
-├── <span class="token keyword">package</span><span class="token punctuation">.</span>json
-├── <span class="token keyword">public</span>
-│   ├── favicon<span class="token punctuation">.</span>ico
-│   ├── index<span class="token punctuation">.</span>html
-│   ├── logo192<span class="token punctuation">.</span>png
-│   ├── logo512<span class="token punctuation">.</span>png
-│   ├── manifest<span class="token punctuation">.</span>json
-│   └── robots<span class="token punctuation">.</span>txt
-├── src
-│   ├──  commons
-│   │   └── carrier<span class="token punctuation">.</span>tsx
-│   ├── App<span class="token punctuation">.</span>css
-│   ├── App<span class="token punctuation">.</span>test<span class="token punctuation">.</span>tsx
-│   ├── App<span class="token punctuation">.</span>tsx
-│   ├── components
-│   │   ├── CButton
-│   │   │   └── index<span class="token punctuation">.</span>tsx
-│   │   ├── CInput
-│   │   │   └── index<span class="token punctuation">.</span>tsx
-│   │   ├── _CBox
-│   │   │   └── index<span class="token punctuation">.</span>tsx
-│   │   ├── common<span class="token punctuation">.</span>css
-│   │   └── common<span class="token punctuation">.</span>d<span class="token punctuation">.</span>tsx
-│   ├── demo<span class="token punctuation">.</span>tsx
-│   ├── index<span class="token punctuation">.</span>css
-│   ├── index<span class="token punctuation">.</span>tsx
-│   ├── logo<span class="token punctuation">.</span>svg
-│   ├── react<span class="token operator">-</span>app<span class="token operator">-</span>env<span class="token punctuation">.</span>d<span class="token punctuation">.</span>ts
-│   ├── reportWebVitals<span class="token punctuation">.</span>ts
-│   └── setupTests<span class="token punctuation">.</span>ts
-├── tsconfig<span class="token punctuation">.</span>json
-└── yarn<span class="token punctuation">.</span>lock</code></pre>
-
-<p>未完待续…</p>
-<p>组件间联动？？？<br>载体如何统一校验？？？<br>如何描绘一个表格？？？<br>表单内嵌在表格单元内？？？<br>等等问题！！！  </p>
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>十分感谢您对我的赞助😊<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.jpg">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          MrRetro博客
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="http://mrretro.github.io/2022/12/26/如何创建一个通过配置就可以渲染任意组件的载体？/" title="如何创建一个通过配置就可以渲染任意组件的载体？" target="_blank">http://mrretro.github.io/2022/12/26/如何创建一个通过配置就可以渲染任意组件的载体？/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">typescript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">es6</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">antd</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://mrretro.github.io/2022/12/26/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%B8%B2%E6%9F%93%E4%BB%BB%E6%84%8F%E7%BB%84%E4%BB%B6%E7%9A%84%E8%BD%BD%E4%BD%93%EF%BC%9F/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/2023/01/04/array/js%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84map%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Array.prototype.map是怎么工作的?
-        
-      </div>
-    </a>
   
   
-    <a href="/2022/11/09/tags/hexo%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo命令</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-<div id="SOHUCS" sid="如何创建一个通过配置就可以渲染任意组件的载体？" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "true",
-        conf: "true"
-    });
-</script>
-</script>
-
-
-
-
-
-
-
+    
 
 
 
@@ -762,9 +322,9 @@ type ButtonType <span class="token operator">=</span> <span class="token string"
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

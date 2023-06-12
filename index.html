@@ -223,6 +223,128 @@
             
 
   
+    <article id="post-面经～" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/12/%E9%9D%A2%E7%BB%8F%EF%BD%9E/" target="_blank">面经～</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/12/%E9%9D%A2%E7%BB%8F%EF%BD%9E/" class="archive-article-date">
+        <time datetime="2023-06-12T14:18:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-12</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="阿里影业"><a href="#阿里影业" class="headerlink" title="阿里影业"></a>阿里影业</h3><p>一面（11分钟）：</p>
+<p>面试官：你好，我是阿里影业的，这边由我对你进行一下面试，面试时间大概在20分钟，请问你方便吗？<br>我：稍等，我走出来下（上班上到一半突然被电话面试，真是出其不意），嗯，好了，可以开始了。<br>面试官：不使用任何框架实现给dom节点加一个类名？<br>我：dom节点有一个classList属性，这个属性有一个add方法，直接给dom节点添加一个类名就行。<br>面试官：那classList有兼容问题，怎么处理呢？<br>我：如果要考虑兼容问题的话，我们可以用dom节点的另一个方法setAttribute,先获取dom节点的class属性，通过getAttribute(‘class’),然后用indexOf把对应的类名判断下是否存在，如果存在，则不用再添加，如果不存在直接在获取的类名字符串后加一个类名，再setAttribute进去。<br>面试官：你刚才说的indexOf它对于匹配abc，和ab都是可以匹配上的，怎么处理呢？<br>我：如果要考虑严谨的话，我们可以用split把getAttribute(‘class’)进行分割，然后将每个分割的值trim后，去和你的类名比较，如果存在的话就不再添加类名，这样就可以处理indexOf匹配abc和ab问题了。<br>面试官：如何对一个字符串数组去重？<br>我：可以声明一个空对象，和声明一个空数组，然后遍历这个字符串，将遍历到的字符串的值存到空对象内作为对象的key,然后值为true,然后插入到新数组中，数组接着遍历，如果对象的key值已经有这个key了，就不插入新数组中，最后返回数组。<br>面试官：如何随机输出一个5-10的数字。<br>我：随机数可以用Math.random()输出一个0~1的数值，然后用这个数字乘以十，取整，然后除以二（忘了说再加五了）就可以满足你说的结果了。<br>面试官：讲下简单请求。<br>我：简单请求就是我们平时请求看到的接口请求，没有进行options请求。而预检请求就是你说的非简单请求会进行一次options。<br>面试官：那你讲讲怎么样才会触发非简单请求呢？<br>我：请求头中出现超过两个类型的时候就会触发预检请求。（这个回答应该是错的，后面我查了，满足下面的<strong>所有条件</strong>就不会产生预检请求，也就是该请求是简单请求：<br>不会产生预检请求。具体来说如下<br>**请求方法是<code>GET</code>、<code>POST</code>、<code>HEAD</code>其中任意一个；<br>**<strong>必须是下面定义对CORS安全的首部字段集合，不能是集合之外的其他首部字段。</strong>  </p>
+<ul>
+<li>Accept、Accept-Language、Content-Language、Content-Type、DPR、Downlink、Save-Data、Viewport-Width、Width。  </li>
+<li><strong>Content-Type的值必须是<code>text/plain</code>、<code>multipart/form-data</code>、<code>application/x-www-form-urlencoded</code>中任意一个值</strong></li>
+</ul>
+<p>面试官：再问你几个问题吧，你正常是用display:flex吧。<br>我：对的。<br>面试官：rem有用过吗？<br>我：rem和em一个是基于根节点成比例换算，一个是根据父节点成比例换算，而rem是根据html的font-size做比例换算。<br>面试官：那rem是怎么做移动端响应式的呢？你主要讲下核心就行。<br>我：首先设置一下html根节点的font-size,然后根据浏览器缩放，动态换算html的font-size大小，这样html子元素们有设置的rem就会实时换算，从而达到响应式兼容。<br>面试官：如果浏览器大小改变了，根节点的font-size会改变吗？<br>我：会改变的。这边等了5秒所有，我继续作答，如果不想改变也可以，我之前有处理过在不同设备的时候，会给font-size在屏幕大小范围内设置固定的font-size，这个可以处理对于一些设备的1px和0.5px像素问题。<br>面试官：flex有几个属性。<br>我：平时都是用flex:1，它有几个属性倒不是很清楚(后面查了有flex-grow、flex-shrink、flex-basis)。<br>面试官：那你知道flex-grow、flex-shrink吗？<br>我：flex-shrink我平时用都是设置为0，表示不被挤压，flex-grow用的比较少(其实就是不懂，并且常常都在用~很气自己基础不够扎实)。<br>面试官：讲讲你平时有什么技术沉淀呢？<br>我：我封装了一个element-form组件的npm包，之前周下载量最高可达2000。<br>面试官：这个在你简历上好像没体现呀！<br>我：嗯，现在因为目前公司都是内网，就没什么时间去更新那个npm包了，所以下载量没那么多了，就不大好意思写在简历上。<br>面试官：那我们今天的面试就到这，如果有下一轮会再通知你。<br>我：好的，拜拜。  </p>
+<p>二面（30分钟）：<br>1.设计模型<br>2.作用域链<br>3.设计模式、设计原则<br>4.兼容性<br>5.BFC<br>6.函数式编程<br>7.什么事件不能冒泡<br>8.如何学习  </p>
+<h3 id="京东"><a href="#京东" class="headerlink" title="京东"></a>京东</h3><p>一面总结(90分钟)： </p>
+<p>1.自我介绍环节<br>2.讲下vue传值有几种方式<br>3.讲下vue2和vue3有什么区别<br>4.this.$message如何实现的，讲下原理<br>5.instanceof是如何做比对的<br>6.如何实现一个订阅模式<br>7.观察者和订阅发布的区别<br>8.什么是委托，他有什么优点<br>9.讲讲数组怎么去重<br>10.webpack中的hash、chunkhash、contentChunk有什么区别<br>11.你都做过哪些webpack优化<br>12.讲下路由hash和history的区别<br>13.讲下路由权限如何控制<br>14.bind、call是如何做到this指向的<br>15.vue中的v-for中的key作用是什么？key如果用index会有什么问题？<br>16.讲下js中的event loop<br>17.watch和computed哪个性能更好<br>18.vue组件销毁你都做了什么<br>19.vue平时用到哪些钩子函数<br>20.如何自己封装组件，饿了么组件所有属性如何继承，所有事件如何也都继承呢？<br>21.babel中的preset-env和pollyfill有什么区别<br>22.了解过微前端吗？<br>23.用过node吗？<br>24.配过nginx吗？<br>25.遇到过什么问题？<br>26.webpack中如何排除cdn库</p>
+<h3 id="微盟"><a href="#微盟" class="headerlink" title="微盟"></a>微盟</h3><p>一面：(用时1小时5分钟-腾讯会议语音)</p>
+<p>面试官：请问你是叫某某某吗？<br>我：对的。<br>面试官：我先问两个问题，你用什么技术栈，是做to B还是 to C多一些？<br>我：vue，to B。<br>面试官：嗯，那我们开始正式进入面试环节；以下是我们面试的整个流程：<br>  1.css<br>  2.js<br>  3.网络&amp;安全<br>  4.框架<br>  5.工程化<br>  我们总时间大概在一个小时左右。<br>我：好的。<br>面试官：那请做下简单的自我介绍开始。<br>我：好的，那我开始做一下自我介绍，你好，我叫某某某，今年多少岁了，目前就职于某某公司，主要负责balabalabala…..</p>
+<p>css方向：<br>面试官：请回答下盒子模式是什么？<br>我：盒子模式分为标准模式下和怪异模式下，首先标准模式下盒子模型包括外面距、边框、内边距、内容；怪异模式下的盒子模型包括外边距，内容(边框和内边距和内容)。<br>面试官：那什么场景会需要用到怪异模式？<br>我：balabalabala…心想不就是ie才会出现怪异模式吗？还有啥场景可以用怪异模式呢？边框融合？<br>面试官：什么是BFC?<br>我：BFC、BFC、BFC念了三遍，想不起来了。心里想才问第二个问题就不行了，脑袋一片空白。<br>面试官：从css的角度有什么可以优化的？<br>我：减少重排重绘。<br>面试官：怎么做？<br>我：开启3d渲染引擎，加速gpu渲染。<br>面试官：那也是一个方法，说下遮罩，讲讲层级是什么逻辑。<br>我：z-index设置显示级别？<br>面试官：就只有z-index吗？<br>我：还有层级约束，同级层级中，其中内部层级无法超越父级层级的z-index。</p>
+<p>JS方向：<br>面试官：let、const分别是什么？<br>我：let变量声明，为什么会有let,因为之前var是全局声明变量，let主要用于块级作用域变量声明。<br>面试官：我们时间不够，请直接回答问题。不要讲历史！<br>我：好的，const是声明常量，一旦声明了就不能修改。<br>面试官：那const声明一个对象呢？<br>我：引用类型是可以修改的。<br>面试官：那有什么办法可以让引用类型不可以修改呢？<br>我：可以用Object.defineproperty中第三个参数里面有一个可写属性，设置为false就行。<br>面试官：还有其他办法吗？<br>我：还有可以把对象冻住。<br>面试官：如何实现一个深拷贝？<br>我：深拷贝主要实现是判断当前是否是一个引用类型，如果是引用类型的话就递归拷贝下，如果不是就直接复制。<br>面试官：你有用过Promise.all吗？<br>我：用的比较少（心里想没用过，但是又不能直接说），大概了解怎么用。<br>面试官：那它是什么逻辑？<br>我：Promise.all接受一个数组，数组每一项都是一个Promise,返回值是所有的Promise都执行成功最后输出才是成功。<br>面试官：如果让你自己实现一个Promise.all你会怎么实现？<br>我：我忘记了Promise源码是怎么写的了。但是我有一个实现的思路，首先知道它的入参是一个数组，那就可以知道数组的长度，然后遍历所有的Promise并去执行，直到Promise执行有结果时去调用同一个获取当前所有状态集的方法来判断当前是否都执行成功或有执行失败的，最后输出所有执行的Promise的执行状态集合。<br>面试官：你怎么判断当前执行的是哪一个Promise?<br>我：用数组的索引。<br>面试官：解释下bind,call,apply区别。<br>我：bind是绑定谁this就指向谁，bind就一个参数。<br>面试官：不对，bind不止一个参数。<br>我：call和apply的执行是一样的，唯一区别就是参数不一样。<br>面试官：那bind可以无线bind下去吗？<br>我：应该可以吧。<br>面试官：说说箭头函数都有什么特征。<br>我：箭头函数是匿名函数，箭头函数的this来自它的父级。<br>面试官：那可以bind(箭头函数)吗？<br>我：停顿3秒…不行吧。<br>面试官：如何判断数值类型，都有什么方法？<br>我：typeof, instanceof , 比较严格的方式Object.prototype.toString.call(target)。<br>面试官：讲讲Event Loop.<br>我：停顿2秒…给点提示。<br>面试官：就是宏任务、微任务那些。<br>我：那就是普通任务执行，遇到宏任务执行第一个宏任务后，会把第一个微任务收掉再执行下一个宏任务接着又执行下一个微任务。注(这边正确逻辑应该是普通任务都走完，然后收掉第一波微任务，再走下一个宏任务，接着走第二波任务以此循环)<br>面试官：那setTimeout(()&#x3D;&gt;{5个Promise.resolve()})的执行顺序是什么？<br>我：5个按顺序执行。<br>面试官：那递归这个计时器呢？是怎么执行的？分层还是一口气执行呢？<br>我：分层执行。</p>
+<p>网络&amp;安全方向：<br>面试官：同源策略是什么？如何处理跨域？<br>我：协议、域名、端口有其中一个不一样就不是同一个源；vue可以针对普通请求设置跨域为true，就可以对普通跨域进行请求。<br>面试官：vue有这种能力？<br>我：不对不对，那不是vue干的事。我还是先讲服务端的吧，服务端可以开启跨域，有一个cre(withCredential)…的属性开启来就可以处理普通跨域请求，还有复杂请求的话我记得是要开启2个属性就行，还有一个就是服务端针对ip作为白名单就可以解决跨域问题。<br>面试官：常见的状态码都有哪些？<br>我：200、404、500、401、403。<br>面试官：304是什么？<br>我：重定向？<br>面试官：不对。<br>我：缓存？<br>面试官：对的，什么缓存？<br>我：协商缓存。<br>面试官：讲下http中对称加密，非对称加密，数字签名都是为谁加密？<br>我：一脸懵逼…它们都是为谁加密？？？我讲讲它们都是什么，我的理解，安全我最近也在做，首先对称加密我用到的是AES，前后端用同一个key加解密；非对称加密一个是公私钥，公钥可以解私钥，私钥可以解公钥；数字签名我理解它应该是和加盐差不多。</p>
+<p>框架方向：<br>面试官：如何知道dom渲染完成？<br>我：mounted。<br>面试官：解释下vue2和vue3监听对象的区别，并说下优缺点。<br>我：vue2用到的是Object.defineproperty来劫持每一个key，通用他们的getter和setter来订阅值的变化，而vue3用到的是proxy代理，又因为vue2不能对引用类型友好的进行劫持，所有尤大大重写了引用类型的劫持方法。vue2劫持的缺点还有一个是不好扩展，每增加一个都要递归来监听，而vue3的代理就不用，你只要监听最上层的对象就行。<br>面试官：那你说下装饰器和代理的区别？<br>我：这个…，我回答不上来。<br>面试官：vue传值都有哪些方法？<br>我：应该有9种方法，我可能说不全。<br>面试官：不用全都讲，只要讲一些常用的就行。<br>我：props、v-bind、emit、provide、inject, vuex（还有$parent,eventBus,localstoryge,sessionStoryge,$children,手动写一个定阅等等）。<br>面试官：讲下keep-alive是什么？<br>我：它是一个组件缓存，当你的组件被缓存时并隐藏了，再次被激活时它会走组件的activited钩子，表示命中了该组件。<br>面试官：那如果组件带有参数呢？如何缓存？<br>我：keep-alive它有一个属性可以匹配全路径缓存。<br>面试官：keep-alive是怎么实现的？它是缓存代码片段，还是虚拟dom，还是分片段？<br>我：balabalabala… 虚拟dom。<br>面试官：DSL如何做到级联？<br>我：表单项A联动表单项B，我们是将联动的逻辑放到表单项B的配置中的，B如果联动C那联动逻辑可以写到C的配置中。<br>面试官：表单如何统一实现校验方法？<br>我：我是给每个表单项都支持校验方法，然后向表单发通知，由表单来收集所有检验来实现的。</p>
+<p>工程化方向：<br>面试官：你们工程化是什么？<br>我：webpack。<br>面试官：你有手写过webpack配置过吗？<br>我：没有，但是大致都知道什么意思·。<br>面试官：假设你是项目负责人，你要怎么考虑包太大，编译慢的原因和如何处理？<br>我：包大就分包，webpack一开始什么都没做的打包方案是将所有js打包到一个js文件中，如果我们用懒加载就可以做到分包效果，可以将一些相同的代码合并，采用tree shaking。<br>面试官：如何开启tree shaking?<br>我：安装插件和配置就行，它是一个静态语法分析，直接可以分析你的静态代码。<br>面试官：继续。<br>我：编译慢的话可以采用异步编译。balabalabala……这边聊到优化去了..偏题了。<br>面试官：时间有点超时了，最后一个问题，你们项目中有用到ts吗？<br>我：没有。<br>面试官：那我们今天的面试就到这里结束了。<br>我：我还想再补充下刚才那个问题，虽然我们项目中没用到ts，但是我自己的项目是用ts的。<br>面试官：其实没那么硬性要求，ts是一个…<br>我：好的，谢谢，88<br>面试官：拜拜</p>
+<p>二面：(用时1小时5分钟-腾讯会议视频)<br>巧了，二面的面试时间和一面是一样的。</p>
+<p>面试官：你是叫某某吗？<br>我：不是，我叫某某某。<br>面试官：不好意思。<br>我：没关系。<br>面试官：那我们今天的面试正式开始，你先做个简单的自我介绍。<br>我：好的，那我开始自我介绍了。balabalabal…<br>面试官：你刚才讲到你的项目，那你讲讲你是怎么实现的。<br>我：DSL…..balbalabalabal应该有讲8分钟左右。<br>面试官：如何把一个三维的数组拉平，再去重，再将序。<br>我：首先可以使用数组的flat方法，将数组进行两次flat后，它就拉平了。<br>面试官：为什么要两次呢？请问flat的参数是什么？<br>我：我暂时不清楚flat的参数，那我先讲下去重吧，假设已经用flat把三维数组拉平了，接着去重的话，如果是简单的数字数组的话，那我们可以用[…new Set(Array)],进行去重，如果是比较复杂的话，我们可以遍历数组，然后将数组的每一项作为一个对象的key,以及用一个空数组来计入这个去重过的数组，如果遍历到同一个key项去和刚才的object中的key做对比，如果存在不做处理，程序继续，直到所有遍历结束就可以得出一个去重数组；接着我们对数组做降序，我们可以用sort方法，也可以自己用分治算法写一个降序函数。<br>面试官：如何用分治算法写一个降序呢？<br>我：分治算法的原理是，遍历数组每一项，然后把当前项的比他大的放左边，比它小的放右边。<br>面试官：那你这样和sort差在哪里？<br>我：分治算法的复杂度是在OnLogn,我记得sort的复杂的是On^2,主要是遍历过的那个数值只要比较一轮，下轮比较的时候就不需要再对他进行比较了。<br>面试官：vue中的diff是如何实现的，请说下头比较，尾比较，同层比较。<br>我：这…我还没看到vue中diff的源码这一部分，但是我知道diff是什么一个逻辑。<br>面试官：vue中diff是根据遍历虚拟dom,然后去遍历所有虚拟节点判断节点元素对应的dom type,以及给他设定一个key值，如果下次比较的时候，这个key值变了就表示这个节点需要做更新，所以我们在写v-for的时候写那个key它是可以提高比较性能的。balabalabal…应该讲了有五分钟(面试官还是挺好的，帮我解释了一下)<br>我：嗯，懂了(其实还没全懂)。<br>面试官：讲讲vue路由的原理。<br>我：vue路由分为两种形式，一种是hash，一种是history;首先讲下hash，它是根据路径上的#后面的变量来控制路由跳转的，而history是根据h5的pushState来进行路由跳转的，它俩的效果是一样的，但是hash会在路由上多一个#以及后面的变量。<br>面试官：hash是怎么监听变化的？<br>我：我记得有一个好像是onHashchange可以监听。<br>面试官:现在不是比较流行的有按需加载，那按需加载就会出现webpack把一个js文件拆分成多个js文件，那请求路由是怎么知道对应的js在哪一个文件呢？<br>我：停顿8秒左右，我对路由源码还不是很清楚，会后我会去看下vue-router源码，虽然我不知道它源码怎么写的，但是我好像记得它是给js文件名加上了hash值，这样路由跳转的时候就可以根据这个hash值做跳转了。<br>面试官：webpack如何做优化，都做过哪一些呢？例如有写过css loader吗？<br>我：没做过什么优化，但是我对他的优化方案还是有一些了解的，例如，压缩。<br>面试官：压缩本身就自带了。<br>我：我说的是uglify。<br>面试官：那你讲讲你知道的。<br>我：tree shaking,静态语法分析；代码重复合并，可以控制代码重复几次时就让它合并生成一个新函数来打包。<br>面试官：那请问如何设置合并代码呢？<br>我：我一时想不起来怎么设置了，只记得有一个插件里面有一个属性可以设置。<br>面试官：还有什么优化方案吗？<br>我：dllplugin，我知道这个，但是我还没用过。<br>面试官：dllplugin可以将只更新的js打包一块，将未更新的打包一块，这样我们再更新cdn的时候就只更新被更新过的就行。<br>我：嗯，下次我试用用看。<br>面试官：讲讲什么是虚拟列表，项目中有用过吗？<br>我：项目中还没有用过，因为还没有遇到过这样的业务场景，但是大致明白它是一个什么原理。虚拟列表是根据浏览器的可视屏加上滚动距离来判断当前滚动的位置。假设我们一屏有十条数据，那我们可以设置一个数组，里面放10条数据，当我们滚动后，根据滚动的距离判断当前要显示的数据。<br>面试官：那你这样肯定会出现抖动。<br>我：那我们渲染三屏数据应该就可以不抖动了。<br>面试官：其实可以设置三屏或四屏数据，给未显示的做一个骨骼架，这样就不会抖动了。<br>我：那我想问下，每条数据的高度是一致的吗？<br>面试官：有一致的也有不一致的。<br>我：那假设初始页面是在第10屏幕，鼠标向上滚动，数据的上上屏动态加载出来，那它就不算抖动吗？<br>面试官：这个抖动是允许的，如果是正常从第一屏滚下来，是没问题的，如果是从中间往上滚一定会出现数据高度不确定导致页面撑开的现象。<br>我：明白了。<br>面试官：讲讲继承。<br>我：现在用的比较多的是es6的extend继承，还有es5的继承是寄生式组合继承，它是从寄生继承，和组合继承演变过来的。还有es6或更高版本推荐用extend，所以我现在有用比较多的是这个，它也是一个趋势。<br>面试官：你们项目中都用到什么设计模式。<br>我：我们项目中用到的设计模式比较少，如果说要用到应该是vue用到的观察者模式。<br>面试官：你自己封装组件的话没用到过单例和工厂吗？例如组件用工厂来封装，这样可以比较好的扩展。<br>我：我封装的那个严格来说应该没有用到工厂，但是我也支持用户自己做扩展，只是它不能任意做扩展。<br>面试官：我看到你拿笔了，你就手写一个防抖或节流，随便写一个拿给我看。<br>我：好的，稍等。<br>…..5分钟过去了….,看到了吗？<br>面试官：你怎么没用到setTimeout。<br>我：我可能把防抖和节流搞混了，你说的用到setTimeout那个是在一定时间进到函数的时候会清除setTimout,然后直到一段时间后都没有再进到函数是，间隔一定时间去执行对应操作，我写的这个它的场景是按钮提交的时候防止它多次提交时，假设我设置一个按钮300毫秒内只能点击一次这样的一个场景。<br>面试官：你对我们的公司有什么想问的吗？<br>我：balablablaba….<br>面试官：dadadada…….<br>来回两三回合…<br>我：暂时没什么问题了。<br>面试官：那今天的面试就到这里了。<br>我：好的，88， 谢谢。<br>面试官：嗯，拜拜。</p>
+<p>三面：(用时10分钟-hr电话)</p>
+<p>面试官：你好我是某盟hr，之前你面试的技术已经通过了，这一轮是hr面。首先对你初步了解下。我们正常是两轮技术面，两轮hr面。<br>我：好的。<br>面试官：你目前人在哪里？<br>我：厦门。<br>面试官：那你为什么要离职呢？<br>我：想去大城市发展。还有现在在乙方，比较被动。<br>面试官：那你为什么不先考虑下深圳呢？深圳离厦门不是比较近。<br>我：深圳不熟，我毕业的时候就在上海，现在回来。中间balablablab…想再回去发展,可以对那边的环节无缝生活。<br>…中间信号不好，卡了一小会儿。<br>面试官：你对下一份工作有什么期望？<br>我：我之前了解过你们公司技术员也有23十号人，我希望和其他技术人员讨论，共同进步。<br>面试官：你希望的薪资是多少？<br>我：我希望拿到你们这个岗位薪资的顶。<br>面试官：具体点。<br>我：xxx。<br>面试官：因为你面试的评语，写得有点少，我去落实下。再给你回复。<br>我：好的。<br>面试官：那今天就到这里。<br>我：好的，88<br>面试官：嗯。</p>
+<h3 id="叮咚买菜"><a href="#叮咚买菜" class="headerlink" title="叮咚买菜"></a>叮咚买菜</h3><p>一面：(用时45分钟电话)</p>
+<p>面试官：我是刚拿到你的简历，请你先做下简单的自我介绍。<br>我：好的，balablabalabalba…<br>面试官：你接触vue多久了。<br>我：我大概是18年开始接触的。<br>面试官：那也有3年了，那你讲讲vue双向绑定的原理。<br>我：vue2双向绑定是根据defineproperty这个函数对对象以及它的key进行setter,和getter的劫持，以及用观察者模式来实现的。大概的原理是，用递归把所有的key都definepropety一遍，并对所有的key进行订阅，然后当有key被修改了就会发通知通知所有被订阅者，并执行一遍达到双向绑定这么一个原理。<br>面试官：那你讲讲如何对一个对象的属性的变化进行监听。<br>我：心想(我刚不是说过了吗？)，definepropety的第三个参数中的setter可以做到。<br>面试官：讲讲keep-alive的原理。<br>我：缓存组件，它可以缓存组件，当这个组件再次被激活的时候会调用activited钩子，keep-alive可以对路由匹配的组件进行缓存，也支持全路径缓存。它大概的一个原理是通过虚拟dom把代码片段存入documentFragment,然后存到内存中，当组件再次被激活的时候，就把这个文档片段插到对应的dom节点中。<br>面试官：那你讲讲路由的原理。<br>我：vue的路由分为两种，hash路由和history路由，首先hash路由是由路径上#后面的变量来监听路由变化的，而history是html5中的pushState来监听路由变化。<br>面试官：如何对网络层做优化？<br>我：网络层做优化有，减少网络请求，缓存一些比较不会变化的数据接口，图片请求可以做成雪碧图，把小图标做成base64图。把文件资源放到cdn。<br>面试官：在浏览器中输入url发生了什么？<br>我：首先域名输入后，会进行DNS解析到对应的ip和端口，然后现在一般的处理是nginx做路由分发，把服务器对应的资源下载到客户端，客户端拿到前端资源会按html标准进行页面渲染，其中页面会生成两个树cssom,dom,然后按顺序执行html代码，当然这个过程也遵循event loop,接着渲染head,css,body然后把js放到</body>之前，因为js会阻塞页面渲染。<br>面试官：setTimeout(()&#x3D;&gt;console.log(1));$nextTicket(()&#x3D;&gt;console.log(2));输出结果是什么？<br>我：setTimeout是宏任务，$nextTicket是微任务，先执行微任务再执行宏任务。<br>面试官：$nextTicket是什么原理？<br>我：不知道（我以为要我讲v8原理，心有点慌了。）<br>面试官：这个有点类似Promise的封装。<br>我：Promise.then?<br>面试官：差不多。<br>我：我是第一次听说(感觉面试官自己应该也不懂)。<br>面试官：你有带过新人吗？<br>我：之前有一家公司是司徒制，陆陆续续带过3个人。<br>面试官：讲讲你对未来的规划。<br>我：高级开发-&gt;资深开发-&gt;专家-&gt;架构<br>面试官：你有什么想了解我们公司的？<br>我：贵公司招聘的这个岗位主要是什么的？<br>面试官：我们现在用的是vue+elementui在做供应链，这个岗位是负责供应链开发。<br>我：贵公司这个项目目前做到什么程度，是0<del>1，还是1</del>2，或是已经在维护迭代过程。<br>面试官：现在很少有项目是0~1的了，都是在维护迭代更新。<br>我：贵公司目前有硬性加班每个月吗？<br>面试官：我们目前每天上班大部分是到8点左右，大小周，周六加班是有一天的工钱的。<br>我：目前没什么问题了。<br>面试官：那我们今天面试就到这里。我会把你的资料拿给我们人事。<br>我：好的，88。<br>面试官：嗯，拜拜。</p>
+<h3 id="涂鸦"><a href="#涂鸦" class="headerlink" title="涂鸦"></a>涂鸦</h3><p>一面：(用时40分钟电话)</p>
+<p>面试官：你好，请问你是某某某吗？我们约了今天面试。<br>我：对的。<br>面试官：我们公司是大小周，小周的那一天可以自己调工作日调休。你会介意吗？<br>我：不算太介意(心想，只要钱给够997奉陪到底)<br>面试官：你之前接触的都是vue，对react了解吗？<br>我：不算太了解，两年前写过react-native。<br>面试官：好的，那我们的面试正式开始，请做个自我介绍。<br>我：你好，我叫某莫某。balablabla…一贯的作风(一分钟)。<br>面试官：你刚才讲到组件库，那你讲讲你是什么设计及实现的。<br>我：balablabala……字段-&gt;模版-&gt;页面…讲了10分钟。<br>面试官：那你没用到单元测试吗？你知道单元测试有什么吗？<br>我：目前没有，目前市面上的单元测试有test，mocha，e2e。<br>面试官：vue的路由和window.herf有什么区别。<br>我：vue路由有两种模式一个是hash一个是history，hash是根据路径上的#号后面的变化来监听的有个hashChange的函数可以监听hash的变化来进行对路由的跳转；history是比较流行的路由方案，它对seo比较友好。它的原理是用到html5的api，pushState、popState来对路由的监听，它的效果是hash是一样的，区别是它在url上没有#号。那它们和window.href的区别href.location只要一改变整个页面就会刷新，所以它们是一个是单页和多页的区别。<br>面试官：讲讲vue虚拟dom到真实dom是一个什么原理，以及如何做到diff的。<br>我：vue虚拟dom到真实dom的原理，那是model-&gt;view的一个过程，因为vue是对data数据的劫持，当data数据改变了，也就是data中的key被订阅的key会收到发布来的通知，并开始对渲染层进行变更渲染，那渲染的逻辑是，先获取当前需要变更的代码片段把它用document.fragment文档片段存起来，然后根据修改的数据，对文档片段进行批量更改，最后再打到真实的dom里面。还有你刚才说的diff、vue中的v-for就有用到，它是先用到头尾比较再到详细比较，当匹配到头尾不一致时，就是整个换掉，如果匹配到头尾一致时就会去比较详情，详情里面再去同层比较，如果同层的h5标签不一致就更新，如果一样的话继续深入比较以此类推，还有刚刚讲到的v-for为什么我们在写的时候要写key呢？那是因为在详细比较的时候，如果有key的话，它比较的速度要比没有key的速度要快，应该如果有key就直接比较key的内容，如果没有的话就得全局遍历才能对比。<br>面试官：webpack的原理和都有什么优化方案？<br>我：webpack的原理可以从它的配置看出来，首先是入口文件，再到各个loader，以及插件，最后到输出入口，它的逻辑大概就是输入文件的时候，对各个文件进行处理再输出一个逻辑。它的优化方案可以有对代码中重复的写的代码进行合并设置，可以设置当重复代码出现次数大于2或3时，webpack将取抽象出一个公共方法，让这些用到的地方都统一去调同一个方法。还有就是可以用tree shaking，静态语法分析，将代码中实际没有用到的代码抖掉；还有就是用dllplugin，找个插件目前我没实践过，但是我知道它可以做优化，它的作用是打包差异，这样更新的时候只更新差异就行。<br>面试官：babel的实现原理是什么，它怎么做到ES6到ES5.<br>我：babel的实现原理是ES6抽象语法树到中间一个什么环节再到ES5的抽象语法树，中间我记得还有三个环节给忘记了。<br>面试官：浏览器从输入url都发生了什么？中间环节都有什么可以优化的。<br>我：浏览器从输入url首先是域名会被DNS解析成对应的ip和端口，然后服务器一般会使用nginx对ip和端口进行路由的分发，找到路由指向的位置，将对应的文件下载到客户端，客户端拿到资源在浏览器进行对其执行，首先是html渲染，根节点然后到head，head里面有meta在到css渲染，对了浏览器渲染的时候会生成两棵树一棵dom，一棵是cssom，最后呈现合并的效果。js渲染一般放到</body>之前，因为js渲染会阻塞dom渲染，接着到了body，body里面渲染可以使用vue或react框架，进行虚拟dom到真实dom的渲染；然后body中有可能会请求图片资源，小图片可以做雪碧图，icon可以做base64图。<br>面试官：讲讲vue2和vue3的区别？<br>我：我们现在还没有升级到vue3，我对vue3了解的不是很透彻，但是也知道一些区别，首先vue3是用proxy改写了defineproperty的劫持方法，以及vue3重写了生命钩子，还有它也用到了hooks，这两天好像发布了vue3.2，如果业务上有用到vue3的话，我回去详细了解。<br>面试官：forEach和map有什么区别？<br>我：forEach没有返回值，map返回值是新数组。<br>面试官：forEach可以break吗？<br>我：我没这么用过，应该是不可以吧，我记得map是不能这么用的，forEach应该也是不行的。<br>面试官：讲讲V8垃圾回收机制。<br>我：停顿3秒。V8我不了解，讲讲我对垃圾回收的理解，可能不是js的，我记得在学校有学到window系统的GC回收，它是在空闲的时候定时去清理window上被删除的垃圾。那浏览器我们在执行js片段是时候，它是执行即销毁的，但这边销毁我的理解它应该没有被垃圾及时回收，而是进到了垃圾回收等待阶段，这个还有一种现象就是js有一个闭包如果在闭包的时候其实就不会立即销毁。我的理解v8应该也是在空闲的时候进行垃圾回收。<br>面试官：你有做过管理吗？<br>我：两年前有带过人算吗？<br>面试官：最近呢？<br>我：最近没有。<br>面试官：那我们今天的面试大概就到这里，会在1-2天给你回复。<br>我：好的，88。<br>面试官：嗯，拜拜。</p>
+<h3 id="神州优车："><a href="#神州优车：" class="headerlink" title="神州优车："></a>神州优车：</h3><p>1.请解释下什么是事件委托<br>2.请解释下jq的on怎么实现<br>3.node的中间件是什么<br>4.请写一个正则匹配下0～1000<br>5.解释下vue原理<br>6.什么是变量声明<br>7.什么是单线程，什么是单进程<br>8.__protype__与prototype有什么区别<br>9.什么是混合开发，如何用js调用原生<br>10.移动端用到的单位是什么<br>11.解释下vw是什么意思<br>12.如何启动node项目，如果node挂掉如何重启</p>
+<h3 id="笨鸟社交："><a href="#笨鸟社交：" class="headerlink" title="笨鸟社交："></a>笨鸟社交：</h3><p>1.请说下路由钩子有哪些，你都在里面做什么？<br>2.vue的生命周期是什么？<br>3.数组的遍历有哪些方法？<br>4.vue的父子组件如何通信？<br>6.sync双向绑定如何自己实现？<br>7.解释下provide和inject是什么，有什么用？<br>8.keep-alive是什么？<br>9.key这个解释下有什么作用？<br>10.讲一下对其他框架的了解<br>11.fulter是什么？<br>12.请说一下es6以后还有什么新功能？<br>13.every、some、find这些是什么意思？</p>
+<h3 id="渊亭科技（笔试）："><a href="#渊亭科技（笔试）：" class="headerlink" title="渊亭科技（笔试）："></a>渊亭科技（笔试）：</h3><p>1.基础类型是什么，不少于5个，如何判断？<br>2.数组的方法有哪些，不低于10个<br>3.如何去重<br>4.如何平铺数组<br>5.状态码都是些什么意思<br>6.立即执行函数有哪些？至少写三种<br>7.0.1+0.2为什么不等于0.3<br>8.1&#x2F;0结果是什么？0&#x2F;0结果是什么？<br>9.隐藏样式有哪些？<br>10.如何获取数组的第一项，请尽可能多的举例。</p>
+<h3 id="搞定设计（现场）"><a href="#搞定设计（现场）" class="headerlink" title="搞定设计（现场）"></a>搞定设计（现场）</h3><p>首先面试官自我介绍<br>我也自我介绍<br>并介绍了我的项目<br>音频播放是怎么知道现在播放到哪里的？<br>有接触过canvas吗？<br>elementui是如何做到组件Message和this.$Message一样效果的？如果让你自己写一个你会怎么写？<br>开始对基础进行面试<br>es6或以上有什么了解的？<br>map和forEach有什么区别？<br>这两个谁运行得比较快？<br>map如果没有返回值，输出结果是什么？<br>讲讲高级编辑器是怎么做优化的？<br>假设有50万条数据如何快速找到自己想要的那条数据？<br>如何找到一棵树的节点？<br>递归遍历死循环了怎么处理？<br>Promise如何串型执行？<br>如何自己写一个类似Promise.all？<br>假设有一个数字集合，如何获取最大两个数之和的索引？<br>http请求时缓存策略是什么样子的？<br>协商缓存的etag是什么的etag.<br>复杂请求的options是干什么用的？<br>复杂请求一定会有options吗？<br>options的报头是什么？<br>transform，都可以设置什么效果？顺序会有影响吗？</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">es6</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/12/%E9%9D%A2%E7%BB%8F%EF%BD%9E/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="title-跨域是什么-- 怎么处理(全)" class="article article-type-title  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2279,130 +2401,9 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 
   
-    <article id="post-把现有的项目打包一个离线包出来～踩坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/" target="_blank">把现有的项目打包一个离线包出来～踩坑</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/" class="archive-article-date">
-        <time datetime="2022-04-30T15:30:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-30</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Ps:打包一个离线包给销售，让销售拿去推广，数据需要用我们最新的数据。</p>
-<p>一开始接到这个需求，快速的就有了一个解决方案，可以缓存所有接口的请求数据，然后就可以了做成离线的了。</p>
-<p>真是想法很天真，开始一路一个坑。</p>
-<p>实施：axios请求接口在响应数据时，用一个对象把所有请求接口的用户账号和入参以及请求方法作为对象的key，响应的内容作为value，然后采集数据，当这个数据采集好后，用ctrl+m将数据保存成json下来。<br>当数据采集下来后，拷贝到项目内作为静态数据，在演示的项目中改变请求策略，这个时候不再去请求真正的接口了，而是请求静态数据，这样就可以做到离线包演示了。</p>
-<p>坑1:前端项目想要离线运行，必须起一个静态资源服务器找了几个(https-server)就只有 <strong>startserver</strong> 可以正常跑起来   </p>
-<pre class="language-cmd" data-language="cmd"><code class="language-cmd">npm i -g startserver</code></pre>
-
-<p>  当全局安装这个库后，只要在你想要起的静态资源工程下进行cmd命令 <strong>startserver</strong>  </p>
-<p>坑2:采集的数据太大了，webpack一编译，机子就宕机。  </p>
-<p>问题定位：webpack在打包的时，默认只要超过500kb就会提示有js包过大，默认内存有限，可以使用设置默认内存变大一点打包，但是当数据采集超过一定大小后，webapck直接报内存真的不够。</p>
-<p>解决方案：不再使用webpack打包数据，而是在打包好的工程下写一个cashed.js将采集的所有采集来的数据放到这个文件中，因为可以采集无数个json数据我用node写了一个一键合并json数据的工具，详细代码请见-&gt;<a href="http://mrretro.github.io/?p=455">地址</a>，然后在index.html中直接引用cashed.js,并在这里面声明一个全局的变量来存贮采集来的数据。</p>
-<p>坑3:JSON.stringify转成字符串时在startserver下key的顺序是不固定的  </p>
-<p>问题定位：测试了一下在本地和nginx打包后的工程下，axios请求入参时将入参转成字符串时是这样的{a:1,b:2}，</p>
-<p>而在startserver工程下axios请求的入参有些接口变成了{b:2,a:1},这是一个巨坑啊～</p>
-<p>解决方案：在静态资源工程下改变获取采集数据策略，将入参转成字符串后在通过字符串排序一下做对比，如果对比成功，就可以取对应key中的value,作为接口返回值。</p>
-<p>坑4:采集的数据遇到了JSON.stringify会把 value 值为 undefined 的过滤掉  </p>
-<p>问题定位：JSON.stringify({a: undefined}),输出结果是{}   坑坑坑(其实是自己知识不够，翻了一下MDN文档人家说了 <strong><code>undefined</code>、任意的函数以及 symbol 值，在序列化过程中会被忽略</strong> )～</p>
-<p>解决方案：避免出现对象value为undefined现象</p>
-<p>坑5:对于接口入参格式为 FormData 的数据JSON.stringify并没有卵用(文件上传)  </p>
-<p>问题定位：在axios真正请求前，捕获参数时发现接口请求是FormData格式时，拿不到FormData请求的入参字段，但在请求有返回值的时候，就可以拿到FormData当时的入参字段了。目前还不清楚为什么会这样，有知道的大佬可以解答下吗？<br>解决方案：可以用forEach将FormData内的所有字段遍历出来push到一个空数组中，用map直接返回却不行，这边还有一个问题就是FormData中有一个是上传文件的字段，这个时候静态资源工程需要定位出是否是历史上传过的文件，这边我采用的策略是文件最后修改的时间戳来匹配是否是同一份文件，我看了文件File内的字段并没有一个唯一值来定位，这边我想要的是不管上传多少次同一个文件它应该有一个唯一值是不会变的(如果有大佬知道，请帮解答疑惑)，这样FormData格式的入参就可以转字符串了。</p>
-<p>坑6:对于接口每次都拿系统的实时时间时(业务流程)～束手无策  </p>
-<p>问题定位：有些接口在请求入参时，拿的是当前系统的时间，因为我匹配采集数据的策略是必须命中所有入参字段的key才能把数据返回出来，然后如果入参的值是动态的，那就完全无法处理了。希望有大佬可以给个解决方案。</p>
-<p>坑7:对于内嵌iframe的页面(客户综合查询)～束手无策  </p>
-<p>问题定位：工程底下还内嵌了第三方iframe，和内嵌其他子工程的页面，这个时候无法采集到内嵌的数据</p>
-<p>坑8:流程如果有后退，进程id值会变更，导致之前采集的数据有问题。  </p>
-<p>问题定位：接口入参的值竟然会变，这个真的是无能为力了，业务复杂～</p>
-<p>坑9:页面查看数据采集后显示不出来，组件时序写得有问题  </p>
-<p>问题定位：工程bug，不同小伙伴写的代码，哎，心态要放平。</p>
-<p>解决方案：直接堵住这个bug，或直接修复它，或者叫写这个bug的小伙伴给他提缺陷。</p>
-<p>坑10:相关链接显示数据不对  </p>
-<p>问题定位：业务问题，还未定位。</p>
-<p>坑11:工程缺陷修复后，本地项目滞后问题   </p>
-<p>解决方案：等缺陷修复.及时同步代码。</p>
-<p>坑12:入参采集数据会出现特殊符号，导致采集的key找不到  </p>
-<p>问题定位：入参的字符中出现了js等关键字</p>
-<p>解决方案：在静态资源工程中，匹配策略再加一层，去除特殊符号。 </p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">离线包</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/04/30/%E6%8A%8A%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%B8%80%E4%B8%AA%E7%A6%BB%E7%BA%BF%E5%8C%85%E5%87%BA%E6%9D%A5%EF%BD%9E%E8%B8%A9%E5%9D%91/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
     </nav>
   
 
@@ -2540,19 +2541,19 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2605,6 +2606,18 @@ console<span class="token punctuation">.</span><span class="token function">log<
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">es6</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
