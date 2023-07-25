@@ -223,6 +223,238 @@
             
 
   
+    <article id="post-utils/centOS下linux7搭建jenkins全过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/07/25/utils/centOS%E4%B8%8Blinux7%E6%90%AD%E5%BB%BAjenkins%E5%85%A8%E8%BF%87%E7%A8%8B/" target="_blank">centOS下linux7搭建jenkins全过程</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/07/25/utils/centOS%E4%B8%8Blinux7%E6%90%AD%E5%BB%BAjenkins%E5%85%A8%E8%BF%87%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2023-07-25T08:21:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-25</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <blockquote>
+<p>PS 在一个什么环境都没有的 linux 下如何安装 jenkins</p>
+</blockquote>
+<ol>
+<li><p>因为 jenkins 是基于 java 开发的，所有在安装 jenkins 之前我们要先安装 jdk<br>  👉 <a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/">下载 jdk 压缩包</a><br>  我下载的版本是 <strong>OpenJDK17U-jdk_x64_linux_hotspot_17.0.8_7.tar.gz</strong> <a target="_blank" rel="noopener" href="https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz">下载地址</a><br>  1.1 下载压缩包命令👇</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
+wget https:&#x2F;&#x2F;download.oracle.com&#x2F;java&#x2F;17&#x2F;latest&#x2F;jdk-17_linux-x64_bin.tar.gz</code></pre>
+<p>  1.2 解压压缩包命令👇</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
+rpm -ivh jdk-17_linux-x64_bin.tar.gz</code></pre>
+<p>  1.3 接着配置环境变量，将环境变量指向解压的文件位置</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">vi &#x2F;etc&#x2F;profile</code></pre>
+<p>  1.4 输入完毕并回车，在文件尾部添加如下信息：</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin
+export CLASSPATH&#x3D;$:CLASSPATH:$JAVA_HOME&#x2F;lib&#x2F;
+export PATH&#x3D;$PATH:$JAVA_HOME&#x2F;bin</code></pre>
+<p>  注意：第一行的 JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin 此处等号右边的是自己的 jdk 实际解压目录。如果不是该目录则需要改成自己的实际目录，其他不变。<br>  1.5 编辑完之后，保存并退出，然后输入以下指令，刷新环境配置使其生效：</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">source &#x2F;etc&#x2F;profile</code></pre>
+<p>  1.6 查看 jdk 是否安装成功，输入指令 java -version 即可。</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">java -version</code></pre>
+</li>
+<li><p>下载 jenkins 并安装<br>  2.1 下载 Jenkins 安装包, 推荐下载最新的安装包 👉 <a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/jenkins/war-stable/">下载</a></p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
+wget https:&#x2F;&#x2F;repo.huaweicloud.com&#x2F;jenkins&#x2F;redhat-stable&#x2F;jenkins-2.346.3-1.1.noarch.rpm</code></pre>
+<p>  2.2 安装 jenkins</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
+rpm -ivh jenkins-2.346.3-1.1.noarch.rpm</code></pre>
+<p>  2.3 修改 jenkins 配置<br>  进入 <strong>vi &#x2F;etc&#x2F;init.d&#x2F;jenkins</strong>,<br>  将 JENKINS_USER&#x3D;”jenkins” 改为 JENKINS_USER&#x3D;”root”,<br>  修改自己 java 路径, 在 <strong>&#x2F;usr&#x2F;bin&#x2F;java</strong> 上面加上自己的 java 路径<br>  例如:</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin&#x2F;bin&#x2F;java
+&#x2F;usr&#x2F;bin&#x2F;java</code></pre>
+<p>  2.4 jenkins 默认端口是 8080 如果要修改，可以按以下操作找到 <strong>JENKINS_PORT&#x3D;”8080”</strong></p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">vi &#x2F;ect&#x2F;sysconfig&#x2F;jenkins</code></pre>
+<p>  2.5 启动 jenkins</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;etc&#x2F;init.d&#x2F;
+.&#x2F;jenkins start</code></pre>
+<p>  其他命令<br>  .&#x2F;jenkins stop    #关闭服务<br>  .&#x2F;jenkins restart #重启服务<br>  2.6 防火墙开发 8080 端口</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">firewall-cmd --zone&#x3D;public --add-port&#x3D;8080&#x2F;tcp --permanent
+systemctl restart firewalld   #重启</code></pre>
+<p>  2.7 查看端口是否正确</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">netstat -tunlp|grep 8080</code></pre>
+<p>  2.8 查看防火墙状态<br>  查看当前防火墙状态<br>  systemctl status firewalld.service<br>  关闭防火墙<br>  systemctl stop firewalld.service<br>  打开防火墙<br>  systemctl start firewalld.service<br>  重启防火墙<br>  systemctl restart firewalld.service<br>  2.9 可以在浏览器访问了(IP:8080)<br>  初始密码查看</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">cat &#x2F;var&#x2F;lib&#x2F;jenkins&#x2F;secrets&#x2F;initialAdminPassword</code></pre>
+<p>  最后可以查看 jenkins 安装的所有信息</p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">rpm -ql jenkins</code></pre></li>
+</ol>
+<h3 id="写在最后："><a href="#写在最后：" class="headerlink" title="写在最后："></a>写在最后：</h3><p>坑1：jenkins 版本和 jdk 版本不兼容无法启动，都下最新的版本就没事。<br>坑2：因为我一开始下载的 jenkins 版本不是最新的导致装好后有漏洞提示，我就升级到最新的导致程序无法启动</p>
+<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_67400972/article/details/124148531?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-124148531-blog-130229767.235%5Ev38%5Epc_relevant_anti_vip&spm=1001.2101.3001.4242.1&utm_relevant_index=3">Linux系统下安装jdk及环境配置（两种方法）</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40315455/article/details/130502117">Linux 搭建jenkins</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/longyao/p/12733526.html">linux安装Jenkins</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45468221/article/details/122861158">jenkins安装完成启动报错</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40986713/article/details/123874495">windows&#x2F;linux 下Jenkins 远程（跨服务器）配置项目自动构建启动</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35880565/article/details/129071670">Jenkins 无法识别启动项 Unrecognized option: –handlerCountMax&#x3D;100</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jdk</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">jenkins</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/07/25/utils/centOS%E4%B8%8Blinux7%E6%90%AD%E5%BB%BAjenkins%E5%85%A8%E8%BF%87%E7%A8%8B/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-基于阿里mpaas搭建一个小程序流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/28/%E5%9F%BA%E4%BA%8E%E9%98%BF%E9%87%8Cmpaas%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B/" target="_blank">基于阿里mpaas搭建一个小程序流程</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/28/%E5%9F%BA%E4%BA%8E%E9%98%BF%E9%87%8Cmpaas%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2023-06-28T14:18:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h3><p>安装 xcode。目前 mPaaS Xcode Extension 仅支持 9.0及以上版本的 Xcode。</p>
+<p>macOS 版本 ≥ 10.13。</p>
+<p>打开 App Store，搜索 xcode 点击安装</p>
+<h3 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h3><p>安装 <a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/140597.html?spm=a2c4g.140639.0.0.19791628PHszt1">mPaaS Xcode Extension</a></p>
+<p>未安装过 mPaaS Xcode Extension（如需升级安装，建议使用 Extension 插件内的升级功能）。</p>
+<h4 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h4><p>在终端运行以下安装命令。</p>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">curl -sSL https:&#x2F;&#x2F;mpaas-ios.oss-cn-hangzhou.aliyuncs.com&#x2F;mpaaskit&#x2F;Xcode-extension&#x2F;install.sh | sh</code></pre>
+<p>安装完成后，会打开引导页面。</p>
+<p>如果您需要创建新工程，请关闭引导页，在启动台中找到 mPaaSPlugin，单击打开。更多信息，请参见 新建工程。mPaaSPlugin 在启动台<br><img src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9857818461/p422677.png" alt="img"></p>
+<p>如果您需要编辑已有工程，在引导页中单击 开始使用，会打开 mPaaSPlugin 插件。在插件菜单中选择 编辑工程，即可通过拖拽工程文件或单击 打开工程 按钮打开已有工程。更多信息，请参见 编辑工程。mPaaSPlugin 编辑工程<br><img src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9857818461/p422682.png" alt="img"></p>
+<h4 id="后续操作"><a href="#后续操作" class="headerlink" title="后续操作"></a>后续操作</h4><p>进行系统授权。由于 mPaaS Xcode Extension 需要对 Xcode 工程进行操作，因此在第一次使用“编辑工程”功能的时候，系统需要用户进行授权，弹框如下图所示。请务必允许，否则插件无法按预期工作。系统授权</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mpaas</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/28/%E5%9F%BA%E4%BA%8E%E9%98%BF%E9%87%8Cmpaas%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-面经～" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2609,255 +2841,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 
   
-    <article id="post-前端如何写一个最终版本的页面" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/09/29/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA%E6%9C%80%E7%BB%88%E7%89%88%E6%9C%AC%E7%9A%84%E9%A1%B5%E9%9D%A2/" target="_blank">前端页面代码怎么写才能像模像样</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/09/29/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA%E6%9C%80%E7%BB%88%E7%89%88%E6%9C%AC%E7%9A%84%E9%A1%B5%E9%9D%A2/" class="archive-article-date">
-        <time datetime="2022-09-28T16:32:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-29</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <ol>
-<li>经常我们在页面中写if…else…会这样写<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 条件成立执行</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 条件不成立执行</span>
-<span class="token punctuation">&#125;</span></code></pre></li>
-<li>然而在工作中我们经常会碰到条件语句只有一行代码时，建议这样写（代码少了一些）<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token punctuation">)</span> <span class="token comment">// 条件成立执行</span>
-<span class="token keyword">else</span> <span class="token comment">// 条件不成立执行</span></code></pre></li>
-<li>当然在工作中如果写太多的if…else…就容易写成面条代码例如这样<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 执行成立1</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 执行成立2</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 执行成立3</span>
-<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>等等<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 执行成立等等</span>
-<span class="token punctuation">&#125;</span></code></pre></li>
-<li>这时候我们如果条件语句中只有一行代码，我们可以考虑用 <strong>2</strong> 方法例如<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">// 执行成立1</span>
-<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment">// 执行成立2</span>
-<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment">// 执行成立3</span>
-<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>等等<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 执行成立等等</span>
-<span class="token punctuation">&#125;</span></code></pre></li>
-<li>想想我们是否还有什么优化的地方，这样写最后还是会像面条代码，那我们可以这样写<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> 
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> 
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span>条件成立<span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> 
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span>等等<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span>
-<span class="token punctuation">&#125;</span></code></pre></li>
-<li>像 <strong>5</strong> 这样写虽然相对好一些，我们应该想到还有其他方法可以代替，例如switch<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">switch</span><span class="token punctuation">(</span>条件<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">case</span> <span class="token string">'条件成立1'</span>
-        <span class="token keyword">break</span>
-    <span class="token keyword">case</span> <span class="token string">'条件成立2'</span>
-        <span class="token keyword">break</span>
-    <span class="token keyword">case</span> <span class="token string">'条件成立3'</span>
-        <span class="token keyword">break</span>
-    <span class="token keyword">case</span> <span class="token string">'等等'</span>
-        <span class="token keyword">break</span>
-<span class="token punctuation">&#125;</span></code></pre></li>
-<li>以上写法感觉代码要嘛是一团，要嘛像面条，这个时候我们可以考虑用策略模式来写这些逻辑代码，例如这样<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">条件成立1方法</span><span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 条件成立1方法</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">function</span> <span class="token function">条件成立2方法</span><span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 条件成立2方法</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">function</span> <span class="token function">条件成立3方法</span><span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 条件成立3方法</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">function</span> <span class="token function">等等方法</span><span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">// 等等方法</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-    <span class="token string-property property">'条件成立1'</span><span class="token operator">:</span> <span class="token string">'条件成立1方法'</span><span class="token punctuation">,</span>
-    <span class="token string-property property">'条件成立2'</span><span class="token operator">:</span> <span class="token string">'条件成立2方法'</span><span class="token punctuation">,</span>
-    <span class="token string-property property">'条件成立3'</span><span class="token operator">:</span> <span class="token string">'条件成立3方法'</span><span class="token punctuation">,</span>
-    <span class="token string-property property">'等等方法'</span><span class="token operator">:</span> <span class="token string">'等等方法'</span>
-<span class="token punctuation">&#125;</span>
-config<span class="token punctuation">[</span>条件<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> config<span class="token punctuation">[</span>条件<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></li>
-<li>注意 代码尽量越简洁越好，但是这边还有一个就是后期一眼要能直接看出代码逻辑就更完美了。想象一下最终大家都是特别牛的前端，所有语法熟记于心，那就看代码优雅程度了。越优雅的代码后期维护起来事半功倍。</li>
-</ol>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">代码技巧</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/09/29/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA%E6%9C%80%E7%BB%88%E7%89%88%E6%9C%AC%E7%9A%84%E9%A1%B5%E9%9D%A2/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-diffjs的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/07/17/diffjs%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_blank">diffjs的使用</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/07/17/diffjs%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2022-07-17T14:23:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// npm i diff</span>
-<span class="token keyword">const</span> Diff <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'diff'</span><span class="token punctuation">)</span> <span class="token comment">// 注意不能用import</span>
-<span class="token keyword">const</span> str <span class="token operator">=</span> Diff<span class="token punctuation">.</span><span class="token function">diffChars</span><span class="token punctuation">(</span><span class="token string">'aa'</span><span class="token punctuation">,</span> <span class="token string">'abb'</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> json <span class="token operator">=</span> Diff<span class="token punctuation">.</span><span class="token function">diffJson</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token keyword">const</span> arr <span class="token operator">=</span> Diff<span class="token punctuation">.</span><span class="token function">diffJson</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token literal-property property">c</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'str==>'</span><span class="token punctuation">,</span> str<span class="token punctuation">)</span> <span class="token comment">// 输出一个数组描述从aa到abb过程</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'json==>'</span><span class="token punctuation">,</span> json<span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'arr==>'</span><span class="token punctuation">,</span> arr<span class="token punctuation">)</span></code></pre>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">diff</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">变更</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/07/17/diffjs%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next »</a>
@@ -2998,7 +2981,23 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">技术点</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mpaas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3011,18 +3010,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">antd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3066,7 +3053,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">base</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3078,11 +3069,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">base</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">jenkins</a>
               </li>
             
             <div class="clearfix"></div>
