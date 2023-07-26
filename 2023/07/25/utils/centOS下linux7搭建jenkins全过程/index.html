@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="PS 在一个什么环境都没有的 linux 下如何安装 jenkins   因为 jenkins 是基于 java 开发的，所有在安装 jenkins 之前我们要先安装 jdk  👉 下载 jdk 压缩包  我下载的版本是 jdk-17_linux-x64_bin.tar.gz 下载地址  1.1 下载压缩包命令👇   # &#x2F;usr&#x2F;local&#x2F;java wget">
+  <meta name="description" content="PS: 在一个什么环境都没有的 linux 下如何安装 jenkins   因为 jenkins 是基于 java 开发的，所有在安装 jenkins 之前我们要先安装 jdk  👉 jdk 压缩包地址  笔者下载的版本是 jdk-17_linux-x64_bin.tar.gz 点击下载  1.1 下载压缩包命令👇   # &#x2F;usr&#x2F;local&#x2F;java wge">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centOS下linux7搭建jenkins全过程">
 <meta property="og:url" content="http://mrretro.github.io/2023/07/25/utils/centOS%E4%B8%8Blinux7%E6%90%AD%E5%BB%BAjenkins%E5%85%A8%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="MrRetro技术分享">
-<meta property="og:description" content="PS 在一个什么环境都没有的 linux 下如何安装 jenkins   因为 jenkins 是基于 java 开发的，所有在安装 jenkins 之前我们要先安装 jdk  👉 下载 jdk 压缩包  我下载的版本是 jdk-17_linux-x64_bin.tar.gz 下载地址  1.1 下载压缩包命令👇   # &#x2F;usr&#x2F;local&#x2F;java wget">
+<meta property="og:description" content="PS: 在一个什么环境都没有的 linux 下如何安装 jenkins   因为 jenkins 是基于 java 开发的，所有在安装 jenkins 之前我们要先安装 jdk  👉 jdk 压缩包地址  笔者下载的版本是 jdk-17_linux-x64_bin.tar.gz 点击下载  1.1 下载压缩包命令👇   # &#x2F;usr&#x2F;local&#x2F;java wge">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-07-25T08:21:26.000Z">
-<meta property="article:modified_time" content="2023-07-25T23:58:38.613Z">
+<meta property="article:modified_time" content="2023-07-26T00:08:51.694Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="jdk">
 <meta property="article:tag" content="jenkins">
@@ -255,7 +255,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">803字</span>
+      <span class="post-count">822字</span>
     </span>
   </span>
 
@@ -276,10 +276,10 @@
   <div class="article-entry" itemprop="articleBody">
     
     <blockquote>
-<p>PS 在一个什么环境都没有的 linux 下如何安装 jenkins</p>
+<p>PS: 在一个什么环境都没有的 linux 下如何安装 jenkins</p>
 </blockquote>
 <ol>
-<li><p>因为 jenkins 是基于 java 开发的，所有在安装 jenkins 之前我们要先安装 jdk<br>  👉 <a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/">下载 jdk 压缩包</a><br>  我下载的版本是 <strong>jdk-17_linux-x64_bin.tar.gz</strong> <a target="_blank" rel="noopener" href="https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz">下载地址</a><br>  1.1 下载压缩包命令👇</p>
+<li><p>因为 jenkins 是基于 java 开发的，所有在安装 jenkins 之前我们要先安装 jdk<br>  👉 <a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/">jdk 压缩包地址</a><br>  笔者下载的版本是 <strong>jdk-17_linux-x64_bin.tar.gz</strong> <a target="_blank" rel="noopener" href="https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz">点击下载</a><br>  1.1 下载压缩包命令👇</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
 wget https:&#x2F;&#x2F;download.oracle.com&#x2F;java&#x2F;17&#x2F;latest&#x2F;jdk-17_linux-x64_bin.tar.gz</code></pre>
 <p>  1.2 解压压缩包命令👇</p>
@@ -291,21 +291,21 @@ rpm -ivh jdk-17_linux-x64_bin.tar.gz</code></pre>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin
 export CLASSPATH&#x3D;$:CLASSPATH:$JAVA_HOME&#x2F;lib&#x2F;
 export PATH&#x3D;$PATH:$JAVA_HOME&#x2F;bin</code></pre>
-<p>  注意：第一行的 JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin 此处等号右边的是自己的 jdk 实际解压目录。如果不是该目录则需要改成自己的实际目录，其他不变。<br>  1.5 编辑完之后，保存并退出，然后输入以下指令，刷新环境配置使其生效：</p>
+<p>  注意：第一行的 JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin 此处等号右边的是自己的 jdk 实际解压目录。<br>  如果不是该目录则需要改成自己的实际目录，其他不变。<br>  1.5 编辑完之后，保存并退出，然后输入以下指令，刷新环境配置使其生效</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd">source &#x2F;etc&#x2F;profile</code></pre>
-<p>  1.6 查看 jdk 是否安装成功，输入指令 java -version 即可。</p>
+<p>  1.6 查看 jdk 是否安装成功，输入指令 java -version 即可</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd">java -version</code></pre>
 </li>
-<li><p>下载 jenkins 并安装<br>  2.1 下载 Jenkins 安装包, 推荐下载最新的安装包 👉 <a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/jenkins/war-stable/">下载</a></p>
+<li><p>下载 jenkins 并安装<br>  2.1 下载 Jenkins 安装包, 推荐下载最新的安装包 👉 <a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/jenkins/war-stable/">安装包地址</a></p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
 wget https:&#x2F;&#x2F;repo.huaweicloud.com&#x2F;jenkins&#x2F;redhat-stable&#x2F;jenkins-2.346.3-1.1.noarch.rpm</code></pre>
 <p>  2.2 安装 jenkins</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
 rpm -ivh jenkins-2.346.3-1.1.noarch.rpm</code></pre>
 <p>  2.3 修改 jenkins 配置<br>  进入 <strong>vi &#x2F;etc&#x2F;init.d&#x2F;jenkins</strong>,<br>  将 JENKINS_USER&#x3D;”jenkins” 改为 JENKINS_USER&#x3D;”root”,<br>  修改自己 java 路径, 在 <strong>&#x2F;usr&#x2F;bin&#x2F;java</strong> 上面加上自己的 java 路径<br>  例如:</p>
-  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin&#x2F;bin&#x2F;java
-&#x2F;usr&#x2F;bin&#x2F;java</code></pre>
-<p>  2.4 jenkins 默认端口是 8080 如果要修改，可以按以下操作找到 <strong>JENKINS_PORT&#x3D;”8080”</strong></p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin&#x2F;bin&#x2F;java # &lt;--- 新加的路径
+&#x2F;usr&#x2F;bin&#x2F;java # &lt;--- 原有的路径</code></pre>
+<p>  2.4 jenkins 默认端口是 8080 如果要修改，找到关键字 <strong>JENKINS_PORT&#x3D;”8080”</strong> 修改后保存即可</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd">vi &#x2F;ect&#x2F;sysconfig&#x2F;jenkins</code></pre>
 <p>  2.5 启动 jenkins</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;etc&#x2F;init.d&#x2F;
@@ -642,11 +642,11 @@ systemctl restart firewalld   #重启</code></pre>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -658,11 +658,23 @@ systemctl restart firewalld   #重启</code></pre>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mpaas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -675,18 +687,6 @@ systemctl restart firewalld   #重启</code></pre>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">antd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -730,14 +730,6 @@ systemctl restart firewalld   #重启</code></pre>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">base</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">gitlab</a>
               </li>
              
@@ -755,6 +747,14 @@ systemctl restart firewalld   #重启</code></pre>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">base</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
             
             <div class="clearfix"></div>

@@ -253,7 +253,7 @@
   <div class="article-entry" itemprop="articleBody">
     
     <blockquote>
-<p>PS: linux 下安装 gitlab 思路：<br>下载安装 —&gt; 安装 gitlab —&gt; 修改配置(端口) —&gt; 启动 gitlab —&gt; 打开防火墙</p>
+<p>PS: linux 下安装 gitlab 思路：<br>下载 gitlab 安装包 —&gt; 安装 gitlab —&gt; 修改配置(端口) —&gt; 启动 gitlab —&gt; 打开防火墙</p>
 </blockquote>
 <ol>
 <li><p>下载安装包</p>
@@ -267,7 +267,7 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">rpm -i gitlab-ce-10.2.7-ce.0.el7.x86_64.rpm</code></pre>
 </li>
 <li><p>修改端口</p>
-<pre class="language-cmd" data-language="cmd"><code class="language-cmd">vim &#x2F;etc&#x2F;gitlab&#x2F;gitlab.rb</code></pre>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">vi &#x2F;etc&#x2F;gitlab&#x2F;gitlab.rb</code></pre>
 <p>把 external_url 的值换成 <a target="_blank" rel="noopener" href="http://127.0.0.1:8088/">http://127.0.0.1:8088</a>, 端口号可以自己指定,这里指定 8088,然后保存.<br>注意：这边设置的 ip 和端口会影响 gitlab 工程的下载地址，建议配置服务器的真实 ip</p>
 </li>
 <li><p>重新加载配置文件</p>
@@ -280,7 +280,7 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
 <li><p>如果有防火墙,添加防火墙端口:8088</p>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">firewall-cmd --zone&#x3D;public --add-port&#x3D;8088&#x2F;tcp --permanent</code></pre></li>
 </ol>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>下载的版本默认是英文版，也没有切换中文设置，可以将汉化版直接替换，也可以尝试下载最新版，最新版有中文语言选择。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>下载的版本默认是英文版，也没有切换中文设置，可以将 <a target="_blank" rel="noopener" href="https://blog.51cto.com/u_13710166/5272867">gitlab 汉化包</a>直接替换，也可以尝试下载最新版，最新版有中文语言选择。</p>
 <h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/45569027/answer/3036162334?utm_id=0">gitlab 如何在linux 搭建？</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f8112a6b1454">gitlab在Linux系统上的安装</a><br><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_13710166/5272867">Linux-GitLab安装及汉化</a></p>
 
     
@@ -368,10 +368,10 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
   <div class="article-entry" itemprop="articleBody">
     
     <blockquote>
-<p>PS 在一个什么环境都没有的 linux 下如何安装 jenkins</p>
+<p>PS: 在一个什么环境都没有的 linux 下如何安装 jenkins</p>
 </blockquote>
 <ol>
-<li><p>因为 jenkins 是基于 java 开发的，所有在安装 jenkins 之前我们要先安装 jdk<br>  👉 <a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/">下载 jdk 压缩包</a><br>  我下载的版本是 <strong>jdk-17_linux-x64_bin.tar.gz</strong> <a target="_blank" rel="noopener" href="https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz">下载地址</a><br>  1.1 下载压缩包命令👇</p>
+<li><p>因为 jenkins 是基于 java 开发的，所有在安装 jenkins 之前我们要先安装 jdk<br>  👉 <a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/downloads/">jdk 压缩包地址</a><br>  笔者下载的版本是 <strong>jdk-17_linux-x64_bin.tar.gz</strong> <a target="_blank" rel="noopener" href="https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz">点击下载</a><br>  1.1 下载压缩包命令👇</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
 wget https:&#x2F;&#x2F;download.oracle.com&#x2F;java&#x2F;17&#x2F;latest&#x2F;jdk-17_linux-x64_bin.tar.gz</code></pre>
 <p>  1.2 解压压缩包命令👇</p>
@@ -383,21 +383,21 @@ rpm -ivh jdk-17_linux-x64_bin.tar.gz</code></pre>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin
 export CLASSPATH&#x3D;$:CLASSPATH:$JAVA_HOME&#x2F;lib&#x2F;
 export PATH&#x3D;$PATH:$JAVA_HOME&#x2F;bin</code></pre>
-<p>  注意：第一行的 JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin 此处等号右边的是自己的 jdk 实际解压目录。如果不是该目录则需要改成自己的实际目录，其他不变。<br>  1.5 编辑完之后，保存并退出，然后输入以下指令，刷新环境配置使其生效：</p>
+<p>  注意：第一行的 JAVA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin 此处等号右边的是自己的 jdk 实际解压目录。<br>  如果不是该目录则需要改成自己的实际目录，其他不变。<br>  1.5 编辑完之后，保存并退出，然后输入以下指令，刷新环境配置使其生效</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd">source &#x2F;etc&#x2F;profile</code></pre>
-<p>  1.6 查看 jdk 是否安装成功，输入指令 java -version 即可。</p>
+<p>  1.6 查看 jdk 是否安装成功，输入指令 java -version 即可</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd">java -version</code></pre>
 </li>
-<li><p>下载 jenkins 并安装<br>  2.1 下载 Jenkins 安装包, 推荐下载最新的安装包 👉 <a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/jenkins/war-stable/">下载</a></p>
+<li><p>下载 jenkins 并安装<br>  2.1 下载 Jenkins 安装包, 推荐下载最新的安装包 👉 <a target="_blank" rel="noopener" href="https://repo.huaweicloud.com/jenkins/war-stable/">安装包地址</a></p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
 wget https:&#x2F;&#x2F;repo.huaweicloud.com&#x2F;jenkins&#x2F;redhat-stable&#x2F;jenkins-2.346.3-1.1.noarch.rpm</code></pre>
 <p>  2.2 安装 jenkins</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;usr&#x2F;local&#x2F;java
 rpm -ivh jenkins-2.346.3-1.1.noarch.rpm</code></pre>
 <p>  2.3 修改 jenkins 配置<br>  进入 <strong>vi &#x2F;etc&#x2F;init.d&#x2F;jenkins</strong>,<br>  将 JENKINS_USER&#x3D;”jenkins” 改为 JENKINS_USER&#x3D;”root”,<br>  修改自己 java 路径, 在 <strong>&#x2F;usr&#x2F;bin&#x2F;java</strong> 上面加上自己的 java 路径<br>  例如:</p>
-  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin&#x2F;bin&#x2F;java
-&#x2F;usr&#x2F;bin&#x2F;java</code></pre>
-<p>  2.4 jenkins 默认端口是 8080 如果要修改，可以按以下操作找到 <strong>JENKINS_PORT&#x3D;”8080”</strong></p>
+  <pre class="language-cmd" data-language="cmd"><code class="language-cmd">&#x2F;usr&#x2F;local&#x2F;java&#x2F;jdk-17_linux-x64_bin&#x2F;bin&#x2F;java # &lt;--- 新加的路径
+&#x2F;usr&#x2F;bin&#x2F;java # &lt;--- 原有的路径</code></pre>
+<p>  2.4 jenkins 默认端口是 8080 如果要修改，找到关键字 <strong>JENKINS_PORT&#x3D;”8080”</strong> 修改后保存即可</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd">vi &#x2F;ect&#x2F;sysconfig&#x2F;jenkins</code></pre>
 <p>  2.5 启动 jenkins</p>
   <pre class="language-cmd" data-language="cmd"><code class="language-cmd"># &#x2F;etc&#x2F;init.d&#x2F;
@@ -2916,11 +2916,11 @@ type ButtonType <span class="token operator">=</span> <span class="token string"
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2932,11 +2932,23 @@ type ButtonType <span class="token operator">=</span> <span class="token string"
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mpaas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2949,18 +2961,6 @@ type ButtonType <span class="token operator">=</span> <span class="token string"
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">antd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -3004,14 +3004,6 @@ type ButtonType <span class="token operator">=</span> <span class="token string"
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">base</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">gitlab</a>
               </li>
              
@@ -3029,6 +3021,14 @@ type ButtonType <span class="token operator">=</span> <span class="token string"
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">base</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
             
             <div class="clearfix"></div>

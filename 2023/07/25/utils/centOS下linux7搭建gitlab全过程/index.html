@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="PS: linux 下安装 gitlab 思路：下载安装 —&gt; 安装 gitlab —&gt; 修改配置(端口) —&gt; 启动 gitlab —&gt; 打开防火墙   下载安装包 # &#x2F;usr&#x2F;local&#x2F;gitlab wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&amp;#">
+  <meta name="description" content="PS: linux 下安装 gitlab 思路：下载 gitlab 安装包 —&gt; 安装 gitlab —&gt; 修改配置(端口) —&gt; 启动 gitlab —&gt; 打开防火墙   下载安装包 # &#x2F;usr&#x2F;local&#x2F;gitlab wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="centOS下linux7搭建gitlab全过程">
 <meta property="og:url" content="http://mrretro.github.io/2023/07/25/utils/centOS%E4%B8%8Blinux7%E6%90%AD%E5%BB%BAgitlab%E5%85%A8%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="MrRetro技术分享">
-<meta property="og:description" content="PS: linux 下安装 gitlab 思路：下载安装 —&gt; 安装 gitlab —&gt; 修改配置(端口) —&gt; 启动 gitlab —&gt; 打开防火墙   下载安装包 # &#x2F;usr&#x2F;local&#x2F;gitlab wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&amp;#">
+<meta property="og:description" content="PS: linux 下安装 gitlab 思路：下载 gitlab 安装包 —&gt; 安装 gitlab —&gt; 修改配置(端口) —&gt; 启动 gitlab —&gt; 打开防火墙   下载安装包 # &#x2F;usr&#x2F;local&#x2F;gitlab wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gi">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-07-25T09:51:29.000Z">
-<meta property="article:modified_time" content="2023-07-25T10:16:32.738Z">
+<meta property="article:modified_time" content="2023-07-26T00:12:26.811Z">
 <meta property="article:author" content="MrRetro博客">
 <meta property="article:tag" content="gitlab">
 <meta name="twitter:card" content="summary">
@@ -254,7 +254,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">313字</span>
+      <span class="post-count">316字</span>
     </span>
   </span>
 
@@ -275,7 +275,7 @@
   <div class="article-entry" itemprop="articleBody">
     
     <blockquote>
-<p>PS: linux 下安装 gitlab 思路：<br>下载安装 —&gt; 安装 gitlab —&gt; 修改配置(端口) —&gt; 启动 gitlab —&gt; 打开防火墙</p>
+<p>PS: linux 下安装 gitlab 思路：<br>下载 gitlab 安装包 —&gt; 安装 gitlab —&gt; 修改配置(端口) —&gt; 启动 gitlab —&gt; 打开防火墙</p>
 </blockquote>
 <ol>
 <li><p>下载安装包</p>
@@ -289,7 +289,7 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">rpm -i gitlab-ce-10.2.7-ce.0.el7.x86_64.rpm</code></pre>
 </li>
 <li><p>修改端口</p>
-<pre class="language-cmd" data-language="cmd"><code class="language-cmd">vim &#x2F;etc&#x2F;gitlab&#x2F;gitlab.rb</code></pre>
+<pre class="language-cmd" data-language="cmd"><code class="language-cmd">vi &#x2F;etc&#x2F;gitlab&#x2F;gitlab.rb</code></pre>
 <p>把 external_url 的值换成 <a target="_blank" rel="noopener" href="http://127.0.0.1:8088/">http://127.0.0.1:8088</a>, 端口号可以自己指定,这里指定 8088,然后保存.<br>注意：这边设置的 ip 和端口会影响 gitlab 工程的下载地址，建议配置服务器的真实 ip</p>
 </li>
 <li><p>重新加载配置文件</p>
@@ -302,7 +302,7 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
 <li><p>如果有防火墙,添加防火墙端口:8088</p>
 <pre class="language-cmd" data-language="cmd"><code class="language-cmd">firewall-cmd --zone&#x3D;public --add-port&#x3D;8088&#x2F;tcp --permanent</code></pre></li>
 </ol>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>下载的版本默认是英文版，也没有切换中文设置，可以将汉化版直接替换，也可以尝试下载最新版，最新版有中文语言选择。</p>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>下载的版本默认是英文版，也没有切换中文设置，可以将 <a target="_blank" rel="noopener" href="https://blog.51cto.com/u_13710166/5272867">gitlab 汉化包</a>直接替换，也可以尝试下载最新版，最新版有中文语言选择。</p>
 <h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/45569027/answer/3036162334?utm_id=0">gitlab 如何在linux 搭建？</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f8112a6b1454">gitlab在Linux系统上的安装</a><br><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_13710166/5272867">Linux-GitLab安装及汉化</a></p>
 
     
@@ -611,11 +611,11 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ie11</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,11 +627,23 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">代码技巧</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mpaas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -644,18 +656,6 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">antd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">jq1.0</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">elemntui</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -699,14 +699,6 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">base</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">gitlab</a>
               </li>
              
@@ -724,6 +716,14 @@ wget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;gitlab-ce&#x2F;yum&#x2F
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">base</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
             
             <div class="clearfix"></div>
